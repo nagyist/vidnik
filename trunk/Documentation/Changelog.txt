@@ -179,8 +179,7 @@ CL 6788203 --> remove OldQTKit sources
 
 3/27/08 :
 
-* Added Sparkle, verified that we can compile, run unit tests, PowerPC & Intel using copy to be uploaded to svn.
-- Next: Upload to svn
+* Added Sparkle, verified that we can compile, run unit tests, PowerPC & Intel using source uploaded to svn.
 
 TODO:
 - an upload is not a save. better undo handling of trim across upload.

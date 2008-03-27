@@ -1,0 +1,242 @@
+//Change Log open with TextEdit
+
+Vidnik
+
+Based on QTKitCaptureProgrammingGuide.pdf  (in ~/Documents/Documents/Programming )
+
+2/21/08 6pm: TubeDiarist fetches and caches the list of legal categories from the YouTube Server. This the first time the program has accesses both audio+video, plus making http requests.
+
+2/22/08
+* TubeDiarist now has a current/total display in playback mode.
+* dropping a movie on the app icon implicitly creates a playlist length 1 and selects the zeorth entry.
+
+2/26/08
+* uniqify the keywords when setting them into the model.
+* alpha sort the fields of TDModelMovie in init, copy, encode, decode, setters/getters. This should make the class more maintainable.
+* you can drag movies to playlist.
+* movies are only added once (a second drag won't re-add them)
+* you can select movies in the playlist, and they show in the video preview window, and can be played.
+
+2/27/08
+* documents ere too big. but, I'm not sure if the new smaller thumbnails are draswable. they don't appear to be.
+
+2/28/08
+* details copied between master view/detail view, with undo/redo.
+* auth sheet shows
+* actually authenticates : but the Service that holds the auth data is currently a static of the AuthSheet. I need to refactor so it, and the authManager, are owned by the document.
+* app icon - thanks to Cole.
+* doc icon - thanks to Cole.
+
+
+2/29/08
+* document owns service. username/password sheet interacts with service, document, keychain, so each document can reference a different account. GMClientAuthManager and GMClientAuthWindowController are no longer included in this program.
+* help viewer was putting up an error message. Fixed.
+* saves path to most recent doc. Reopens most recent doc on app start.
+* double clicking the app should re-opens the last document, if possible.
+
+3/1/08
+* added New.png - a white small pic of a camera
+* added Missing.png - a white small pic of an X
+* "+" button undo-ably adds a new movie.
+* New document created with a new movie.
+* new movie in playlist has an appropriate playlist
+* if you have a new entry in the play list, and you record a segment, the segment is associated with that entry.
+* tested all combinations of {has, doesn't have}username/password{save in keychain,don't save in keychain}
+* uploaded a pair of files.
+* Added the "show in Finder" contextual menu command. But it works on the current selection, not necessarily what you clicked on.
+* Added the "show web page" contextual menu command. But it works on the current selection, not necessarily what you clicked on.
+
+3/3/08 - begin counting 15 bugs for next weeks snippets.
+CL 6592474 <=> Version 0.1
+
+* changed Gear button icon to add downward pointing triangle
+* click on the Gear button and an icon pops down.
+
+3/4/08
+* compiles and runs on Tiger: note: it will be an ongoing process for me, to reverify this.
+* when app becomes active, it re-validates the file aliases.
+* adopted the open-source/Xcodeconfigs.
+* dragging a movie into the playlist creates a TDModelMovie in the Ready state, with a category assigned
+* Initial document is re-opened only on start up.
+
+CL 6609619 <=> Version 0.2
+
+3/5/08
+* copy
+* cut movie
+* paste movie
+* drag movie
+* delete movie
+* undo cut movie
+* undo paste movie
+* undo drag movie
+* undo delete movie
+* redo cut movie
+* redo delete movie
+* redo paste movie
+* redo drag movie
+* dragging movies to trash, with undo and redo
+
+* File Menu does New Movie instead of New document to make it easier to re-use existing document.
+
+CL 6620921 <=> Version 0.3
+
+3/6/08
+* Cole's new nibs
+* since documents are supposed to map to accounts, put the account name in the window title.
+* when dragging, show destination feedback as between existing items.
+* splitter view improved.
+* "show in Finder" contextual menu command works on the current cell, even if it isn't selected.
+* "show web page"  contextual menu command works on the current cell, even if it isn't selected.
+* Fixed:video stretched beyond what it should be.
+* dragging start or end marker should update time display.
+* if a paste would do a move, and the result is the same as not pasting, then skip the paste, so we have a clean undo history.
+* detail pane now shows status text at bottom
+
+CL 6634008 <=> Version 0.4
+
+3/13/08
+* Wrote a ProgressCell that manages reporting progress to the user. Compiled and linked in, but not used yet.
+* async Movie open.
+
+3/17/08
+* when draagging multiple movies onto playlist, the drag is sorted as in the Finder.
+* when selecting a movie in the middle of the playlist, delete, then delete again, the selection was
+  pointing at a deleted movie internally. Fixed.
+* fixed bug where program improperly attempts to deselect.
+* fixed bug where program crashes attempting to start a record session when there is no camera. 
+* trim to selection, undo trim to selection
+
+3/18/08
+* when table ceases to be responder, it sets the edit menu items to something neutral at start of ceasing, so if new responder sets them to something else, its chnages won't be overwritten.
+* Fixed: when I click in blank space in the table, the first time, the attributes controller is cleared correctly.
+  click on a tableItem, click on blanks space, the second the attributes controller is NOT cleared.
+* meter doesn't update correctly on trim to selection.
+* undo/redo of description was causing text to be doubled. Fix was turning of undo for the NSTextView in I.B.
+* status text updating.
+* Fixed: movies were being incorrectly reported as not-ready-to-upload
+
+CL 6732497 <=> Version 0.5
+
+3/19/08 
+* added New back in as <Option><Command>N
+* trim saved to disk on upload or save.
+* trim/undo trim/redo trim/ adjusts the poster image.
+
+3/20/08 
+* New icons, away from YouTube.
+* Unit test of upload (for debugging progress meters)
+* When legal said OK, rename to "Vidnik"
+
+CL 6750486 <=> Version 0.6
+
+3/21/08 :
+* I've dropped OldQTKit from the app. 
+* fixed bug where path to last document wasn't being saved to preferences on disk
+* upload progress meters!
+
+CL 6759032 <=> Version 0.7
+
+* All applescript model properties on app, window, document, movie work, at least read-only.
+* works: tell app "Vidnik" to open POSIX file "/Users/oster/Movies/TubeDiarist/t2.tdiary"
+* works:
+tell application "Vidnik"
+	select all movie 2 of document 1
+	delay 1
+	select none movie 2 of document 1
+end tell
+tell application "Vidnik"
+	make new document with properties {name:"john doe"}
+	delay 1
+  close document 1 saving ask
+end tell
+tell application "Vidnik"
+	tell document 1
+		set name of movie 1 to "Hello there"
+		set category of movie 1 to "News"
+		set description of movie 1 to "Hello there"
+		set keywords of movie 1 to {"Hello", "there"}
+	end tell
+end tell
+tell application "Vidnik"
+	make new movie at end of document 1 with properties {name:"Hello There", category:"News", description:"description - Hello there", keywords:{"Hello", "there"}}
+end tell
+
+* Cell drawing, mouse tracking cleaned up.
+* cancel button on the upload progress meters tracks.
+* description, tags are all mandatory. We verify before upload.
+
+3/26/08 :
+* When uploading, cancel button cancels.
+* When opening, error-uploading state, cancelled-uploading state is cleared
+
+CL 6786856 <=> Version 0.8
+
+* No longer depends on any file in Shared (except GData)
+
+CL 6788203 --> remove OldQTKit sources
+* Trim, select all menu commands work, even when item in table view is selected.
+
+3/27/08 :
+
+* Added Sparkle, verified that we can compile, run unit tests, PowerPC & Intel using copy to be uploaded to svn.
+- Next: Upload to svn
+
+TODO:
+- an upload is not a save. better undo handling of trim across upload.
+- deleting a movie should move the actual movie file to the trash. undo should move it back.
+- check movie status before querying attributes. 
+  if not ready, schedule to recheck when becomes ready?
+- ModelMovie error state policy
+- Not clear that you are recording.
+
+- playlist management: a playlist is a list of movies.
+  - can't split, cut video segments.
+  - splitting movies 
+  - joining movies
+  - you can open an editor on the title text in the playList, but you can't actually edit there.
+  - items in playlist are just name and image. Should show more.
+- I had a default document that doesn't display one of the thumbnails, but deselecting and reselecting shows the thumbnail.
+- splitter view needs work: grow window, give left pane min size, shrink window. shrinks past min. can't programmatically resize.
+- video frame should be centered as window grows and shrinks
+
+- no control over capture format (I want 30fps)
+- no error messages for missing camera, camera in use. (session [inputs count] == 0) 
+- no switching of preview from window to window
+- no support for multiple cameras
+- dragging start marker so it drags end marker, then back, doesn't restore end marker
+- with multiple movies, can I exceed RAM?
+- consider a unit test that verifies that actions and outlets are as expected.
+- on leopard, after a few runs, we get into a state where AVCAssistant runs, but produces no data,
+  not event for PhotoBooth.
+- test with 1000 movies.
+- BUG clicking record with nothing selected in the table did not give the resulting movie a cell in the table.
+- test playing with the U.I. during record.
+
+- creating thumbnails, movies: the work is done synchronously. too slow.
+
+
+- help needs work
+
+- currently, we ask for a video device, and if that fails grab a mux device. That happens to work for the built-in iSight and FirewireDV cameras I tested. But, it isn't very robust. 
+
+I used to ask for a mux first, then if that failed ask for video+audio. But the iSight would return itself as a mux device, even though it had no audio.
+
+We should ask for a mux first, then query the mux for an audio channel. If that fails, then ask for a separate audio device (and a similar check for video device, for that matter) 
+
+We should have error handling for the case of getting video but not audio.
+
+- if there is only one channel of sound, make a monaural movie.
+
+Version 2:
+- allow a different segment maker that uses an audio track, a series of stills, and transition points.
+
+
+TO release an alpha:
+* make sure PRODUCT_VERSION symbol is appropriately defined in project.
+* Build Release vesion,
+* Place in appropriately named folder with:
+  ReadMe
+  ReleaseNotes
+  custom icon.
+* Zip, unload, rebuild symbolic link, move prev to "old"

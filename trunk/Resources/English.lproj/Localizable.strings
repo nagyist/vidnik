@@ -1,0 +1,193 @@
+﻿// Localizable.strings
+
+"BadDoc" = "Couldn’t open document.";
+
+// Window Title
+"account not set" = "account not set";
+
+"TDCaptureErrDescNoPath" = "Required plug in not found.";
+"TDCaptureErrDescNoBundle" = "Required plug in is damaged.";
+"TDCaptureErrDescNoLoad" = "Required plug in is damaged: Couldn‚Äôt load it.";
+"TDCaptureErrDescNoClass" = "Required plug in is damaged: Couldn‚Äôt bind it.";
+
+"TDCaptureErrReasonNoPath" = "while reading “%@”";
+"TDCaptureErrReasonNoBundle" = "while reading “%@”";
+"TDCaptureErrReasonNoLoad" = "while loading “%@”";
+"TDCaptureErrReasonNoClass" = "while binding “%@”";
+
+"TDCaptureErrSuggestNoPath" = "Try reinstalling from backups. Please file a bug.";
+"TDCaptureErrSuggestNoBundle" =  "Try reinstalling from backups. Please file a bug.";
+"TDCaptureErrSuggestNoLoad" =  "Try reinstalling from backups. Please file a bug.";
+"TDCaptureErrSuggestNoClass" =  "Try reinstalling from backups. Please file a bug.";
+
+"UploadErrNoMovies" = "This document has no  movies.";
+"UploadSuggestNoMovies" = "Please press the “Record” button to start recording. Press again to complete recording.\n\nOr, you can drag movies into the playlist from the Finder.";
+
+"UploadErrAllAlreadyUploadedMovies" = "All of the movies in this playlist have already been uploaded to YouTube.";
+"UploadSuggestAllAlreadyUploadedMovies" = "Please add some more movies to this playlist.";
+
+"UploadErrNoReadyToUploadMovies" = "None of the un-uploaded movies in this playlist are ready to be uploaded.";
+"UploadSuggestNoReadyToUploadMovies" = "Please add the additional information to these movies to make them ready.";
+
+
+"UploadErrFileNotFound" = "Movie file not found.";
+"UploadSuggestFileNotFound" = "";
+
+"UploadErrCouldntReadFile" = "Couldn’t read file.";
+"UploadSuggestCouldntReadFile" = "";
+
+"UploadErrNoCategory" = "You must assign a category to this movie.";
+"UploadSuggestNoCategory" = "";
+
+"NoServiceErr" = "Couldn’t connect to you Tube.";
+"NoServiceSuggest" = "";
+
+"NoUsernamePasswordErr" = "Couldn’t login.";
+"NoUsernamePasswordSuggest" = "Please re-type your name and password in the “account” pane.";
+
+// Pause button
+"Pause" = "Pause";
+
+// Play button
+"Play" = "Play";
+
+// ProgressCell progress meters
+"remaining: %@ (%@/sec)" = "remaining: %@ (%@/sec)";
+
+// ProgressCell progress meters
+"remaining: %@" = "remaining: %@";
+
+// upload movie status states
+"NotReadyToUpload" = "not ready to upload";
+"NotUploaded" = "Ready to Upload";
+"Uploaded" = "Uploaded";
+"Uploading" = "Uploading";
+"UploadingCancelled" = "Upload Cancelled";
+"UploadingErrored" = "An Upload Error occurred";
+
+
+// Localized Category we use the term as the key, since it is presumably not localized.
+"Autos" = "Autos & Vehicles";
+"Comedy" = "Comedy";
+"Education" = "Education";
+"Entertainment" = "Entertainment";
+"Film" = "Film & Animation";
+"Howto" = "How To & Style";
+"Music" = "Music";
+"News" = "News & Politics";
+"Nonprofit" = "Nonprofit & Activism";
+"People" = "People & Blogs";
+"Animals" = "Pets & Animals";
+"Tech" = "Science & Technology";
+"Sports" = "Sports";
+"Travel" = "Travel & Events";
+
+// Used in -[TDModelPlaylist nextUntitledMovieTitle]
+"UntitledMovieN" = "untitled %d";
+
+// Should never happen in nextUntitledMovieTitle
+"UntitledMovie" = "untitled";
+
+// Edit Menu
+"Cut" = "Cut";
+
+// Edit Menu
+"Delete" = "Delete";
+
+// Edit Menu
+"Copy" = "Copy";
+
+// Edit Menu
+"Paste" = "Paste";
+
+// Edit Menu
+"Copy Movie" = "Copy Movie";
+
+// Edit Menu
+"Paste Movie" = "Paste Movie";
+
+// Undo + edit menu
+"Cut Movie" = "Cut Movie";
+
+// Undo
+"Cut Movies" = "Cut Movies";
+
+// Undo Russion uses a different word for three and up, than 2
+"Cut Movies3" = "Cut Movies";
+
+// Undo + edit menu
+"Delete Movie" = "Delete Movie";
+
+// Undo
+"Delete Movies" = "Delete Movies";
+
+// Undo Russion uses a different word for three and up, than 2
+"Delete Movies3" = "Delete Movies";
+
+// Undo
+"Drag Movie" = "Drag Movie";
+
+// Undo
+"Drag Movies" = "Drag Movie";
+
+// Undo Russion uses a different word for three and up, than 2
+"Drag Movies3" = "Drag Movies";
+
+// Undo
+"Insert Movie" = "Insert Movie";
+
+// Undo
+"New Movie" = "New Movie";
+
+// Undo
+"Paste Movie" = "Paste Movie";
+
+// Undo
+"Paste Movies" = "Paste Movies";
+
+// Undo Russion uses a different word for three and up, than 2
+"Paste Movies3" = "Paste Movies";
+
+// Undo
+"Remove Movie" = "Remove Movie";
+
+// Undo
+"Replace Movie" = "Replace Movie";
+
+// Undo
+"setCategory:" = "Category Change";
+
+/// Undo
+"setDetails:" = "Description Change";
+
+// Undo
+"setDisplayDate:" = "Change Display Date";
+
+// Undo
+"setKeywords:" = "Tag Change";
+
+// Undo
+"setTitle:" = "Title Change";
+
+// Undo
+"setThumbnail:" = "Thumbnail Change";
+
+// Undo
+"setURLString:" = "URL Change";
+
+// needs item note trailing space
+"NeedsPrefix" = "needs: ";
+
+// needs item 
+"NeedsTitle" = "title";
+
+// needs item 
+"NeedsCategory" = "category";
+
+// needs item 
+"NeedsKeyword" = "tags";
+
+// needs item 
+"NeedsDetails" = "description";
+
+

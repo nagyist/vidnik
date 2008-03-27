@@ -1,0 +1,11 @@
+//
+//  Vidnik.pch
+//  Prefix header for Vidnik
+// 
+//  Created by David Phillip Oster on 2/12/08.
+//  Copyright Google 2008. All rights reserved.
+//
+
+#ifdef __OBJC__
+  #import <Cocoa/Cocoa.h>
+#endif

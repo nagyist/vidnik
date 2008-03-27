@@ -537,6 +537,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 - (IBAction)newMovie:(id)sender {
   TDModelMovie *m = [[[TDModelMovie alloc] init] autorelease];
   [m setTitle:[mPlaylist nextUntitledMovieTitle]];
+  [m setCategory:[TDConfig() defaultCategoryTerm]];
   [mPlaylist addModelMovie:m];
   [self setSelectedModelMovie:m];
   NSUndoManager *um = [self undoManager];

@@ -1,0 +1,39 @@
+// Release Notes
+
+Vidnik
+
+Version 0.8
+* AppleScript support,
+* you can cancel the upload session.
+
+Version 0.7
+* upload progress meters.
+
+Version 0.6
+* trim movie to selected start/end points.
+
+Version 0.5
+* Many undo/redo bugs fixed.
+* status line shows what you need to make a movie ready to upload.
+
+Version 0.4
+* Cole's new window artwork
+* since documents are supposed to map to accounts, put the account name in the window title.
+* when dragging, show destination feedback as between existing items.
+* splitter view improved.
+* "show in Finder" contextual menu command works on the current cell, even if it isn't selected.
+* "show web page"  contextual menu command works on the current cell, even if it isn't selected.
+* Fixed:video stretched beyond what it should be.
+* dragging start or end marker should update time display.
+* if a paste would do a move, and the result is the same as not pasting, then skip the paste, so we have a clean undo history.
+* detail pane now shows status text at bottom
+
+Version 0.3
+* in the playlist table on the left: 
+cut/copy/paste/clear/drag&drop/drag to trash| and for all of those: undo/redo.
+
+Version 0.2
+
+* Works on Leopard or Tiger
+* "Gear" button shows contextual menu for current selection
+* If an error occurs during upload, closing and reopening the playlist file clears the error.

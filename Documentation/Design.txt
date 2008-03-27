@@ -1,0 +1,53 @@
+// Design March 15, 2007 - edit in TextEdit
+
+Overview - The structure of the App
+
+a Model-View-Controller app.
+
+Model - simple container of data, concerned with presenting a clean API to the rest of the program, file i/o, pasteboard i/o. When a model object is changed, it informs its delegate in sufficient detail that the delegate can implement undo.
+
+TDModelPlaylist - top level of the model. One per document. The NSKeyedArchive of a TDModelPlaylist is the document format. It has a few scalars, and an array of TDModelMovie.
+
+TDModelMovie - a few scalars and a reference to the file containing a QTMovie - a QTKit wrapper for a quicktime movie.
+
+Operations beyond the primary ones are shoved off into the files:
+TDPlaylistAdditions.m
+TDModelMovieAdditions.m
+
+View:
+The main window is a splitter with a table and some buttons on the left, one the right, at top, a video record/preview section, a text details section, and a one-line status section at bottom.
+
+table = TDOutlineView - basically an NSOutlineView with a few additions to support being a drag&drop destination.
+
+UIItemValidEnum - my enhancement over NSValidatedUserInterfaceItem. Allows a controller to say of a menu item: YES, NO, ASKNEXTRESPONDER.
+
+
+Messaging a delegate versus posting a notification:
+
+Design rules: based on experience, I'd rather send a message to a delegate than post a notification. Makes the code easier to debug, since you can step through a method call.
+
+To debug posting a notification, you have to global-search to find where a callback is registered, then set a breakpoint on the callback, then continue.
+
+Posting a notification is useful when writing a library, like AppKit, where you may have multiple listeners. Vidnik has a simple tree structure, so a single delegate=owner is good enough.
+
+
+TableCell -
+   We use an NSTableView with a compound NSCell.
+
+we override NSTableView to explicitly pass on to the delegate. the menu bar actions we care about.
+
+
+AppleScript support:
+AppleScript is a noun verb language. TDPlaylistAdditions.m and TDModelMovieAdditions.m define
+- (NSScriptObjectSpecifier *)objectSpecifier; which return an AppleScript reference to our model object.
+That object then receives a verb, which often corresponds to an operation in the U.I.. They handle the verb
+by asking their delegate for an object that implements the "MoviePerformer" protocol, passing the verb and itself.
+The "MoviePerformer" protocol is a simple subset of the Controller's API, so we pass in an appropriate controller
+to handle the noun and verb.
+
+Upload Cancel support:
+movieCell's progressCell's buttonCell's action is in progressCell, call delegate's userCancelled: action. Delegate in this case is the TDModelUploadingAction, which calls its delegate's userCancelledUploading: action. This is the ModelMovie, which calls its delegate's userCancelledUploading: passing itself. This goes to playlist, then playlistcontroller, which is the owner of the uplaod session. It cancels the upload, and marks the movie as isUploadingCancelled.
+
+
+Questions:
+Would it simplify matters to have contollers inherit from NSResponder, and insert themselves into the responder chain just after their views? (How you do _that_: in view's willBecome callback, it checks current responder. If it isn't view's controller, then it makes controller current. Controller always makes view current. What a kluge!)

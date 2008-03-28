@@ -156,14 +156,16 @@ NSString *NewUUID(void) {
 
 - (NSString *)youTubeClientID {
 #ifndef kYouTubeClientID
-#error Get your own Client ID from YouTube and edit it into DeveloperKey.h See http://code.google.com/apis/youtube/overview.html
+#warning "Get your own Client ID from YouTube and edit it into DeveloperKey.h See http://code.google.com/apis/youtube/overview.html"
+#define kYouTubeClientID @"fakeClientID"
 #endif
   return kYouTubeClientID;
 }
 
 - (NSString *)youTubeDeveloperKey {
 #ifndef kYouTubeDeveloperKey
-#error Get your own Developer Key from YouTube and edit it into DeveloperKey.h 
+#warning "Get your own Developer Key from YouTube and edit it into DeveloperKey.h"
+#define kYouTubeDeveloperKey @"fakeDeveloperKey"
 #endif
   return kYouTubeDeveloperKey;
 }

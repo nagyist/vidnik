@@ -13,6 +13,14 @@
 			<string>NSResponder</string>
 		</dict>
 		<dict>
+			<key>CLASS</key>
+			<string>NSMenuItem</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
 			<key>ACTIONS</key>
 			<dict>
 				<key>copy</key>
@@ -69,6 +77,29 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>fetchCredentials</key>
+				<string>id</string>
+				<key>forgetCredentials</key>
+				<string>id</string>
+				<key>newMovie</key>
+				<string>id</string>
+				<key>openYouTubePage</key>
+				<string>id</string>
+				<key>showResponder</key>
+				<string>id</string>
+				<key>trim</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
 				<key>copy</key>
 				<string>id</string>
 				<key>cut</key>
@@ -108,35 +139,6 @@
 				<key>delegate</key>
 				<string>id</string>
 			</dict>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
-			<string>NSMenuItem</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>ACTIONS</key>
-			<dict>
-				<key>fetchCredentials</key>
-				<string>id</string>
-				<key>forgetCredentials</key>
-				<string>id</string>
-				<key>newMovie</key>
-				<string>id</string>
-				<key>showResponder</key>
-				<string>id</string>
-				<key>trim</key>
-				<string>id</string>
-			</dict>
-			<key>CLASS</key>
-			<string>FirstResponder</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
 		</dict>

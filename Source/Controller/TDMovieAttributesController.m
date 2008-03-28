@@ -3,7 +3,7 @@
 //  Vidnik
 //
 //  Created by david on 2/21/08.
-//  Copyright 2008 Google Inc. All rights reserved.
+//  Copyright 2008 Google Inc. Open source under Apache license Documentation/Copying in this project
 //
 
 #import "TDMovieAttributesController.h"

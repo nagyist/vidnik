@@ -3,7 +3,7 @@
 //  Vidnik
 //
 //  Created by David Phillip Oster on 3/4/08.
-//  Copyright 2008 Google Inc. All rights reserved.
+//  Copyright 2008 Google Inc. Open source under Apache license Documentation/Copying in this project
 //
 // This file is a replacement for QTKit/QTkit.h that works with the
 // the 10.4u.sdk

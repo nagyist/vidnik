@@ -3,7 +3,7 @@
 //  Vidnik
 //
 //  Created by david on 2/21/08.
-//  Copyright 2008 Google Inc. All rights reserved.
+//  Copyright 2008 Google Inc. Open source under Apache license Documentation/Copying in this project
 //
 
 #import <Cocoa/Cocoa.h>
@@ -11,7 +11,7 @@
 
 @class TDModelMovie;
 
-@interface TDMovieAttributesController : NSObject {
+@interface TDMovieAttributesController : NSResponder {
   IBOutlet  NSTextField   *mTitle;
   IBOutlet  NSTextField   *mKeywords;
   IBOutlet  NSTextView    *mDescription;

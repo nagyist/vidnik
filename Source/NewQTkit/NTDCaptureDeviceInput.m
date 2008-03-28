@@ -3,7 +3,7 @@
 //  VideoRecorder
 //
 //  Created by David Phillip Oster on 2/14/08.
-//  Copyright 2008 Google Inc. All rights reserved.
+//  Copyright 2008 Google Inc. Open source under Apache license Documentation/Copying in this project
 //
 
 #import "TDCaptureDeviceInput.h"

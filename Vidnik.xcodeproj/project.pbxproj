@@ -99,8 +99,6 @@
 		13CDC6950D637AAF0027DD5A /* TDConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CDC6940D637AAF0027DD5A /* TDConfiguration.m */; };
 		13CDC6980D637ADA0027DD5A /* TDAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CDC6970D637ADA0027DD5A /* TDAppController.m */; };
 		13CDC69B0D637AF80027DD5A /* TDAppScripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CDC69A0D637AF80027DD5A /* TDAppScripting.m */; };
-		13CDC6A10D637B450027DD5A /* TDViewVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CDC6A00D637B450027DD5A /* TDViewVideo.m */; };
-		13CDC6A40D637B5A0027DD5A /* TDViewPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CDC6A30D637B5A0027DD5A /* TDViewPlaylist.m */; };
 		13CDC73B0D639E3E0027DD5A /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CDC73A0D639E3E0027DD5A /* QuickTime.framework */; };
 		13CDC7D30D63B48F0027DD5A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CDC7D20D63B48F0027DD5A /* OpenGL.framework */; };
 		13CDC7E60D63B5180027DD5A /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CDC7E50D63B5180027DD5A /* AudioUnit.framework */; };
@@ -415,10 +413,6 @@
 		13CDC6970D637ADA0027DD5A /* TDAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDAppController.m; sourceTree = "<group>"; };
 		13CDC6990D637AF80027DD5A /* TDAppScripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDAppScripting.h; sourceTree = "<group>"; };
 		13CDC69A0D637AF80027DD5A /* TDAppScripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDAppScripting.m; sourceTree = "<group>"; };
-		13CDC69F0D637B450027DD5A /* TDViewVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDViewVideo.h; sourceTree = "<group>"; };
-		13CDC6A00D637B450027DD5A /* TDViewVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDViewVideo.m; sourceTree = "<group>"; };
-		13CDC6A20D637B5A0027DD5A /* TDViewPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDViewPlaylist.h; sourceTree = "<group>"; };
-		13CDC6A30D637B5A0027DD5A /* TDViewPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDViewPlaylist.m; sourceTree = "<group>"; };
 		13CDC73A0D639E3E0027DD5A /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
 		13CDC7D20D63B48F0027DD5A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		13CDC7E50D63B5180027DD5A /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = /System/Library/Frameworks/AudioUnit.framework; sourceTree = "<absolute>"; };
@@ -826,10 +820,6 @@
 				138B98530D7385A50076C567 /* TDMovieCell.m */,
 				13424B680D7CCE9100E28CDF /* TDOutlineView.h */,
 				13424B690D7CCE9100E28CDF /* TDOutlineView.m */,
-				13CDC69F0D637B450027DD5A /* TDViewVideo.h */,
-				13CDC6A00D637B450027DD5A /* TDViewVideo.m */,
-				13CDC6A20D637B5A0027DD5A /* TDViewPlaylist.h */,
-				13CDC6A30D637B5A0027DD5A /* TDViewPlaylist.m */,
 				636666E50D6E030300018EB6 /* VRVideoMeterView.h */,
 				636666E60D6E030300018EB6 /* VRVideoMeterView.m */,
 				636666E70D6E030300018EB6 /* VRVideoView.h */,
@@ -1328,8 +1318,6 @@
 				13CDC6950D637AAF0027DD5A /* TDConfiguration.m in Sources */,
 				13CDC6980D637ADA0027DD5A /* TDAppController.m in Sources */,
 				13CDC69B0D637AF80027DD5A /* TDAppScripting.m in Sources */,
-				13CDC6A10D637B450027DD5A /* TDViewVideo.m in Sources */,
-				13CDC6A40D637B5A0027DD5A /* TDViewPlaylist.m in Sources */,
 				63A7150F0D6DFD650027BAB8 /* TDPlaylistController.m in Sources */,
 				6366658F0D6E015200018EB6 /* String+Path.m in Sources */,
 				636665900D6E015200018EB6 /* StringFormat.m in Sources */,
@@ -1569,7 +1557,7 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_VERSION = 0.8;
-				SDKROOT = "";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
@@ -1588,7 +1576,7 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_VERSION = 0.8;
-				SDKROOT = "";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Release;
 		};

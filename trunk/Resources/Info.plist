@@ -72,6 +72,8 @@
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>Vidnik.sdef</string>
+  <key>SUCheckAtStartup</key>
+  </false>
   <key>SUFeedURL</key>
   <string>http://vidnik.googlecode.com/svn/trunk/vidnik-su-rss.xml</string>
 	<key>SUScheduledCheckInterval</key>

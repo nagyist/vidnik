@@ -9,7 +9,7 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>tdiary</string>
+				<string>vidnik</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>Doc</string>
@@ -39,6 +39,8 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleGetInfoString</key>
+	<string>${PRODUCT_VERSION}, © 2008 Google Inc.</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>Vidnik Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -51,31 +53,29 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
-	<key>CFBundleGetInfoString</key>
-	<string>${PRODUCT_VERSION}, © 2008 Google Inc.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>YTDi</string>
 	<key>CFBundleVersion</key>
 	<string>${PRODUCT_VERSION}</string>
-	<key>NSAppleScriptEnabled</key>
-	<string>YES</string>
 	<key>LSEnvironment</key>
 	<dict>
 		<key>MinimumSystemVersion</key>
 		<string>10.4.0</string>
 	</dict>
+	<key>NSAppleScriptEnabled</key>
+	<string>YES</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>Vidnik.sdef</string>
-  <key>SUCheckAtStartup</key>
+	<key>SUCheckAtStartup</key>
 	<string>NO</string>
-  <key>SUFeedURL</key>
-  <string>http://vidnik.googlecode.com/svn/trunk/vidnik-su-rss.xml</string>
+	<key>SUFeedURL</key>
+	<string>http://vidnik.googlecode.com/svn/trunk/vidnik-su-rss.xml</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>604800</integer>
 </dict>

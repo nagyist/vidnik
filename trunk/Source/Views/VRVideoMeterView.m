@@ -210,20 +210,27 @@ enum {
 - (void)drawPlayRect:(NSRect)rect {
   NSRect frames[kFrameCount];
   [self getFrames:frames];
-  // Drawing code here.
+
+  // Note: at one time we used a pattern pen to draw the meter background, but
+  //  it had artifacts while the window was being resized.
   [NSGraphicsContext saveGraphicsState];
 
-  NSColor *unSelColor = [NSColor colorWithPatternImage:[NSImage imageNamed:@"tanBar"]];
-  NSColor *selColor = [NSColor colorWithPatternImage:[NSImage imageNamed:@"tanBarSel"]];;
+  NSImage *unSelImage = [NSImage imageNamed:@"tanBar"];
+  NSImage *selImage = [NSImage imageNamed:@"tanBarSel"];
+  if (unSelImage && selImage) {
+    NSRect unSelImageFrame;
+    unSelImageFrame.origin = NSMakePoint(0,0);
+    unSelImageFrame.size = [unSelImage size];
 
-  // draw the selection: pre, sel, post
-  [[NSGraphicsContext currentContext] setPatternPhase:NSMakePoint(0, 2)];
-  [unSelColor set];
-  [NSBezierPath fillRect:frames[kPreBar]];
-  [selColor set];
-  [NSBezierPath fillRect:frames[kSelBar]];
-  [unSelColor set];
-  [NSBezierPath fillRect:frames[kPostBar]];
+    NSRect selImageFrame;
+    selImageFrame.origin = NSMakePoint(0,0);
+    selImageFrame.size = [selImage size];
+
+    // draw the selection: pre, sel, post
+    [unSelImage drawInRect:frames[kPreBar] fromRect:unSelImageFrame operation:NSCompositeSourceOver fraction:1.0];
+    [selImage drawInRect:frames[kSelBar] fromRect:selImageFrame operation:NSCompositeSourceOver fraction:1.0];
+    [unSelImage drawInRect:frames[kPostBar] fromRect:unSelImageFrame operation:NSCompositeSourceOver fraction:1.0];
+  }
 
   // draw the markers: start, end, now
   [mStartMarker compositeToPoint:frames[kStart].origin operation:NSCompositeSourceAtop];

@@ -3,7 +3,7 @@
 //  Vidnik
 //
 //  Created by david on 2/21/08.
-//  Copyright 2008 Google Inc. All rights reserved.
+//  Copyright 2008 Google Inc. Open source under Apache license Documentation/Copying in this project
 //
 
 #import <Cocoa/Cocoa.h>
@@ -16,7 +16,7 @@
 @class GDataServiceTicket;
 @class QTMovieView;
 
-@interface TDPlaylistController : NSObject {
+@interface TDPlaylistController : NSResponder {
   TDModelPlaylist *mPlaylist;
   TDModelMovie  *mCurrent;   // WEAK!
   IBOutlet NSOutlineView *mOutline;

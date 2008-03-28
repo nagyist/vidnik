@@ -3,7 +3,7 @@
 //  Vidnik
 //
 //  Created by David Phillip Oster on 2/29/08.
-//  Copyright 2008 Google Inc. All rights reserved.
+//  Copyright 2008 Google Inc. Open source under Apache license Documentation/Copying in this project
 //
 
 #import "TDWindow.h"
@@ -15,15 +15,6 @@
   [mRepresentedFile release];
   [super dealloc];
 }
-
-- (IBAction)fetchCredentials:(id)sender {
-  [[self delegate] fetchCredentials:sender];
-}
-
-- (IBAction)forgetCredentials:(id)sender {
-  [[self delegate] forgetCredentials:sender];
-}
-
 
 - (NSString *)actualTitle {
   NSString *accountName = [[self delegate] account];

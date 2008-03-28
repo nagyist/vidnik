@@ -180,6 +180,17 @@ CL 6788203 --> remove OldQTKit sources
 3/27/08 :
 
 * Added Sparkle, verified that we can compile, run unit tests, PowerPC & Intel using source uploaded to svn.
+* p4 and svn differ: svn version has sparkle in app bundle, and in mainmenu.nib
+* Upload to svn
+* new movies get a default category assigned.
+* "NeedsMovie" was missing from localizable.strings.
+
+3/28/08 :
+The document farms out its controller duties to three sub-controllers. 
+* Put these on the responder chain so they can manage their own actions. 
+* Remove code in TDWindow, TDOutlineView that was manually routing actions to the delegate chain.
+* Add a web menu with a "go to my page" item.
+* Remove some early files that are never used.
 
 TODO:
 - an upload is not a save. better undo handling of trim across upload.

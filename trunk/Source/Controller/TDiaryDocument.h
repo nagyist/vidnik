@@ -35,11 +35,6 @@
   BOOL mIsSuppressingErrorDialog;
 }
 
-// ### Configuration
-
-// ### Actions
-- (IBAction)fetchCredentials:(id)sender;
-
 // ### Attributes
 
 - (TDModelPlaylist *)playlist;

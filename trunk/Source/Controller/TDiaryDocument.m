@@ -37,15 +37,6 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
   [super dealloc];
 }
 
-// ### Actions
-- (IBAction)fetchCredentials:(id)sender {
-  [mPlaylistController fetchCredentials:sender];
-}
-
-- (IBAction)forgetCredentials:(id)sender {
-  [mPlaylistController forgetCredentials:sender];
-}
-
 // ### Attributes
 
 - (TDModelPlaylist *)playlist {
@@ -82,6 +73,12 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
   static int sInstanceNumber = 0; // so if a pointer gets re-used, we'll know.
   mInstanceNumber = sInstanceNumber++;
   [super windowControllerDidLoadNib:aController];
+  // put out subcontrollers in the responder chain
+  NSResponder *prevResponder = [aController nextResponder];
+  [aController setNextResponder:mMovieAttributesController];
+  [mMovieAttributesController setNextResponder:mVideoController];
+  [mVideoController setNextResponder:mPlaylistController];
+  [mPlaylistController setNextResponder:prevResponder];
   if ([mTemp modelMovieCount]) {
     [self setPlaylist:mTemp];
     [self setSelectedModelMovie:[mTemp modelMovieAtIndex:0]];

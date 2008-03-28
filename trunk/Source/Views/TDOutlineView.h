@@ -3,29 +3,20 @@
 //  Vidnik
 //
 //  Created by David Phillip Oster on 3/3/08.
-//  Copyright 2008 Google Inc. All rights reserved.
+//  Copyright 2008 Google Inc. Open source under Apache license Documentation/Copying in this project
 //
-#import "TDConstants.h"
 
 #import <Cocoa/Cocoa.h>
 
 
 @interface TDOutlineView : NSOutlineView
+- (void)draggedImage:(NSImage *)image endedAt:(NSPoint)screenPoint operation:(NSDragOperation)operation;
 @end
 
 @interface NSObject(TDOutlineViewDataSource)
-- (void)willResignFirstResponder:(NSResponder *)responder;
-- (void)didResignFirstResponder:(NSResponder *)responder;
 - (NSArray *)draggedObjects;
 - (void)removeObjects:(NSArray *)objects;
 
-// ### Actions
-- (IBAction)copy:(id)sender;
-- (IBAction)cut:(id)sender;
-- (IBAction)paste:(id)sender;
-- (IBAction)delete:(id)sender;
-- (IBAction)trim:(id)sender;
-- (IBAction)selectAll:(id)sender;
-- (IBAction)selectNone:(id)sender;
-
+- (void)willResignFirstResponder:(NSResponder *)responder;
+- (void)didResignFirstResponder:(NSResponder *)responder;
 @end

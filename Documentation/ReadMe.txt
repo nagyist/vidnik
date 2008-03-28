@@ -70,7 +70,7 @@ What is missing:
 
 This version works with OS X 10.4 and up.
 
-  You can't edit the title and description of a previously uyploaded movie, and have just those changes sent to YouTube,
+  You can't edit the title and description of a previously uploaded movie, and have just those changes sent to YouTube,
   You can't do playlist management (YouTube lets you create more than one playlist, send the order of existing clips to YouTube.)
   
 

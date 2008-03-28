@@ -52,6 +52,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem;
 
 // ### Actions
+- (IBAction)copyLink:(id)sender;
 - (IBAction)copy:(id)sender;
 - (IBAction)cut:(id)sender;
 - (IBAction)paste:(id)sender;

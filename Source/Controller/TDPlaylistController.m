@@ -222,6 +222,13 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 #pragma mark -
 #pragma mark ### Actions
 
+- (IBAction)copyLink:(id)sender {
+  TDModelMovie *selectedMovie = [self selectedModelMovie];
+  if (selectedMovie) {
+// TODO: write copyLink:
+  }
+}
+
 - (IBAction)copy:(id)sender {
   TDModelMovie *selectedMovie = [self selectedModelMovie];
   if (selectedMovie) {

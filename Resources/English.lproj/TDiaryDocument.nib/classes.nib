@@ -40,6 +40,8 @@
 			<dict>
 				<key>copy</key>
 				<string>id</string>
+				<key>copyLink</key>
+				<string>id</string>
 				<key>cut</key>
 				<string>id</string>
 				<key>delete</key>
@@ -287,7 +289,7 @@
 				<string>NSTextField</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSObject</string>
+			<string>NSResponder</string>
 		</dict>
 	</array>
 	<key>IBVersion</key>

@@ -69,10 +69,6 @@ static int SortCategory(id a, id b, void *unused);
     [self fetchCategories];
   }
   [self fixAccountMenuItem];
-  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: 
-    [NSNumber numberWithBool:NO], @"SUCheckAtStartup",
-    nil];
-  [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notify {

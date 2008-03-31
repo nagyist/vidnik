@@ -1557,7 +1557,6 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_VERSION = 0.8;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
@@ -1576,7 +1575,6 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_VERSION = 0.8;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Release;
 		};

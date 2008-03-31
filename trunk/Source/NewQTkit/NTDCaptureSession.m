@@ -168,7 +168,7 @@ Class gTDCaptureSession;
 
   BOOL didSome = NO;
   QTCompressionOptions *soundOptions = [QTCompressionOptions compressionOptionsWithIdentifier:@"QTCompressionOptionsVoiceQualityAACAudio"];
-  QTCompressionOptions *videoOptions = [QTCompressionOptions compressionOptionsWithIdentifier:@"QTCompressionOptions240SizeMPEG4Video"];
+  QTCompressionOptions *videoOptions = [QTCompressionOptions compressionOptionsWithIdentifier:@"QTCompressionOptions480SizeMPEG4Video"];
   NSArray *outputs = [mI outputs];
   int i, iCount = [outputs count];
   for (i = 0; i < iCount; ++i) {

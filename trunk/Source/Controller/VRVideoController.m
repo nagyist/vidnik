@@ -149,7 +149,18 @@
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-  return [mVideoView validateMenuItem:anItem];
+  BOOL val = NO;
+  if ([self isPlaybackMode]) {
+    return [mVideoView validateMenuItem:anItem];
+  } else {
+    SEL action = [anItem action];
+    if (@selector(record:) == action) {
+      val = ! [self isRecording];
+    } else if (@selector(stopRecording:) == action) {
+      val = [self isRecording];
+    }
+  }
+  return val;
 }
 
 - (IBAction)rewind:(id)sender {
@@ -172,6 +183,12 @@
   }
   [self updateButtonState];
 }
+
+- (IBAction)stopRecording:(id)sender {
+  [self stopRecording];
+  [self updateButtonState];
+}
+
 
 - (void)setNewMovieState {
   [self setPlaybackMode:NO];
@@ -393,6 +410,7 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
     [mOutFile recordToOutputFileURL:mOutURL];
     mIsRecording = YES;
     [self setPlaybackMode:NO];
+    [NSApp setApplicationIconImage:[NSImage imageNamed: @"AppRecord"]];
   }
 }
 
@@ -400,6 +418,7 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
   if (mIsRecording) {
     mIsRecording = NO;
     [mOutFile recordToOutputFileURL:nil];
+    [NSApp setApplicationIconImage:[NSImage imageNamed: @"NSApplicationIcon"]];
   }
 }
 

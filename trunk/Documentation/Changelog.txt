@@ -192,7 +192,29 @@ The document farms out its controller duties to three sub-controllers.
 * Add a web menu with a "go to my page" item.
 * Remove some early files that are never used.
 
+3/30/08 : 
+* missing meta-data fields have a red caption.
+* menu command- openYouTubePage:
+* menu command- stopUploading:
+* menu command- upload:
+* menu command- stopRecording:
+* menu command- record:
+* toolTips
+* changing the selected movie scrolls the newly selected movie into visibility
+* stripes in empty part of table are same height as those in the used part.
+* copyLink: command on contextual menu.
+* open dialog was not showing our document type.
+* open routine was returning an error even on success
+* corrupt document error didn't have localized description.
+* badge the dock icon during recording
+
+3/31/08 : 
+* tab or backtab out of the description field.
+* in-place edit the title of a movie in the left table.
+
 TODO:
+- indicator that movie is too big.
+- menu commands split, join.
 - an upload is not a save. better undo handling of trim across upload.
 - deleting a movie should move the actual movie file to the trash. undo should move it back.
 - check movie status before querying attributes. 
@@ -201,12 +223,10 @@ TODO:
 - Not clear that you are recording.
 
 - playlist management: a playlist is a list of movies.
-  - can't split, cut video segments.
+  - can't cut video segments.
   - splitting movies 
   - joining movies
-  - you can open an editor on the title text in the playList, but you can't actually edit there.
   - items in playlist are just name and image. Should show more.
-- I had a default document that doesn't display one of the thumbnails, but deselecting and reselecting shows the thumbnail.
 - splitter view needs work: grow window, give left pane min size, shrink window. shrinks past min. can't programmatically resize.
 - video frame should be centered as window grows and shrinks
 
@@ -224,6 +244,7 @@ TODO:
 - test playing with the U.I. during record.
 
 - creating thumbnails, movies: the work is done synchronously. too slow.
+- should poll, get state of movies currently processing.
 
 
 - help needs work

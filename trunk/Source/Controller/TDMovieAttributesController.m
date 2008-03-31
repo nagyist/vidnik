@@ -12,6 +12,30 @@
 #import "TDConfiguration.h"
 #import "TDModelMovie.h"
 
+@interface NSTextField(TDMovieAttributesControllerAdditions)
+- (BOOL)needsState;
+- (void)setNeedsState:(BOOL)inNeed;
+@end
+
+@implementation NSTextField(TDMovieAttributesControllerAdditions)
+- (BOOL)needsState {
+  return [[self stringValue] hasPrefix:@"* "];
+}
+
+- (void)setNeedsState:(BOOL)inNeed {
+  if (inNeed != [self needsState]) {
+    if (inNeed) {
+      [self setTextColor:[NSColor redColor]];
+      [self setStringValue:[@"* " stringByAppendingString:[self stringValue]]];
+    } else {
+      [self setTextColor:[NSColor blackColor]];
+      [self setStringValue:[[self stringValue] substringFromIndex:2]];
+    }
+  }
+}
+@end
+
+
 @interface TDMovieAttributesController(PrivateMethods)
 - (void)categoriesDidChange:(NSNotification *)unused;
 - (void)setCategory:(NSString *)category;
@@ -82,10 +106,32 @@
   case kUploaded:          s = NSLocalizedString(@"Uploaded", @""); break;
   case kUploading:         s = NSLocalizedString(@"Uploading", @""); break;
   case kUploadingCancelled: s = NSLocalizedString(@"UploadingCancelled", @""); break;
+  case kUploadProcessing:  s = NSLocalizedString(@"UploadingProcessing", @""); break;
   case kUploadingErrored:  s = NSLocalizedString(@"UploadingErrored", @""); break;
   }
   return s;
 }
+
+// for the missing fields, set their titles to the "needs" state
+- (void)setLegendStatus:(ModelMovieState)movieState {
+  int needBits = kReadyToUpload;
+  switch (movieState) {
+  default:
+    needBits = (kReadyToUpload & (int) movieState);
+    break;
+  case kUploading:
+  case kUploaded:
+  case kUploadingCancelled:
+  case kUploadProcessing:
+  case kUploadingErrored:
+    break;
+  }
+  [mTitleLegend setNeedsState:(0 == (kHasTitle & needBits))];
+  [mKeywordsLegend setNeedsState:(0 == (kHasKeywords & needBits))];
+  [mDescriptionLegend setNeedsState:(0 == (kHasDetails & needBits))];
+  [mCategoryLegend setNeedsState:(0 == (kHasCategory & needBits))];
+}
+
 
 // ### Atrributes
 #pragma mark -
@@ -139,6 +185,7 @@
 
 - (void)setState:(ModelMovieState)movieState {
   [self setStatus:[self stateString:movieState]];
+  [self setLegendStatus:movieState];
 }
 
 
@@ -193,6 +240,21 @@
 
 // we will be called back through this method. so we define it even though it does nothing.
 - (void)qtMovieChanged:(QTMovie *)movie userInfo:(NSMutableDictionary *)info {
+}
+
+// setting the nextKeyView in I.B. did not seem to stick.
+- (BOOL)textView:(NSTextView *)text doCommandBySelector:(SEL)sel {
+  BOOL didHandle = NO;
+  if (text == mDescription) {
+    if (@selector(insertTab:) == sel) {
+      [[text window] makeFirstResponder:mTitle];
+      didHandle = YES;
+    } else if (@selector(insertBacktab:) == sel) {
+      [[text window] makeFirstResponder:mKeywords];
+      didHandle = YES;
+    } 
+  }
+  return didHandle;
 }
 
 @end

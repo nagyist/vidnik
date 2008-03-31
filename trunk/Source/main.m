@@ -2,7 +2,7 @@
 //  VidnikMain.m
 // 
 //  Created by David Phillip Oster on 2/12/08.
-//  Copyright Google 2008. All rights reserved.
+//  Copyright Google 2008. Open source under Apache license Documentation/Copying in this project
 //
 
 #import <Cocoa/Cocoa.h>

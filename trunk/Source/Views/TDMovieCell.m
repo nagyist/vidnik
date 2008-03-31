@@ -151,6 +151,10 @@ enum {
       [self drawBadge:@"NotYetPresent" withFrame:imageFrame inView:controlView];
     }
   } else {
+    imageFrame.size.height -= 5;
+    if ([controlView isFlipped]) {
+      imageFrame.origin.y += 5;
+    }
     [[NSColor blackColor] set];
     [NSBezierPath fillRect:imageFrame];
     NSImage *newIcon = [NSImage imageNamed:@"RecordPreviewMovie"];
@@ -267,10 +271,13 @@ enum {
   return frames[kTitleFrame];
 }
 
+// See also: - (float)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item in TDPlayListController.m
 - (NSSize)cellSize {
-  NSSize cellSize = [super cellSize];
-  cellSize.height += [self thumbnailSize].height + 3;
-  return cellSize;
+  return NSMakeSize(176., 54);
+}
+
+- (NSSize)cellSizeForBounds:(NSRect)aRect {
+  return [self cellSize];
 }
 
 - (NSSize)thumbnailSize {

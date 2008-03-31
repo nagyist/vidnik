@@ -1,4 +1,4 @@
-﻿// Localizable.strings
+// Localizable.strings
 
 "BadDoc" = "Couldn’t open document.";
 
@@ -45,6 +45,8 @@
 "NoUsernamePasswordErr" = "Couldn’t login.";
 "NoUsernamePasswordSuggest" = "Please re-type your name and password in the “account” pane.";
 
+"CouldntReadFileErr" = "Couldn’t read file.";
+
 // Pause button
 "Pause" = "Pause";
 
@@ -63,6 +65,7 @@
 "Uploaded" = "Uploaded";
 "Uploading" = "Uploading";
 "UploadingCancelled" = "Upload Cancelled";
+"UploadProcessing" = "Upload Processing";
 "UploadingErrored" = "An Upload Error occurred";
 
 
@@ -178,6 +181,9 @@
 // needs item note trailing space
 "NeedsPrefix" = "needs: ";
 
+// needs item
+"NeedsMovie" = "movie";
+
 // needs item 
 "NeedsTitle" = "title";
 
@@ -186,9 +192,6 @@
 
 // needs item 
 "NeedsKeyword" = "tags";
-
-// needs item note trailing space
-"NeedsMovie" = "movie;
 
 // needs item 
 "NeedsDetails" = "description";

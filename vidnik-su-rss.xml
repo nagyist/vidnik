@@ -9,9 +9,11 @@
       <title>Version 0.10.0</title>
       <description>http://vidnik.googlecode.com/svn/trunk/notes0.10.0.html</description>
       <pubDate>Wed, 09 Jan 2006 19:20:11 +0000</pubDate>
-      <sparkle:minimumSystemVersion>10.4.10</sparkle:minimumSystemVersion>
-      <sparkle:version>0.10.0</sparkle:version>
-      <enclosure url="http://vidnik.googlecode.com/svn/trunk/vidnik.zip" length="1059153" type="application/octet-stream"/>
+      <enclosure sparkle:version="0.10.0" 
+        sparkle:shortVersionString="0.10.0"
+        sparkle:minimumSystemVersion="10.4.10"
+        url="http://vidnik.googlecode.com/svn/trunk/vidnik.zip" 
+        length="1059153" type="application/octet-stream" />
     </item>
   </channel>
 </rss>

@@ -1524,6 +1524,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Vidnik;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -1539,6 +1540,7 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../Builds2/Debug\"";
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Vidnik;
+				SDKROOT = "";
 			};
 			name = Release;
 		};
@@ -1556,7 +1558,7 @@
 					"MAC_OS_X_VERSION_MAX_ALLOWED=2000",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				PRODUCT_VERSION = 0.8;
+				PRODUCT_VERSION = 0.10.0;
 			};
 			name = Debug;
 		};
@@ -1574,7 +1576,7 @@
 					"MAC_OS_X_VERSION_MAX_ALLOWED=2000",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				PRODUCT_VERSION = 0.8;
+				PRODUCT_VERSION = 0.10.0;
 			};
 			name = Release;
 		};

@@ -157,7 +157,7 @@
 - (NSComparisonResult)compareFilenameAsFinder:(NSString *)otherFilename {
   static int options = NSCaseInsensitiveSearch |
             NSNumericSearch
-#if defined(MAC_OS_X_VERSION_10_5) &&  MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
+#if defined(MAC_OS_X_VERSION_10_5) &&  MAC_OS_X_VERSION_10_5 <= MAC_OS_X_VERSION_MAX_ALLOWED
             | NSDiacriticInsensitiveSearch |
             NSForcedOrderingSearch |
             NSWidthInsensitiveSearch

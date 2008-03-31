@@ -6,10 +6,12 @@
     <description>Most recent changes with links to updates.</description>
     <language>en</language>
     <item>
-      <title>Version 1.0</title>
-      <description>http://vidnik.googlecode.com/svn/trunk/notes1.0.html</description>
+      <title>Version 0.10.0</title>
+      <description>http://vidnik.googlecode.com/svn/trunk/notes0.10.0.html</description>
       <pubDate>Wed, 09 Jan 2006 19:20:11 +0000</pubDate>
-      <enclosure url="http://vidnik.googlecode.com/svn/trunk/vidnik.zip" length="1600000" type="application/octet-stream"/>
+      <sparkle:minimumSystemVersion>10.4.10</sparkle:minimumSystemVersion>
+      <sparkle:version>0.10.0</sparkle:version>
+      <enclosure url="http://vidnik.googlecode.com/svn/trunk/vidnik.zip" length="1059153" type="application/octet-stream"/>
     </item>
   </channel>
 </rss>

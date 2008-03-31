@@ -63,6 +63,7 @@
 
 - (IBAction)rewind:(id)sender;
 - (IBAction)record:(id)sender;
+- (IBAction)stopRecording:(id)sender;
 - (IBAction)play:(id)sender;
 - (IBAction)pause:(id)sender;
 - (IBAction)selectAll:(id)sender;

@@ -3,7 +3,7 @@
 //  VideoRecorder
 //
 //  Created by David Phillip Oster on 2/18/08.
-//  Copyright 2008 David Phillip Oster. All rights reserved.
+//  Copyright 2008 David Phillip Oster. Open source under Apache license Documentation/Copying in this project
 //
 
 #import "VRVideoView.h"
@@ -177,9 +177,9 @@
 
 #if 0
 // button validation code.
-  } else if (action == @selector(play:) ||
-      action == @selector(pause:) ||
-      action == @selector(gotoBeginning:)) {
+  } else if (@selector(play:) == action ||
+      @selector(pause:) == action ||
+      @selector(gotoBeginning:) == action) {
 
     return ! [self isHidden] && nil != [self movie];
 

@@ -145,7 +145,14 @@ static int SortCategory(id a, id b, void *unused);
   BOOL isDir = NO;
 
   [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
-  return isDir ? YES : [QTMovie canInitWithFile:path];
+  if (isDir) {
+    return YES;
+  }
+  // this is a kludge. Really should use [NSDocumentController's documentClassNames]'s fileExtensionsFromType
+  if (NSOrderedSame == [[path pathExtension] caseInsensitiveCompare:@"vidnik"]) {
+    return YES;
+  }
+  return [QTMovie canInitWithFile:path];
 }
 
 - (void)openDocument:(id)sender {

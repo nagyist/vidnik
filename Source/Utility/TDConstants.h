@@ -25,7 +25,8 @@ typedef enum ModelMovieState{
   kReadyToUpload = (kHasMovieFile | kHasMovie | kHasTitle | kHasCategory | kHasKeywords| kHasDetails),
 // bits 6 and seven are reserved.
   kUploading = (1 << 8),  // 256
-  kUploaded,  // 257
-  kUploadingCancelled,  // 258
-  kUploadingErrored = (1 << 10)   // 1024
+  kUploaded,              // 257
+  kUploadingCancelled,    // 258
+  kUploadProcessing,      // 259
+  kUploadingErrored = (1 << 10)   // 2048
 } ModelMovieState;

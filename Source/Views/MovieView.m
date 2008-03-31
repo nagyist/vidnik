@@ -15,8 +15,8 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
   SEL action = [anItem action];
   QTMovie *movie;
-  if (action == @selector(trim:) ||
-      action == @selector(selectAll:)) {
+  if (@selector(trim:) == action ||
+      @selector(selectAll:) == action) {
     if( ! [self isHidden] && 
       nil != (movie = [self movie]) &&
       [movie hasAttributes]) {

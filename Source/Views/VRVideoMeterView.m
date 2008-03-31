@@ -3,7 +3,7 @@
 //  VideoRecorder
 //
 //  Created by David Phillip Oster on 2/18/08.
-//  Copyright 2008 David Phillip Oster. All rights reserved.
+//  Copyright 2008 David Phillip Oster. Open source under Apache license Documentation/Copying in this project
 //
 
 #import "VRVideoMeterView.h"

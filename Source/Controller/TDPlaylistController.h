@@ -66,6 +66,7 @@
 - (IBAction)forgetCredentials:(id)sender;
 - (IBAction)gearPressed:(id)sender;
 - (IBAction)newMovie:(id)sender;
+- (IBAction)openYouTubePage:(id)sender;
 - (IBAction)upload:(id)sender;
 - (IBAction)revealInFinder:(id)sender;
 - (IBAction)revealInBrowser:(id)sender;

@@ -54,6 +54,8 @@
 				<string>id</string>
 				<key>newMovie</key>
 				<string>id</string>
+				<key>openYouTubePage</key>
+				<string>id</string>
 				<key>paste</key>
 				<string>id</string>
 				<key>revealInBrowser</key>
@@ -89,7 +91,7 @@
 				<string>NSButton</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSObject</string>
+			<string>NSResponder</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>
@@ -175,6 +177,8 @@
 				<key>selectAll</key>
 				<string>id</string>
 				<key>selectNone</key>
+				<string>id</string>
+				<key>stopRecording</key>
 				<string>id</string>
 				<key>togglePlay</key>
 				<string>id</string>
@@ -277,15 +281,23 @@
 			<dict>
 				<key>mCategory</key>
 				<string>NSPopUpButton</string>
+				<key>mCategoryLegend</key>
+				<string>NSTextField</string>
 				<key>mDelegate</key>
 				<string>id</string>
 				<key>mDescription</key>
 				<string>NSTextView</string>
+				<key>mDescriptionLegend</key>
+				<string>NSTextField</string>
 				<key>mKeywords</key>
+				<string>NSTextField</string>
+				<key>mKeywordsLegend</key>
 				<string>NSTextField</string>
 				<key>mStatus</key>
 				<string>NSTextField</string>
 				<key>mTitle</key>
+				<string>NSTextField</string>
+				<key>mTitleLegend</key>
 				<string>NSTextField</string>
 			</dict>
 			<key>SUPERCLASS</key>

@@ -3,7 +3,7 @@
 //  doc
 //
 //  Created by David Phillip Oster on 2/13/08.
-//  Copyright Google Inc 2008 . All rights reserved.
+//  Copyright Google Inc 2008 . Open source under Apache license Documentation/Copying in this project
 //
 
 

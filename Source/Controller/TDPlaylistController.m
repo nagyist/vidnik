@@ -79,11 +79,13 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 - (void)awakeFromNib {
   TDMovieCell *cell = [[[TDMovieCell alloc] init] autorelease];
   [cell setMenu:mGearMenu];
+  [cell setEditable:YES]; // so in-place editing will work.
   [[[mOutline tableColumns] objectAtIndex:0] setDataCell:cell];
   [mOutline registerForDraggedTypes:[self pasteboardTypes]];
   [mOutline setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
   [mOutline setDraggingSourceOperationMask:NSDragOperationEvery forLocal:NO];
   [mOutline setAutoresizesOutlineColumn:NO];
+  [mOutline setRowHeight:[cell cellSize].height];
 }
 
 // ### Attributes
@@ -146,7 +148,6 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   return nil;
 }
 
-// 
 - (void)setSelectedModelMovie:(TDModelMovie *)modelMovie {
   if (mCurrent != modelMovie) {
     if (nil == modelMovie) {
@@ -158,6 +159,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
       if (0 <= row) {
         mCurrent = modelMovie;
         [mOutline selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+        [mOutline scrollRowToVisible:row];
         [[self delegate] selectionDidChangeInPlaylist:self];
       } else {
         fprintf(stderr, "warning: Attempted to select a movie (0x%lX) that isn't part of our playlist (0x%lX).\n", 
@@ -224,8 +226,15 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 
 - (IBAction)copyLink:(id)sender {
   TDModelMovie *selectedMovie = [self selectedModelMovie];
-  if (selectedMovie) {
-// TODO: write copyLink:
+  NSString *urlString = [selectedMovie urlString];
+  if (urlString) {
+    NSURL *url = [NSURL URLWithString:urlString];
+    if (url) {
+      NSPasteboard *pb = [NSPasteboard generalPasteboard];
+      [pb declareTypes:[NSArray arrayWithObjects:NSURLPboardType, NSStringPboardType, nil] owner:self];
+      [url writeToPasteboard:pb];
+      [pb setString:urlString forType:NSStringPboardType];
+    }
   }
 }
 
@@ -391,6 +400,17 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   }
 }
 
+- (void)stopUploading:(id)sender {
+  GDataServiceTicket *serviceTicket = [self serviceTicket];
+  TDModelMovie *mm = [serviceTicket userData];
+  if (mm) {
+    [serviceTicket cancelTicket];
+    [self setServiceTicket:nil];
+    [mm setMovieState:kUploadingCancelled];
+    [mOutline reloadItem:mm];
+  }
+}
+
 - (void)inputStream:(GDataProgressMonitorInputStream *)stream
   hasDeliveredByteCount:(unsigned long long)numberOfBytesSent  
        ofTotalByteCount:(unsigned long long)dataLength {
@@ -430,43 +450,52 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   return [mm canRevealInBrowser];
 }
 
+- (BOOL)canCopyLink:(id)item {
+  return [self canRevealInBrowserFromItem:item];
+}
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
   BOOL val = YES;
   SEL action = [anItem action];
-  if (action == @selector(newMovie:)) {
+  if (@selector(newMovie:) == action) {
     return val;
-  } else if (action == @selector(gearPressed:)) {
+  } else if (@selector(gearPressed:) == action) {
     val = NO;
-  } else if (action == @selector(upload:)) {
+  } else if (@selector(openYouTubePage:) == action) {
+    val = (0 != [[[self playlist] account] length]);
+  } else if (@selector(upload:) == action) {
     val = [self hasSelectionCanUpload];
-  } else if (action == @selector(revealInFinder:)) {
+  } else if (@selector(stopUploading:) == action) {
+    val = (nil != [self serviceTicket]);
+  } else if (@selector(revealInFinder:) == action) {
     val = [self canRevealInFinderFromItem:anItem];
-  } else if (action == @selector(revealInBrowser:)) {
+  } else if (@selector(revealInBrowser:) == action) {
     val = [self canRevealInBrowserFromItem:anItem];
-  } else if (action == @selector(cut:)) {
+  } else if (@selector(copyLink:) == action) {
+    val = [self canCopyLink:anItem];
+  } else if (@selector(cut:) == action) {
     val = [self hasSelection];
     if (val) {
       [anItem setTitle:NSLocalizedString(@"Cut Movie", @"Edit Menu")];
     }
-  } else if (action == @selector(copy:)) {
+  } else if (@selector(copy:) == action) {
     val = [self hasSelection];
     if (val) {
       [anItem setTitle:NSLocalizedString(@"Copy Movie", @"Edit Menu")];
     }
-  } else if (action == @selector(paste:)) {
+  } else if (@selector(paste:) == action) {
     val = [self hasPasteBoardWithModelMovies];
     if (val) {
       [anItem setTitle:NSLocalizedString(@"Paste Movie", @"Edit Menu")];
     }
-  } else if (action == @selector(delete:)) {
+  } else if (@selector(delete:) == action) {
     val = [self hasSelection];
     if (val) {
       [anItem setTitle:NSLocalizedString(@"Delete Movie", @"Edit Menu")];
     }
-  } else if (action == @selector(selectAll:) ||
-    action == @selector(selectNone:) ||
-    action == @selector(trim:)) {
+  } else if (@selector(selectAll:) == action ||
+    @selector(selectNone:) == action ||
+    @selector(trim:) == action) {
 
     TDModelMovie *mm = [self selectedModelMovie];
     val = mm && [[self moviePerformerForMovie:mm] validateMenuItem:anItem];
@@ -539,8 +568,6 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   }
 }
 
-
-
 - (IBAction)newMovie:(id)sender {
   TDModelMovie *m = [[[TDModelMovie alloc] init] autorelease];
   [m setTitle:[mPlaylist nextUntitledMovieTitle]];
@@ -551,6 +578,13 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   if ( ! [um isUndoingOrRedoing]) {
     [um setActionName:NSLocalizedString(@"New Movie", @"Undo")];
   }
+}
+
+- (IBAction)openYouTubePage:(id)sender {
+  NSWorkspace *ws = [NSWorkspace sharedWorkspace];
+  NSString *s = @"http://www.youtube.com/my_videos";
+// TODO: should log in if needed. 
+  [ws openURL:[NSURL URLWithString:s]];
 }
 
 
@@ -658,7 +692,12 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
         newIndex = 0;
       } else {
         NSPoint where = [info draggingLocation];
-        if (where.y < [self outlineView:olv heightOfRowByItem:nil]/2.) {
+        float height = 54;
+        id dataCell = [[olv outlineTableColumn] dataCell];
+        if (dataCell) {
+          height = [dataCell cellSize].height;
+        }
+        if (where.y < height/2.) {
           newIndex = 0;
         }
       }
@@ -712,9 +751,10 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   return 0 < iCount;
 }
 
-- (float)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item {
-  return 54;
-}
+// See also: - (NSSize)cellSize in TDMovieCell.m
+//- (float)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item {
+//  return 54;
+//}
 
 - (void)outlineView:(NSOutlineView *)outlineView 
     willDisplayCell:(NSCell *)aCell 

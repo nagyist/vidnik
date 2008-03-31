@@ -50,7 +50,6 @@ typedef enum MovieFilePresentState {
 
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView;
-- (NSSize)cellSize;
 
 - (NSSize)thumbnailSize;
 + (NSSize)defaultThumbnailSize;

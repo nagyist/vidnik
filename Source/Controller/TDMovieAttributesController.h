@@ -13,9 +13,13 @@
 
 @interface TDMovieAttributesController : NSResponder {
   IBOutlet  NSTextField   *mTitle;
+  IBOutlet  NSTextField   *mTitleLegend;
   IBOutlet  NSTextField   *mKeywords;
+  IBOutlet  NSTextField   *mKeywordsLegend;
   IBOutlet  NSTextView    *mDescription;
+  IBOutlet  NSTextField   *mDescriptionLegend;
   IBOutlet  NSPopUpButton *mCategory;
+  IBOutlet  NSTextField   *mCategoryLegend;
   IBOutlet  NSTextField   *mStatus;
   TDModelMovie *mMovie;
   IBOutlet  id  mDelegate;

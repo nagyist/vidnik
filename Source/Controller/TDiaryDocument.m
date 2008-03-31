@@ -3,7 +3,7 @@
 //  doc
 //
 //  Created by David Phillip Oster on 2/13/08.
-//  Copyright Google Inc 2008 . All rights reserved.
+//  Copyright Google Inc 2008 . Open source under Apache license Documentation/Copying in this project
 //
 
 #import "TDiaryDocument.h"
@@ -324,8 +324,11 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
     if (data) {
       playlist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
       mTemp = [playlist retain];
-      if (error) {
-        *error = [NSError errorWithDomain:kTDAppDomain code:kBadFileErr userInfo:NULL];
+      if (error && nil == playlist) {
+        NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:
+          NSLocalizedString(@"CouldntReadFileErr", @""), NSLocalizedDescriptionKey,
+          nil];
+        *error = [NSError errorWithDomain:kTDAppDomain code:kBadFileErr userInfo:info];
       }
     }
   }

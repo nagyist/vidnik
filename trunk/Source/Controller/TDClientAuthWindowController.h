@@ -72,9 +72,9 @@
   BOOL isCancelButtonEnabledDuringAuth_; // Gdrive uses its own auth mgr, and wants to disable cancel during sign-in
   
   id target_; // WEAK, not retained
-  SEL signedInSEL_; // signature: -(void)signIn:(GMClientAuthWindowController *)signIn authGotToken:(NSString *) 
-  SEL cancelledSEL_; // signature: -(void)signInUserCancelled:(GMClientAuthWindowController *) signIn
-  SEL errorMessageSEL_;  // signature: - (void)signInError:(GMClientAuthWindowController *) signIn 
+  SEL signedInSEL_; // signature: -(void)signIn:(TDClientAuthWindowController *)signIn authGotToken:(NSString *) 
+  SEL cancelledSEL_; // signature: -(void)signInUserCancelled:(TDClientAuthWindowController *) signIn
+  SEL errorMessageSEL_;  // signature: - (void)signInError:(TDClientAuthWindowController *) signIn 
   
   NSString *sourceIdentifier_;  // for log analysis
   NSString *serviceDisplayName_; // for "Sign in to %@ with your Google Account"

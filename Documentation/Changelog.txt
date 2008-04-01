@@ -212,6 +212,11 @@ The document farms out its controller duties to three sub-controllers.
 * tab or backtab out of the description field.
 * in-place edit the title of a movie in the left table.
 
+4/1/08 : 
+GData Checked out external at revision 125.
+Sparkle Checked out external at revision 143.
+
+
 TODO:
 - indicator that movie is too big.
 - menu commands split, join.

@@ -33,7 +33,7 @@ enum {
   kTDClientAuthErrorActionAfterAuthenticationFailed = -3
 };
 static NSString* kTDClientAuthResponseCaptchaURLKey = @"CaptchaUrl";
-static NSString* kTDClientAuthErrorDomain = @"com.google.GMClientAuth";
+static NSString* kTDClientAuthErrorDomain = @"com.placeholder.TDClientAuth";
 static NSString* kTDClientAuthErrorBadAuthentication = @"BadAuthentication";
 static NSString* kTDGMClientAuthResponseURLKey = @"Url";
 
@@ -317,7 +317,7 @@ errorMessageSelector:(SEL)errorSelector
 
 - (void)updateUI {
   
-  // TODO: (grobbins)  do additional checks that the username and password are reasonable
+  // TODO: do additional checks that the username and password are reasonable
   NSString *username = [self normalizedUsername];
   NSString *password = [passwordField_ stringValue];
   

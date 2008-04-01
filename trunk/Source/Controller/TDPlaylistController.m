@@ -477,6 +477,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
     val = (0 != [[[self playlist] account] length]);
   } else if (@selector(upload:) == action) {
     val = [self hasSelectionCanUpload];
+    [mPublishButton setEnabled:val];
   } else if (@selector(stopUploading:) == action) {
     val = (nil != [self serviceTicket]);
   } else if (@selector(revealInFinder:) == action) {

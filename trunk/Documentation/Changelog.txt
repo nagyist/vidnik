@@ -216,6 +216,8 @@ The document farms out its controller duties to three sub-controllers.
 GData Checked out external at revision 125.
 Sparkle Checked out external at revision 143.
 
+4/2/08 :
+* fixed: "record/stoprecording" menu commands were enabled even when current selection already has a movie.
 
 TODO:
 - indicator that movie is too big.

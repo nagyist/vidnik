@@ -39,9 +39,8 @@
       return (NSOrderedAscending == QTTimeCompare(tiny, selectionDuration) &&
             NSOrderedAscending == QTTimeCompare(selectionDuration, duration));
     }
-    return NO;
   }
-  return YES;
+  return NO;
 }
 
 - (IBAction)trim:(id)sender {

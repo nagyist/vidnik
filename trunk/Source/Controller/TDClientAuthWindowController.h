@@ -121,6 +121,14 @@ errorMessageSelector:(SEL)errorSelector
 
 - (NSString *)authToken; // auth manager result
 
+// attributes between init and show.
+- (NSString *)buttonSignInTitle;
+- (void)setButtonSignInTitle:(NSString *)buttonSignInTitle;
+- (NSString *)buttonCancelTitle;
+- (void)setButtonCancelTitle:(NSString *)buttonCancelTitle;
+- (NSString *)buttonLearnMoreTitle;
+- (void)setButtonLearnMoreTitle:(NSString *)buttonLearnMoreTitle;
+
 @end
 @interface GMAccessibilityIgnoredTextField : NSTextField
 // to avoid having a text field read by VoiceOver, we override the normal

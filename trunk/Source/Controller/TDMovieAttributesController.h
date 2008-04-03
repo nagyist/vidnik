@@ -52,3 +52,7 @@
 
 - (IBAction)categoryChanged:(id)sender;
 @end
+
+@interface NSObject (TDMovieAttributesControllerDelegate)
+- (NSString *)account;
+@end

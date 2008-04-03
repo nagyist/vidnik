@@ -97,7 +97,6 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
     [mTemp release];  // now owned by playListController
     if (nil == [mTemp docID]) {
       [mTemp verifyDocID];
-      [self updateChangeCount:NSChangeDone];
     }
     mTemp = nil;
   } else {
@@ -114,6 +113,25 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
  
     if (wasUndoRegistrationEnabled) {
       [um enableUndoRegistration];
+    }
+  }
+  // at end of read, document is always in the clean state.
+  [self updateChangeCount:NSChangeCleared];
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notify {
+  NSArray *menus = [[NSApp mainMenu] itemArray];
+  int i, iCount = [menus count];
+  for (i = 0; i < iCount; ++i) {
+    NSMenu *menu = [[menus objectAtIndex:i] submenu];
+    int indx = [menu indexOfItemWithTarget:nil andAction:@selector(fetchCredentials:)];
+    if (0 <= indx) {
+      NSMenuItem *item = [menu itemAtIndex:indx];
+      if ([self account]) {
+        [item setTitle:NSLocalizedString(@"Change Account", @"")];
+      } else { 
+        [item setTitle:NSLocalizedString(@"Set Account", @"")];
+      }
     }
   }
 }

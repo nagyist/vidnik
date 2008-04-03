@@ -219,7 +219,19 @@ Sparkle Checked out external at revision 143.
 4/2/08 :
 * fixed: "record/stoprecording" menu commands were enabled even when current selection already has a movie.
 
+4/3/08 :
+* after a paste or drag, new item is selected.
+* moved Change Account command to Web menu. Removed "Paste & Match Style"
+* disable the text fields when there is no selection.
+* "Ready To Upload" movie state should be "Set Account", if document has no account set.
+* "Change Account" menu item should be "Set Account" is no account set.
+* Added "Learn More" button to signin sheet: "http://www.youtube.com/signup"
+
+
 TODO:
+- test with account not connected to me.
+- no error messages for missing camera, camera in use. (session [inputs count] == 0) 
+
 - indicator that movie is too big.
 - menu commands split, join.
 - an upload is not a save. better undo handling of trim across upload.
@@ -228,6 +240,7 @@ TODO:
   if not ready, schedule to recheck when becomes ready?
 - ModelMovie error state policy
 - Not clear that you are recording.
+- Not clear when we finish queuing versus when upload is done.
 
 - playlist management: a playlist is a list of movies.
   - can't cut video segments.
@@ -267,7 +280,11 @@ We should have error handling for the case of getting video but not audio.
 - if there is only one channel of sound, make a monaural movie.
 
 Version 2:
-- allow a different segment maker that uses an audio track, a series of stills, and transition points.
+- Possibly: allow a different segment maker that uses an audio track, a series of stills, and transition points.
+- Possibly: effects like Photobooth. 
+- Possibly: Backgrounds like iChat. 
+- Possibly: Crop a scene using a start, end rect.
+- Possibly: make a visual entry on Google Calendar.
 
 
 TO release an alpha:

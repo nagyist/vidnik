@@ -59,7 +59,7 @@ Secrets:
 A few, infrequently used commands, are revealed by holding down the option
 key as you look at the menu bar:
   <Option> File Menu for the New Document command. (instead of New Movie)
-  <Option> Edit Menu for the Forget Account command (instead of Change Account)
+  <Option> Edit Menu for the Forget Account command (instead of Change Account / Set Account)
 
 What is missing:
 

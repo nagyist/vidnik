@@ -337,8 +337,10 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
    errorMessageSelector:nil
        sourceIdentifier:[[self delegate] sourceIdentifier] // for log analysis
      serviceDisplayName:@"YouTube"
-          learnMoreURL:[NSURL URLWithString:@"http://www.youtube.com/"]
+          learnMoreURL:[NSURL URLWithString:NSLocalizedString(@"http://www.youtube.com/signup", @"")]
          configuration:mDelegate];
+
+  [authController setButtonLearnMoreTitle:NSLocalizedString(@"Learn More", @"")];
 
   [NSApp beginSheet:[authController window]
      modalForWindow:[[self delegate] windowForSheet]

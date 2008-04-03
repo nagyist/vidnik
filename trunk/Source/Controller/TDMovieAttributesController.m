@@ -51,6 +51,7 @@
 @interface TDMovieAttributesController(PrivateMethods)
 - (void)categoriesDidChange:(NSNotification *)unused;
 - (void)setCategory:(NSString *)category;
+- (void)updateEnables;
 @end
 
 @implementation TDMovieAttributesController
@@ -68,6 +69,7 @@
   [nc addObserver:self selector:@selector(categoriesDidChange:) name:kCategoriesDidChange object:nil];
 
   [self categoriesDidChange:nil];
+  [self updateEnables];
 }
 
 - (IBAction)categoryChanged:(id)unused {
@@ -114,7 +116,13 @@
   switch (state) {
   default:  s = [self stringFromNeeds:state];   break;
   case kNotReadyToUpload:  s = NSLocalizedString(@"NotReadyToUpload", @""); break;
-  case kReadyToUpload:     s = NSLocalizedString(@"NotUploaded", @""); break;
+  case kReadyToUpload:
+    if ([[self delegate] account]) {
+       s = NSLocalizedString(@"NotUploaded", @"");
+    } else {  
+      s = NSLocalizedString(@"NeedsAccount", @"");
+    }
+    break;
   case kUploaded:          s = NSLocalizedString(@"Uploaded", @""); break;
   case kUploading:         s = NSLocalizedString(@"Uploading", @""); break;
   case kUploadingCancelled: s = NSLocalizedString(@"UploadingCancelled", @""); break;
@@ -163,6 +171,7 @@
 
   [self setCategory:[mMovie category]];
   [self setState:[modelMovie movieState]];
+  [self updateEnables];
 }
 
 - (NSString *)category {
@@ -326,5 +335,13 @@
     }
   }
 }
+
+- (void)updateEnables {
+  [mTitle setEnabled:(nil != mMovie)];
+  [mKeywords setEnabled:(nil != mMovie)];
+  [mDescription setEditable:(nil != mMovie)];
+  [mCategory setEnabled:(nil != mMovie)];
+}
+
 
 @end

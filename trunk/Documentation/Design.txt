@@ -51,3 +51,6 @@ movieCell's progressCell's buttonCell's action is in progressCell, call delegate
 
 Questions:
 Would it simplify matters to have contollers inherit from NSResponder, and insert themselves into the responder chain just after their views? (How you do _that_: in view's willBecome callback, it checks current responder. If it isn't view's controller, then it makes controller current. Controller always makes view current. What a kluge!)
+
+Secrets:
+set "isGDataHTTPLogging" in the preferences file to turn on http logging.

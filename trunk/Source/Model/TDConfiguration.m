@@ -136,6 +136,12 @@ NSString *NewUUID(void) {
   [self synchronize];
 }
 
+- (BOOL)isGDataHTTPLogging {
+  NSUserDefaults *ud = [self userDefaults];
+  return [ud boolForKey:@"isGDataHTTPLogging"];
+}
+
+
 - (NSString *)appID {
   NSUserDefaults *ud = [self userDefaults];
   NSString *val = [ud stringForKey:kAppID];

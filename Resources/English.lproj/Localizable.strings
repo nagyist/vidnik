@@ -59,6 +59,15 @@
 // ProgressCell progress meters
 "remaining: %@" = "remaining: %@";
 
+// button on change account sheet.
+"Learn More" = "Learn More";
+
+// Web menu items:
+"Change Account" = "Change Account";
+
+// Web menu items:
+"Set Account" = "Set Account";
+
 // upload movie status states
 "NotReadyToUpload" = "not ready to upload";
 "NotUploaded" = "Ready to Upload";
@@ -68,6 +77,8 @@
 "UploadProcessing" = "Upload Processing";
 "UploadingErrored" = "An Upload Error occurred";
 
+// Place to get a YouTube account. Note: do not put a trailing slash on this URL
+"http://www.youtube.com/signup" = "http://www.youtube.com/signup";
 
 // Localized Category we use the term as the key, since it is presumably not localized.
 "Autos" = "Autos & Vehicles";
@@ -180,6 +191,9 @@
 
 // needs item note trailing space
 "NeedsPrefix" = "needs: ";
+
+// needs item
+"NeedsAccount" = "Please Set Account";
 
 // needs item
 "NeedsMovie" = "movie";

@@ -17,6 +17,8 @@
 			<dict>
 				<key>copy</key>
 				<string>id</string>
+				<key>copyLink</key>
+				<string>id</string>
 				<key>cut</key>
 				<string>id</string>
 				<key>delete</key>
@@ -28,6 +30,8 @@
 				<key>gearPressed</key>
 				<string>id</string>
 				<key>newMovie</key>
+				<string>id</string>
+				<key>openYouTubePage</key>
 				<string>id</string>
 				<key>paste</key>
 				<string>id</string>
@@ -64,7 +68,7 @@
 				<string>NSButton</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSObject</string>
+			<string>NSResponder</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>

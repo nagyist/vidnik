@@ -739,6 +739,32 @@ errorMessageSelector:(SEL)errorSelector
   return nil;
 }
 
+- (NSString *)buttonSignInTitle {
+  return buttonSignInTitle_;
+}
+
+- (void)setButtonSignInTitle:(NSString *)buttonSignInTitle {
+  [buttonSignInTitle_ autorelease];
+  buttonSignInTitle_ = [buttonSignInTitle copy];
+}
+
+- (NSString *)buttonCancelTitle {
+  return buttonCancelTitle_;
+}
+
+- (void)setButtonCancelTitle:(NSString *)buttonCancelTitle {
+  [buttonCancelTitle_ autorelease];
+  buttonCancelTitle_ = [buttonCancelTitle copy];
+}
+
+- (NSString *)buttonLearnMoreTitle {
+  return buttonLearnMoreTitle_;
+}
+
+- (void)setButtonLearnMoreTitle:(NSString *)buttonLearnMoreTitle {
+  [buttonLearnMoreTitle_ autorelease];
+  buttonLearnMoreTitle_ = [buttonLearnMoreTitle copy];
+}
 
 // when the auth manager provides an error and a more-info URL,
 // we may display the error as a clickable link

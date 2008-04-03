@@ -1058,6 +1058,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 }
 
 - (int)pasteMovies:(NSArray *)movies onto:(TDModelMovie *)mm {
+  TDModelMovie *selectAtFinish = nil;
   NSMutableArray *toMove = [NSMutableArray array];
   int val = 0;
   int insertIndex = [mPlaylist indexOfModelMovie:mm];
@@ -1089,6 +1090,9 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
       }
     }
     [mPlaylist insertModelMovie:movie atIndex:insertIndex];
+    if (nil == selectAtFinish) {
+      selectAtFinish = movie;
+    }
     insertIndex++;
     val++;
   }
@@ -1100,8 +1104,14 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
     for (i = iCount-1; 0 <= i; --i) {
       TDModelMovie *movie = [toMove objectAtIndex:i];
       [mPlaylist insertModelMovie:movie atIndex:insertIndex];
+      if (nil == selectAtFinish) {
+        selectAtFinish = movie;
+      }
       val++;
     }
+  }
+  if (selectAtFinish) {
+    [self setSelectedModelMovie:selectAtFinish];
   }
   return val;
  }

@@ -24,6 +24,7 @@
 #import "TDiaryDocument.h"
 #import "GDataHTTPFetcher.h"
 #import "GDataEntryYouTubeVideo.h"
+#import "GDataHTTPFetcherLogging.h"
 #import "TDQTKit.h"
 
 static int SortCategory(id a, id b, void *unused);
@@ -81,6 +82,7 @@ static int SortCategory(id a, id b, void *unused);
     [self fetchCategories];
   }
   [self fixAccountMenuItem];
+  [GDataHTTPFetcher setIsLoggingEnabled:[TDConfig() isGDataHTTPLogging]];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notify {

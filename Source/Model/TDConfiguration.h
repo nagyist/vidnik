@@ -45,6 +45,9 @@
 - (NSString *)lastDocumentPath;
 - (void)setLastDocumentPath:(NSString *)lastDocumentPath;
 
+// Verbose HTTP logging for debugging.
+- (BOOL)isGDataHTTPLogging;
+
 // when we create a document, we assign it an ever increasing doc id.
 // used for username/password management in the keychain. This key also
 // uses a app-GUID so documents can be moved from machine to machine

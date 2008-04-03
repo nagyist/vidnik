@@ -59,6 +59,8 @@
 	<string>YTDi</string>
 	<key>CFBundleVersion</key>
 	<string>${PRODUCT_VERSION}</string>
+  <key>com.apple.PreferenceSync.ExcludeSyncKeys</key>
+  <array><string>lastDocumentPath</string></array>
 	<key>LSEnvironment</key>
 	<dict>
 		<key>MinimumSystemVersion</key>

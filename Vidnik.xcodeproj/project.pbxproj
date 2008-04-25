@@ -171,6 +171,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		131BDF3C0DC159D200CDDAD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAAEFC960DA571DF0051E0D0;
+			remoteInfo = "relaunch tool";
+		};
+		131BDF3E0DC159D200CDDAD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 612279D90DB5470200AB99EA;
+			remoteInfo = "Sparkle Unit Tests";
+		};
 		1341E9090D9BFE4000DF95D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
@@ -184,13 +198,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 61B5F90209C4CEE200B25A18;
 			remoteInfo = "Sparkle Test App";
-		};
-		1341E90D0D9BFE4000DF95D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D1E42C2F0CE754AE00F50EB9;
-			remoteInfo = "Relaunch Tool";
 		};
 		1341E9190D9BFE9800DF95D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -243,6 +250,11 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		130BA1A00D7A843D00EE5A5A /* RecordPreviewMovie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordPreviewMovie.png; sourceTree = "<group>"; };
+		131BDF980DC26BF900CDDAD5 /* DebugUnittest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DebugUnittest.xcconfig; sourceTree = "<group>"; };
+		131BDF990DC26BF900CDDAD5 /* LoadableBundle.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = LoadableBundle.xcconfig; sourceTree = "<group>"; };
+		131BDF9A0DC26BF900CDDAD5 /* ReleaseUnittest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ReleaseUnittest.xcconfig; sourceTree = "<group>"; };
+		131BDF9C0DC26BF900CDDAD5 /* DebugTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DebugTigerOrLater.xcconfig; sourceTree = "<group>"; };
+		131BDF9D0DC26BF900CDDAD5 /* ReleaseTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ReleaseTigerOrLater.xcconfig; sourceTree = "<group>"; };
 		1324D7A60D94620100E40B0A /* TDModelUploadingAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDModelUploadingAction.h; sourceTree = "<group>"; };
 		1324D7A70D94620100E40B0A /* TDModelUploadingAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDModelUploadingAction.m; sourceTree = "<group>"; };
 		132B86B30D77699C00BC0B90 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -369,13 +381,6 @@
 		134AD6180D622942003B1523 /* GDataProgressMonitorInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataProgressMonitorInputStream.m; sourceTree = "<group>"; };
 		134AD6200D622AB2003B1523 /* GDataEntryYouTubeUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataEntryYouTubeUpload.h; sourceTree = "<group>"; };
 		134AD6210D622AB2003B1523 /* GDataEntryYouTubeUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataEntryYouTubeUpload.m; sourceTree = "<group>"; };
-		13648B920D9BFA7700781B72 /* DebugTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DebugTigerOrLater.xcconfig; sourceTree = "<group>"; };
-		13648B930D9BFA7700781B72 /* DebugUnittest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DebugUnittest.xcconfig; sourceTree = "<group>"; };
-		13648B940D9BFA7700781B72 /* LoadableBundle.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = LoadableBundle.xcconfig; sourceTree = "<group>"; };
-		13648B950D9BFA7700781B72 /* ReleaseTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ReleaseTigerOrLater.xcconfig; sourceTree = "<group>"; };
-		13648B960D9BFA7700781B72 /* ReleaseUnittest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ReleaseUnittest.xcconfig; sourceTree = "<group>"; };
-		13648B970D9BFA7700781B72 /* SharedLibrary.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SharedLibrary.xcconfig; sourceTree = "<group>"; };
-		13648B980D9BFA7700781B72 /* StaticLibrary.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = StaticLibrary.xcconfig; sourceTree = "<group>"; };
 		136C1F410DA54FCF00AE1A4C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		136C1F420DA54FCF00AE1A4C /* StringFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringFormatTests.m; sourceTree = "<group>"; };
 		136C1F430DA54FCF00AE1A4C /* UploadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadTests.m; sourceTree = "<group>"; };
@@ -557,6 +562,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131BDF960DC26BF900CDDAD5 /* XcodeConfig */ = {
+			isa = PBXGroup;
+			children = (
+				131BDF970DC26BF900CDDAD5 /* Target */,
+				131BDF9B0DC26BF900CDDAD5 /* Project */,
+			);
+			path = XcodeConfig;
+			sourceTree = "<group>";
+		};
+		131BDF970DC26BF900CDDAD5 /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				131BDF980DC26BF900CDDAD5 /* DebugUnittest.xcconfig */,
+				131BDF990DC26BF900CDDAD5 /* LoadableBundle.xcconfig */,
+				131BDF9A0DC26BF900CDDAD5 /* ReleaseUnittest.xcconfig */,
+			);
+			path = Target;
+			sourceTree = "<group>";
+		};
+		131BDF9B0DC26BF900CDDAD5 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				131BDF9C0DC26BF900CDDAD5 /* DebugTigerOrLater.xcconfig */,
+				131BDF9D0DC26BF900CDDAD5 /* ReleaseTigerOrLater.xcconfig */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
 		1341E8FD0D9BFE2300DF95D7 /* Subprojects */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,7 +603,8 @@
 			children = (
 				1341E90A0D9BFE4000DF95D7 /* Sparkle.framework */,
 				1341E90C0D9BFE4000DF95D7 /* Sparkle Test App.app */,
-				1341E90E0D9BFE4000DF95D7 /* relaunch.app */,
+				131BDF3D0DC159D200CDDAD5 /* relaunch */,
+				131BDF3F0DC159D200CDDAD5 /* Sparkle Unit Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -765,20 +799,6 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		13648B910D9BFA7700781B72 /* XcodeConfig */ = {
-			isa = PBXGroup;
-			children = (
-				13648B920D9BFA7700781B72 /* DebugTigerOrLater.xcconfig */,
-				13648B930D9BFA7700781B72 /* DebugUnittest.xcconfig */,
-				13648B940D9BFA7700781B72 /* LoadableBundle.xcconfig */,
-				13648B950D9BFA7700781B72 /* ReleaseTigerOrLater.xcconfig */,
-				13648B960D9BFA7700781B72 /* ReleaseUnittest.xcconfig */,
-				13648B970D9BFA7700781B72 /* SharedLibrary.xcconfig */,
-				13648B980D9BFA7700781B72 /* StaticLibrary.xcconfig */,
-			);
-			path = XcodeConfig;
-			sourceTree = "<group>";
-		};
 		13889B910DA546A300B1CF95 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,7 +933,7 @@
 		29B97314FDCFA39411CA2CEA /* upload1 */ = {
 			isa = PBXGroup;
 			children = (
-				13648B910D9BFA7700781B72 /* XcodeConfig */,
+				131BDF960DC26BF900CDDAD5 /* XcodeConfig */,
 				134AD5560D622923003B1523 /* GData */,
 				D4A6C9B309479B5A00354625 /* Source */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -1145,6 +1165,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		131BDF3D0DC159D200CDDAD5 /* relaunch */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = relaunch;
+			remoteRef = 131BDF3C0DC159D200CDDAD5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		131BDF3F0DC159D200CDDAD5 /* Sparkle Unit Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Sparkle Unit Tests.octest";
+			remoteRef = 131BDF3E0DC159D200CDDAD5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		1341E90A0D9BFE4000DF95D7 /* Sparkle.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1157,13 +1191,6 @@
 			fileType = wrapper.application;
 			path = "Sparkle Test App.app";
 			remoteRef = 1341E90B0D9BFE4000DF95D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1341E90E0D9BFE4000DF95D7 /* relaunch.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = relaunch.app;
-			remoteRef = 1341E90D0D9BFE4000DF95D7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1464,7 +1491,7 @@
 /* Begin XCBuildConfiguration section */
 		6366672E0D6E06F700018EB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13648B940D9BFA7700781B72 /* LoadableBundle.xcconfig */;
+			baseConfigurationReference = 131BDF990DC26BF900CDDAD5 /* LoadableBundle.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = Source/NewQTKit/Info.plist;
@@ -1482,7 +1509,7 @@
 		};
 		6366672F0D6E06F700018EB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13648B940D9BFA7700781B72 /* LoadableBundle.xcconfig */;
+			baseConfigurationReference = 131BDF990DC26BF900CDDAD5 /* LoadableBundle.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1501,7 +1528,7 @@
 		};
 		636667410D6E072900018EB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13648B930D9BFA7700781B72 /* DebugUnittest.xcconfig */;
+			baseConfigurationReference = 131BDF980DC26BF900CDDAD5 /* DebugUnittest.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Vidnik.app/Contents/MacOS/Vidnik";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1518,7 +1545,7 @@
 		};
 		636667420D6E072900018EB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13648B960D9BFA7700781B72 /* ReleaseUnittest.xcconfig */;
+			baseConfigurationReference = 131BDF9A0DC26BF900CDDAD5 /* ReleaseUnittest.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Vidnik.app/Contents/MacOS/Vidnik";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1535,7 +1562,7 @@
 		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13648B920D9BFA7700781B72 /* DebugTigerOrLater.xcconfig */;
+			baseConfigurationReference = 131BDF9C0DC26BF900CDDAD5 /* DebugTigerOrLater.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1553,7 +1580,7 @@
 		};
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13648B950D9BFA7700781B72 /* ReleaseTigerOrLater.xcconfig */;
+			baseConfigurationReference = 131BDF9D0DC26BF900CDDAD5 /* ReleaseTigerOrLater.xcconfig */;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1569,6 +1596,7 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 131BDF9C0DC26BF900CDDAD5 /* DebugTigerOrLater.xcconfig */;
 			buildSettings = {
 				ARCHS = (
 					ppc,
@@ -1587,6 +1615,7 @@
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 131BDF9D0DC26BF900CDDAD5 /* ReleaseTigerOrLater.xcconfig */;
 			buildSettings = {
 				ARCHS = (
 					ppc,

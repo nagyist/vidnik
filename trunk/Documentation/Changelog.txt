@@ -230,6 +230,11 @@ Sparkle Checked out external at revision 143.
 
 CL 6858885 <=> Version 0.12.0
 
+4/25/08 :
+* Restrict account name to rules set by Youtube on http://www.youtube.com/signup:
+"Your username can only contain letters A-Z or numbers 0-9"
+
+CL 7032713 <=> Version 0.13.0
 
 TODO:
 - no error messages for missing camera, camera in use. (session [inputs count] == 0) 

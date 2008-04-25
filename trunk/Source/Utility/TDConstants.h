@@ -3,7 +3,8 @@
 extern NSString *const kTDAppDomain;
 
 enum {
-  kNoServiceErr = -1008,
+  kNoServiceErr = -1009,
+  kBadUsernameErr = -1008,
   kNoUsernamePasswordErr = -1007,
   kUploadErrNoCategory = -1006,
   kUploadErrCouldntReadFile = -1005,

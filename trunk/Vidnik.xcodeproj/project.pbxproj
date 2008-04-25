@@ -82,6 +82,7 @@
 		136C1F4E0DA54FCF00AE1A4C /* TDConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 136C1F470DA54FCF00AE1A4C /* TDConfigurationTests.m */; };
 		136C1F510DA54FED00AE1A4C /* TDClientAuthWindowControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 136C1F500DA54FED00AE1A4C /* TDClientAuthWindowControllerTests.m */; };
 		1378FB160D748C75002582E5 /* Array+Unique.m in Sources */ = {isa = PBXBuildFile; fileRef = 1378FB150D748C75002582E5 /* Array+Unique.m */; };
+		13856FE80DC29250002C6F45 /* AlphaNumFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 13856FE70DC29250002C6F45 /* AlphaNumFormatter.m */; };
 		13889B960DA5476E00B1CF95 /* GDataTestHTTPServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 13889B920DA546CD00B1CF95 /* GDataTestHTTPServer.py */; };
 		13889B970DA5476E00B1CF95 /* FeedYouTubePlaylist1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 13889B930DA5471600B1CF95 /* FeedYouTubePlaylist1.xml */; };
 		138B98540D7385A50076C567 /* TDMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 138B98530D7385A50076C567 /* TDMovieCell.m */; };
@@ -267,7 +268,7 @@
 		1338D71F0D8B2C8C0004E581 /* tanBarSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tanBarSel.png; sourceTree = "<group>"; };
 		1340F10F0D737551003314BF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TDiaryDocument.nib; sourceTree = "<group>"; };
 		1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
-		1341E9B00D9C038600DF95D7 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../../Builds2/Debug/Sparkle.framework; sourceTree = SOURCE_ROOT; };
+		1341E9B00D9C038600DF95D7 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../../../Builds2/Debug/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		1341E9C30D9C064100DF95D7 /* vidnik-su-rss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "vidnik-su-rss.xml"; sourceTree = "<group>"; };
 		13424B370D7CCBD700E28CDF /* TDModelMovieAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDModelMovieAdditions.h; sourceTree = "<group>"; };
 		13424B380D7CCBD700E28CDF /* TDModelMovieAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDModelMovieAdditions.m; sourceTree = "<group>"; };
@@ -391,6 +392,8 @@
 		136C1F500DA54FED00AE1A4C /* TDClientAuthWindowControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDClientAuthWindowControllerTests.m; sourceTree = "<group>"; };
 		1378FB140D748C75002582E5 /* Array+Unique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Array+Unique.h"; sourceTree = "<group>"; };
 		1378FB150D748C75002582E5 /* Array+Unique.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Array+Unique.m"; sourceTree = "<group>"; };
+		13856FE60DC29250002C6F45 /* AlphaNumFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaNumFormatter.h; sourceTree = "<group>"; };
+		13856FE70DC29250002C6F45 /* AlphaNumFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaNumFormatter.m; sourceTree = "<group>"; };
 		13889B920DA546CD00B1CF95 /* GDataTestHTTPServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = GDataTestHTTPServer.py; sourceTree = "<group>"; };
 		13889B930DA5471600B1CF95 /* FeedYouTubePlaylist1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FeedYouTubePlaylist1.xml; sourceTree = "<group>"; };
 		138B98520D7385A50076C567 /* TDMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDMovieCell.h; sourceTree = "<group>"; };
@@ -845,6 +848,8 @@
 		13CDC66F0D6372420027DD5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				13856FE60DC29250002C6F45 /* AlphaNumFormatter.h */,
+				13856FE70DC29250002C6F45 /* AlphaNumFormatter.m */,
 				13E991F10D899D9C0063A8F3 /* ButtonCell.h */,
 				13E991EF0D899D9C0063A8F3 /* ButtonCell.m */,
 				1349EDEE0D8F3EA700E6CF69 /* MovieView.h */,
@@ -1398,6 +1403,7 @@
 				1349EDF00D8F3EA700E6CF69 /* MovieView.m in Sources */,
 				1324D7A80D94620100E40B0A /* TDModelUploadingAction.m in Sources */,
 				132F4C820D9AC6980016E2A7 /* AuthCredential.m in Sources */,
+				13856FE80DC29250002C6F45 /* AlphaNumFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1609,7 +1615,7 @@
 					"MAC_OS_X_VERSION_MAX_ALLOWED=2000",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				PRODUCT_VERSION = 0.12.0;
+				PRODUCT_VERSION = 0.13.0;
 			};
 			name = Debug;
 		};
@@ -1628,7 +1634,7 @@
 					"MAC_OS_X_VERSION_MAX_ALLOWED=2000",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				PRODUCT_VERSION = 0.12.0;
+				PRODUCT_VERSION = 0.13.0;
 			};
 			name = Release;
 		};

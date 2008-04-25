@@ -36,7 +36,6 @@
   IBOutlet NSTextField* capsLockTextField_;
   IBOutlet NSTextField* usernameField_;
   IBOutlet NSSecureTextField* passwordField_;
-  IBOutlet NSButton* internalCheckbox_;
   IBOutlet NSButton* keychainCheckbox_;
   IBOutlet NSTextField* signInFailedText_;
  // the "lower tab view" holds the captcha box (containing the image and text 

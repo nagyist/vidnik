@@ -226,10 +226,12 @@ Sparkle Checked out external at revision 143.
 * "Ready To Upload" movie state should be "Set Account", if document has no account set.
 * "Change Account" menu item should be "Set Account" is no account set.
 * Added "Learn More" button to signin sheet: "http://www.youtube.com/signup"
+* Tested with newly created YouTube account, not connected to my work.
+
+CL 6858885 <=> Version 0.12.0
 
 
 TODO:
-- test with account not connected to me.
 - no error messages for missing camera, camera in use. (session [inputs count] == 0) 
 
 - indicator that movie is too big.

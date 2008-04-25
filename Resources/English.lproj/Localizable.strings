@@ -47,6 +47,8 @@
 
 "CouldntReadFileErr" = "Couldn’t read file.";
 
+"BadUsernameErr" = "Your username can only contain letters A-Z or numbers 0-9";
+
 // Pause button
 "Pause" = "Pause";
 

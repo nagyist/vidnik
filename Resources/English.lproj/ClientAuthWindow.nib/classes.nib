@@ -5,15 +5,45 @@
 	<key>IBClasses</key>
 	<array>
 		<dict>
+			<key>CLASS</key>
+			<string>NSApplication</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSResponder</string>
+		</dict>
+		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>copy</key>
+				<string>id</string>
+				<key>copyLink</key>
+				<string>id</string>
+				<key>cut</key>
+				<string>id</string>
+				<key>delete</key>
+				<string>id</string>
+				<key>fetchCredentials</key>
+				<string>id</string>
+				<key>forgetCredentials</key>
+				<string>id</string>
 				<key>gearPressed</key>
 				<string>id</string>
 				<key>newMovie</key>
 				<string>id</string>
+				<key>openYouTubePage</key>
+				<string>id</string>
+				<key>paste</key>
+				<string>id</string>
 				<key>revealInBrowser</key>
 				<string>id</string>
 				<key>revealInFinder</key>
+				<string>id</string>
+				<key>selectAll</key>
+				<string>id</string>
+				<key>selectNone</key>
+				<string>id</string>
+				<key>trim</key>
 				<string>id</string>
 				<key>upload</key>
 				<string>id</string>
@@ -28,6 +58,8 @@
 				<string>id</string>
 				<key>mGearButton</key>
 				<string>NSButton</string>
+				<key>mGearMenu</key>
+				<string>NSMenu</string>
 				<key>mNewButton</key>
 				<string>NSButton</string>
 				<key>mOutline</key>
@@ -43,11 +75,21 @@
 			<dict>
 				<key>selectionDidChangeInPlaylist</key>
 				<string>TDPlaylistController</string>
+				<key>userCancelledUploading</key>
+				<string>id</string>
 			</dict>
 			<key>CLASS</key>
 			<string>NSObject</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>AlphaNumFormatter</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSFormatter</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -91,6 +133,8 @@
 				<string>NSButton</string>
 				<key>lowerTabView_</key>
 				<string>NSTabView</string>
+				<key>mConfiguration</key>
+				<string>id</string>
 				<key>passwordField_</key>
 				<string>NSSecureTextField</string>
 				<key>preferences_</key>

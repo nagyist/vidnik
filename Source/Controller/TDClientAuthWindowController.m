@@ -343,9 +343,7 @@ errorMessageSelector:(SEL)errorSelector
   }
   
   [signInFailedText_ setHidden:!shouldShowFailureText_];  
-  
-  [internalCheckbox_ setHidden:YES];
-  
+
   NSString* checkboxTitle = rememberPasswordText_;
   [keychainCheckbox_ setTitle:checkboxTitle];  
 }

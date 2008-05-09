@@ -1,3 +1,4 @@
+#labels Featured
 =F A Q - Frequently Asked Questions=
 
 *Q:* What is *Vidnik*?
@@ -29,5 +30,3 @@ Hold down the (Option) key to reveal some rarely used menu commands:
 *New File* - create a new diary document. Most users will just continue to use a single diary document, so they won't need to make additional documents. 
 
 *Forget Account* - Your username is normally saved in the diary document, and your password can be stored in your keychain. This command removes your password from the keychain and puts nothing in its place.
-
-

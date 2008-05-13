@@ -420,6 +420,10 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
     [mOutURL release];
     mOutURL = [[self nextOutURL] retain];
     [mOutFile recordToOutputFileURL:mOutURL];
+    NSString *path = [mOutURL path];
+    if (path) {
+      [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path];
+    }
     mIsRecording = YES;
     [self setPlaybackMode:NO];
     [NSApp setApplicationIconImage:[NSImage imageNamed: @"AppRecord"]];

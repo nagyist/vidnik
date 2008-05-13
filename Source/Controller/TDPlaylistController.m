@@ -473,6 +473,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   BOOL val = YES;
   SEL action = [anItem action];
   if (@selector(newMovie:) == action) {
+    [anItem setTitle:NSLocalizedString(@"New Movie", @"File Menu")];
     return val;
   } else if (@selector(gearPressed:) == action) {
     val = NO;
@@ -642,6 +643,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   TDModelMovie *selected = [self selectedModelMovie];
   if (nil == selected || nil != [selected movieFileRef]) {
     [self newMovie:self];
+    selected = [self selectedModelMovie];
   } 
   if (nil == [selected movieFileRef]) {
     [selected setMovieFileRef:[TDModelFileRef modelFileRefWithPath:[movieURL path] ownerPath:[ownerURL path]]];

@@ -104,6 +104,9 @@
 // Should never happen in nextUntitledMovieTitle
 "UntitledMovie" = "untitled";
 
+// File Menu
+"New Document" = "New Document";
+
 // Edit Menu
 "Cut" = "Cut";
 
@@ -152,7 +155,7 @@
 // Undo
 "Insert Movie" = "Insert Movie";
 
-// Undo
+// Undo also New item on file menu.
 "New Movie" = "New Movie";
 
 // Undo

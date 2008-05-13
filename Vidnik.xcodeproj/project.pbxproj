@@ -1615,7 +1615,7 @@
 					"MAC_OS_X_VERSION_MAX_ALLOWED=2000",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				PRODUCT_VERSION = 0.13.0;
+				PRODUCT_VERSION = 0.14.0;
 			};
 			name = Debug;
 		};
@@ -1634,7 +1634,7 @@
 					"MAC_OS_X_VERSION_MAX_ALLOWED=2000",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				PRODUCT_VERSION = 0.13.0;
+				PRODUCT_VERSION = 0.14.0;
 			};
 			name = Release;
 		};

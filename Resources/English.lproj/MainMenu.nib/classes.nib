@@ -126,6 +126,70 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>pause</key>
+				<string>id</string>
+				<key>play</key>
+				<string>id</string>
+				<key>record</key>
+				<string>id</string>
+				<key>rewind</key>
+				<string>id</string>
+				<key>selectAll</key>
+				<string>id</string>
+				<key>selectNone</key>
+				<string>id</string>
+				<key>stopRecording</key>
+				<string>id</string>
+				<key>togglePlay</key>
+				<string>id</string>
+				<key>trackVolume</key>
+				<string>id</string>
+				<key>volume0</key>
+				<string>id</string>
+				<key>volume1</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>VRVideoController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>mDelegate</key>
+				<string>id</string>
+				<key>mNewButton</key>
+				<string>NSButton</string>
+				<key>mPlayButton</key>
+				<string>NSButton</string>
+				<key>mPlayLabel</key>
+				<string>NSTextField</string>
+				<key>mRecordButton</key>
+				<string>NSButton</string>
+				<key>mRecordLabel</key>
+				<string>NSTextField</string>
+				<key>mRewindButton</key>
+				<string>NSButton</string>
+				<key>mRewindLabel</key>
+				<string>NSTextField</string>
+				<key>mVideoMeter</key>
+				<string>VRVideoMeterView</string>
+				<key>mVideoView</key>
+				<string>VRVideoView</string>
+				<key>mVolumeGain</key>
+				<string>NSSlider</string>
+				<key>mVolumeLevel</key>
+				<string>NSLevelIndicator</string>
+				<key>mVolumeMax</key>
+				<string>NSButton</string>
+				<key>mVolumeMin</key>
+				<string>NSButton</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSResponder</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
 				<key>fetchCredentials</key>
 				<string>id</string>
 				<key>forgetCredentials</key>
@@ -153,12 +217,64 @@
 			<string>NSObject</string>
 		</dict>
 		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>gotoBeginning</key>
+				<string>id</string>
+				<key>pause</key>
+				<string>id</string>
+				<key>play</key>
+				<string>id</string>
+				<key>selectAll</key>
+				<string>id</string>
+				<key>selectNone</key>
+				<string>id</string>
+				<key>stepBackward</key>
+				<string>id</string>
+				<key>stepForward</key>
+				<string>id</string>
+				<key>trim</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>VRVideoView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSView</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>checkForUpdates</key>
+				<string>id</string>
+				<key>showPreferences</key>
+				<string>id</string>
+			</dict>
 			<key>CLASS</key>
 			<string>TDAppController</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>mUpdater</key>
+				<string>SUUpdater</string>
+			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>VRVideoMeterView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>mDelegate</key>
+				<string>id</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSView</string>
 		</dict>
 	</array>
 	<key>IBVersion</key>

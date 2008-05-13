@@ -60,7 +60,8 @@
             ofView:(NSView *)controlView 
       untilMouseUp:(BOOL)flag;
 
-#if defined(MAC_OS_X_VERSION_10_5) &&  MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
+// allow building the unit tests on 10.5, building at all on 10.4
+#if defined(NSINTEGER_DEFINED) && defined(MAC_OS_X_VERSION_10_5) &&  MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
 - (NSUInteger)hitTestForEvent:(NSEvent *)event 
                        inRect:(NSRect)cellFrame
                        ofView:(NSView *)controlView;

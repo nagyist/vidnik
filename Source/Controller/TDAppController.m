@@ -25,6 +25,8 @@
 #import "GDataHTTPFetcher.h"
 #import "GDataEntryYouTubeVideo.h"
 #import "GDataHTTPFetcherLogging.h"
+#import "PreferencesWindowController.h"
+#import "Sparkle/SUUpdater.h"
 #import "TDQTKit.h"
 
 static int SortCategory(id a, id b, void *unused);
@@ -38,6 +40,13 @@ static int SortCategory(id a, id b, void *unused);
 
 + (void)initialize {
   NSError *err = nil;
+
+  // Get rid of annoying Sparkly dialog on first launch
+  NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
+    [NSNumber numberWithBool:YES], @"SUHasLaunchedBefore",
+    nil];
+  [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+
   if( ! TDCaptureInit(&err)) {
     [NSApp presentError:err];
     [NSApp terminate:self];
@@ -197,6 +206,15 @@ static int SortCategory(id a, id b, void *unused);
   return nil != [self openDocumentWithContentsOfURL:url display:YES error:&error];
 }
 
+- (IBAction)showPreferences:(id)sender {
+  PreferencesWindowController* prefs = [PreferencesWindowController sharedPreferencesWindowController];
+  [prefs showWindow:self];
+}
+
+
+- (IBAction)checkForUpdates:(id)sender {
+  [mUpdater checkForUpdates:sender];
+}
 
 @end
 

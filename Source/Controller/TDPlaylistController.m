@@ -78,6 +78,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 }
 
 - (void)dealloc {
+  [self setDelegate:nil];
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
   [mPlaylist setDelegate:nil];

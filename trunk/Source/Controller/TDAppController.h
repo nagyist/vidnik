@@ -33,6 +33,7 @@
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender;
 
+- (IBAction)newMovie:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)checkForUpdates:(id)sender;
 

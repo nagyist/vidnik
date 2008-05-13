@@ -234,7 +234,16 @@ CL 6858885 <=> Version 0.12.0
 * Restrict account name to rules set by Youtube on http://www.youtube.com/signup:
 "Your username can only contain letters A-Z or numbers 0-9"
 
-CL 7032713 <=> Version 0.13.0
+5/13/08 :
+* Add preferences dialog box, menu command.
+* Add a preference to check for updates on startup
+* Add a button to the preferences dialog to check now:
+  (it was easier to add the button than it was to explain that the app has a 
+  "check for updates" menu item on its application menu.)
+* Fix compile problems with unit tests.
+* Restrict Sparkle to a specific version.
+* When there is no movie open, the menu item says "New Document'
+* Clicking record with nothing selected in the table gives the resulting movie a cell in the table.
 
 TODO:
 - no error messages for missing camera, camera in use. (session [inputs count] == 0) 
@@ -264,10 +273,14 @@ TODO:
 - dragging start marker so it drags end marker, then back, doesn't restore end marker
 - with multiple movies, can I exceed RAM?
 - consider a unit test that verifies that actions and outlets are as expected.
+- consider a system test with two computers: 
+  Computer 1 runs an animation.
+  Computer 2 pointed at computer 1 records it, compares with reference video.
+    uploads it, waits, downloads the encoded video, compares with source video.
+  
 - on leopard, after a few runs, we get into a state where AVCAssistant runs, but produces no data,
   not event for PhotoBooth.
 - test with 1000 movies.
-- BUG clicking record with nothing selected in the table did not give the resulting movie a cell in the table.
 - test playing with the U.I. during record.
 
 - creating thumbnails, movies: the work is done synchronously. too slow.

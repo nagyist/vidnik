@@ -32,6 +32,7 @@
 static int SortCategory(id a, id b, void *unused);
 
 @interface TDAppController(PrivateMethods)
+- (void)finishOpeningDocument:(NSDocument *)doc isShown:(BOOL)isShown;
 - (void)fetchCategories;
 - (void)fixAccountMenuItem;
 @end
@@ -115,15 +116,7 @@ static int SortCategory(id a, id b, void *unused);
     if (nil == doc) {
       doc = [dc makeDocumentWithContentsOfURL:url ofType:@"Movie" error:error];
     }
-    if (doc) {
-      [dc addDocument:doc];
-      if ([dc shouldCreateUI]) {
-        [doc makeWindowControllers];
-        if (isShown) {
-          [doc showWindows];
-        }
-      }
-    }
+    [self finishOpeningDocument:doc isShown:isShown];
   }
   return doc;
 }
@@ -206,6 +199,25 @@ static int SortCategory(id a, id b, void *unused);
   return nil != [self openDocumentWithContentsOfURL:url display:YES error:&error];
 }
 
+
+- (void)newDocument:(id)sender {
+  NSError *error = nil;
+  NSDocumentController *dc = [NSDocumentController sharedDocumentController];
+  TDiaryDocument *doc = [dc makeUntitledDocumentOfType:@"TDoc" error:&error];
+  if (doc) {
+    [self finishOpeningDocument:doc isShown:YES];
+  } else if (error) {
+    [NSApp presentError:error];
+  }
+}
+
+// if this gets called, we must be the first responder, 
+// therefore there must be no open document.
+- (IBAction)newMovie:(id)sender {
+  [self newDocument:sender];
+}
+
+
 - (IBAction)showPreferences:(id)sender {
   PreferencesWindowController* prefs = [PreferencesWindowController sharedPreferencesWindowController];
   [prefs showWindow:self];
@@ -216,9 +228,31 @@ static int SortCategory(id a, id b, void *unused);
   [mUpdater checkForUpdates:sender];
 }
 
+- (BOOL)validateMenuItem:(NSMenuItem *)anItem {
+  BOOL val = YES;
+  SEL action = [anItem action];
+  if (@selector(newMovie:) == action) {
+    [anItem setTitle:NSLocalizedString(@"New Document", @"File Menu")];
+  }
+  return val;
+}
 @end
 
 @implementation TDAppController(PrivateMethods)
+
+- (void)finishOpeningDocument:(NSDocument *)doc isShown:(BOOL)isShown {
+  if (doc) {
+    NSDocumentController *dc = [NSDocumentController sharedDocumentController];
+    [dc addDocument:doc];
+    if ([dc shouldCreateUI]) {
+      [doc makeWindowControllers];
+      if (isShown) {
+        [doc showWindows];
+      }
+    }
+  }
+}
+
 
 - (void)fetchCategories {
   NSURL *categoriesURL = [NSURL URLWithString:kGDataSchemeYouTubeCategory];

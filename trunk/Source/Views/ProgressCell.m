@@ -133,7 +133,7 @@ static id gTimeSource;
   return YES;
 }
 
-#if defined(MAC_OS_X_VERSION_10_5) &&  MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
+#if defined(NSINTEGER_DEFINED) && defined(MAC_OS_X_VERSION_10_5) &&  MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
 - (NSUInteger)hitTestForEvent:(NSEvent *)event 
                        inRect:(NSRect)cellFrame
                        ofView:(NSView *)controlView {

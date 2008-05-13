@@ -1,9 +1,9 @@
 //
-//  TDAppController.h
+//  PreferencesWindowController.h
 //  Vidnik
 //
-//  Created by David Phillip Oster on 2/13/08.
-//  Copyright 2008 Google Inc. 
+//  Created by David Oster on 5/13/08.
+//  Copyright Google Inc 2008 . 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not
 // use this file except in compliance with the License.  You may obtain a copy
 // of the License at
@@ -15,26 +15,14 @@
 // WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 // License for the specific language governing permissions and limitations under
 // the License.
-
 //
 
 #import <Cocoa/Cocoa.h>
 
-@class TDConfiguration;
-@class SUUpdater;
 
-@interface TDAppController : NSObject {
-  IBOutlet SUUpdater *mUpdater;
-  TDConfiguration *mConfig;
+@interface PreferencesWindowController : NSWindowController {
 }
 
-- (TDConfiguration *)config;
-- (void)setConfig:(TDConfiguration *)config;
-
-- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender;
-
-- (IBAction)showPreferences:(id)sender;
-- (IBAction)checkForUpdates:(id)sender;
++ (PreferencesWindowController *)sharedPreferencesWindowController;
 
 @end
-

@@ -54,3 +54,8 @@ Would it simplify matters to have contollers inherit from NSResponder, and inser
 
 Secrets:
 set "isGDataHTTPLogging" in the preferences file to turn on http logging.
+
+Notes:
+The Sparkle framework won't compile under OS X 10.4: Xcode 2.5 can't handle the build settigns in its config files that are condititioned by the build architecture.
+But you can remove it from the Vidnik project to get something that will run well enough you can do some 10.4 debugging.
+

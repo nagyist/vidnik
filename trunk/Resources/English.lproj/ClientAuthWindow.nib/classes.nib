@@ -68,7 +68,7 @@
 				<string>NSButton</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSObject</string>
+			<string>NSResponder</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>

@@ -7,6 +7,15 @@
 
 If you don't have a built-in camera on your Mac, you can use a Firewire or any Quicktime compatible camera.
 
+*Q*: I have a comment or a question. Where should I put it?
+
+*A*: Please put it in the [http://groups.google.com/group/vidnik?hl=en Vidnik Google Group].
+
+*Q*: I want to report a bug. Where should I report it?
+
+*A*: Please put it in the [http://code.google.com/p/vidnik/issues/list Vidnik Issues List].
+
+
 *Q*: How do I get my movies out of *Vidnik*?
 
 *A*: (Control)-Click on a movie thumbnail and you get a popup menu of commands that apply to the current movie. One is "Show in Finder". This reveals the movie clip file in the Finder, so you can do whatever you want with it. Edit it in another movie program.

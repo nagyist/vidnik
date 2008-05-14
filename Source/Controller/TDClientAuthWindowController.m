@@ -316,8 +316,6 @@ errorMessageSelector:(SEL)errorSelector
 }
 
 - (void)updateUI {
-  
-  // TODO: do additional checks that the username and password are reasonable
   NSString *username = [self normalizedUsername];
   NSString *password = [passwordField_ stringValue];
   

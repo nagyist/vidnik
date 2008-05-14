@@ -19,15 +19,30 @@
 //
 
 #import "TDConfiguration.h"
+#import "TDConstants.h"
 #import "TDAppController.h"
+#import "String+Path.h"
 #import "DeveloperKey.h"
 
 static NSString * const kAppID = @"appID";
 static NSString * const kCategoriesKey = @"categories";
 static NSString * const kCategoriesFetchDateKey = @"categoriesFetchDate";
 static NSString * const kDefaultCategoryTermKey = @"defaultCategoryTerm";
+
+// preference key: don't fill the disk beyond this point.
+static NSString * const kDiskFreeSpaceKey = @"freeSpace";
+
 static NSString * const kLastDocumentPath = @"lastDocumentPath";
 static NSString * const kLastDocumentID = @"lastDocumentID";
+
+static NSString * const kMaxMovieSize = @"maxMovieSize";
+static NSString * const kMaxMovieDuration = @"maxMovieDuration";
+
+// preference key: path, with tilde, of the folder where Vidnik writes movies
+static NSString * const kMovieFolderKey = @"movieFolder";
+
+
+
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 1050
 
@@ -118,6 +133,19 @@ NSString *NewUUID(void) {
   }
 }
 
+- (long long)diskCushion {
+  NSUserDefaults *ud = [self userDefaults];
+  NSNumber *diskCushionN = [ud objectForKey:kDiskFreeSpaceKey];
+  if ([diskCushionN respondsToSelector:@selector(longLongValue)]) {
+    return [diskCushionN longLongValue];
+  }
+  return 0;
+}
+
+- (void)setDiskCushion:(long long)diskCushion {
+  NSUserDefaults *ud = [self userDefaults];
+  [ud setObject:[NSNumber numberWithLongLong:diskCushion] forKey:kDiskFreeSpaceKey];
+}
 
 - (NSString *)lastDocumentPath {
   NSUserDefaults *ud = [self userDefaults];
@@ -139,6 +167,11 @@ NSString *NewUUID(void) {
 - (BOOL)isGDataHTTPLogging {
   NSUserDefaults *ud = [self userDefaults];
   return [ud boolForKey:@"isGDataHTTPLogging"];
+}
+
+- (BOOL)isAnyUserNameAllowed {
+  NSUserDefaults *ud = [self userDefaults];
+  return [ud boolForKey:@"isAnyUserNameAllowed"];
 }
 
 
@@ -167,6 +200,133 @@ NSString *NewUUID(void) {
 - (NSString *)sourceIdentifier {
   return @"Vidnik";
 }
+
+// zero means don't enforce any limit
+- (long long)maxMovieSize {
+  long long maxMovieSize = 1000000000; // i.e. 1 billion bytes
+  NSUserDefaults *ud = [self userDefaults];
+  NSNumber *num = [ud objectForKey:kMaxMovieSize];
+  if (num && ! [self validateMaxMovieSize:&num error:nil]) {
+    maxMovieSize = [num longLongValue];
+  }
+  return maxMovieSize;
+}
+
+- (void)setMaxMovieSize:(long long)maxMovieSize {
+  NSUserDefaults *ud = [self userDefaults];
+  [ud setObject:[NSNumber numberWithLongLong:maxMovieSize] forKey:kMaxMovieSize];
+}
+
+- (BOOL)validateMaxMovieSize:(id *)ioValue error:(NSError **)outError {
+  NSNumber *num = *ioValue;
+  if (nil == num) {
+    return YES;
+  }
+  if ( ! [num respondsToSelector:@selector(longLongValue)]) {
+    if (outError) {
+      *outError = [NSError errorWithDomain:kTDAppDomain
+                                      code:kNumberExpectedErr 
+                                  userInfo:nil];
+    }
+    return NO;
+  }
+  long long n = [num longLongValue];
+  if (0 != n && n < 10000) {
+    if (outError) {
+      *outError = [NSError errorWithDomain:kTDAppDomain
+                                      code:kMaxMovieSizeTooSmallErr 
+                                  userInfo:nil];
+    }
+    return NO;
+  }
+  return YES;
+}
+
+
+// zero means don't enforce any limit
+- (long)maxMovieDuration {
+  long maxMovieDuration = 60; // i.e. 10 minutes
+  NSUserDefaults *ud = [self userDefaults];
+  NSNumber *num = [ud objectForKey:kMaxMovieDuration];
+  if (num && ! [self validateMaxMovieDuration:&num error:nil]) {
+    maxMovieDuration = [num longValue];
+  }
+  return maxMovieDuration;
+}
+
+- (void)setMaxMovieDuration:(long)maxMovieDuration {
+  NSUserDefaults *ud = [self userDefaults];
+  [ud setObject:[NSNumber numberWithLong:maxMovieDuration] forKey:kMaxMovieDuration];
+}
+
+- (BOOL)validateMaxMovieDuration:(id *)ioValue error:(NSError **)outError {
+  NSNumber *num = *ioValue;
+  if (nil == num) {
+    return YES;
+  }
+  if ( ! [num respondsToSelector:@selector(longValue)]) {
+    if (outError) {
+      *outError = [NSError errorWithDomain:kTDAppDomain
+                                      code:kNumberExpectedErr 
+                                  userInfo:nil];
+    }
+    return NO;
+  }
+  long long n = [num longValue];
+  if (0 != n && n < 10) {
+    if (outError) {
+      *outError = [NSError errorWithDomain:kTDAppDomain
+                                      code:kMaxMovieDurationTooSmallErr 
+                                  userInfo:nil];
+    }
+    return NO;
+  }
+  return YES;
+}
+
+
+- (NSString *)movieFolderPath {
+  NSUserDefaults *ud = [self userDefaults];
+  NSString *movieFolderPath = [[ud stringForKey:kMovieFolderKey] stringByExpandingTildeInPath];
+  if (movieFolderPath && ! [self validateMovieFolderPath:&movieFolderPath error:nil]) {
+    movieFolderPath = [NSString stringWithPathForFolder:kMovieDocumentsFolderType 
+                                           subfolderName:@"Vidnik" 
+                                                inDomain:kUserDomain
+                                                doCreate:YES];
+  }
+  return movieFolderPath;
+}
+
+- (void)setMovieFolderPath:(NSString *)movieFolderPath {
+  NSString *abbrevPath = [movieFolderPath stringByAbbreviatingWithTildeInPath];
+  if (abbrevPath) {
+    NSUserDefaults *ud = [self userDefaults];
+    [ud setObject:abbrevPath forKey:kMovieFolderKey];
+  }
+}
+
+
+- (BOOL)validateMovieFolderPath:(id *)ioValue error:(NSError **)outError {
+  NSString *path = *ioValue;
+  if(nil == path ||
+      ([path respondsToSelector:@selector(isWritableFolderPath)] && 
+      [path isWritableFolderPath])) {
+    return YES;
+  }
+  if (outError) {
+    NSDictionary *info = nil;
+    if ([path respondsToSelector:@selector(characterAtIndex:)]) {
+      info = [NSDictionary dictionaryWithObjectsAndKeys:
+          path, NSFilePathErrorKey,
+          nil];
+    }
+    *outError = [NSError errorWithDomain:kTDAppDomain
+                                    code:kCouldNotWriteToMovieFolder 
+                                userInfo:info];
+  }
+  return NO;
+}
+
 
 - (NSString *)userAgent {
   return [NSString stringWithFormat:@"google.code-%@-1.0", [self sourceIdentifier]];

@@ -1,18 +1,34 @@
 // TDConstants.h
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not
+// use this file except in compliance with the License.  You may obtain a copy
+// of the License at
+// 
+// http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+// License for the specific language governing permissions and limitations under
+// the License.
 
-extern NSString *const kTDAppDomain;
+extern NSString * const kTDAppDomain;
 
 enum {
-  kNoServiceErr = -1009,
-  kBadUsernameErr = -1008,
-  kNoUsernamePasswordErr = -1007,
-  kUploadErrNoCategory = -1006,
-  kUploadErrCouldntReadFile = -1005,
-  kUploadErrFileNotFound = -1004,
-  kAllAlreadyUploadedMoviesErr = -1003,
-  kNoReadyToUploadMoviesErr = -1002,
-  kNoMoviesErr = -1001,
-  kBadFileErr = -1000
+  kAllAlreadyUploadedMoviesErr = -1014,
+  kBadFileErr = -1013,
+  kBadUsernameErr = -1012,
+  kCouldNotWriteToMovieFolder = -1011,
+  kMaxMovieDurationTooSmallErr = -1010,
+  kMaxMovieSizeTooSmallErr = -1009,
+  kNoCameraErr = -1008,
+  kNoMoviesErr = -1007,
+  kNoReadyToUploadMoviesErr = -1006,
+  kNoServiceErr = -1005,
+  kNoUsernamePasswordErr = -1004,
+  kNumberExpectedErr = -1003,
+  kUploadErrCouldntReadFile = -1002,
+  kUploadErrFileNotFound = -1001,
+  kUploadErrNoCategory = -1000
 };
 
 typedef enum ModelMovieState{

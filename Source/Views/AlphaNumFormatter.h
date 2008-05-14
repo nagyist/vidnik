@@ -19,7 +19,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+// Used for the Username field in the sign in dialog box. Only allows
+// YouTube legal characters, unless:
+// if (isAnyUserNameAllowed) allow anything.
+// isAnyUserNameAllowed is a Preference file preference
+//
 @interface AlphaNumFormatter : NSFormatter
 
 - (NSString *)stringForObjectValue:(id)obj;

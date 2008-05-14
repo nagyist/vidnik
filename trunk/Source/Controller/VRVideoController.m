@@ -24,6 +24,8 @@
 #import "TDCaptureMovieFileOutput.h"
 #import "TDCaptureDevice.h"
 #import "TDCaptureDeviceInput.h"
+#import "TDConfiguration.h"
+#import "TDConstants.h"
 #import "TDModelDate.h"
 #import "QTMovie+Async.h"
 #import "String+Path.h"
@@ -306,6 +308,7 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
     }
   }
   if (error) {
+    [self stopRecording:nil];
     [self presentError:error];
   }
 } 
@@ -341,7 +344,11 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
     }
     if (nil == err) {
       if (nil == mInVideoDev) {
-        [NSTimer scheduledTimerWithTimeInterval:2.1 target:self selector:@selector(attemptToGrabDevice:) userInfo:nil repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:2.1 
+                                         target:self 
+                                       selector:@selector(attemptToGrabDevice:) 
+                                       userInfo:nil 
+                                        repeats:NO];
       } else {
         [mSession configureOutputs];
         [mSession startRunning];
@@ -417,16 +424,23 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
 
 - (void)startRecording {
   if ( ! mIsRecording) {
-    [mOutURL release];
-    mOutURL = [[self nextOutURL] retain];
-    [mOutFile recordToOutputFileURL:mOutURL];
-    NSString *path = [mOutURL path];
-    if (path) {
-      [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path];
+    if ([mSession canRun]) {
+      [mOutURL release];
+      mOutURL = [[self nextOutURL] retain];
+      if (mOutURL) {
+        [mOutFile recordToOutputFileURL:mOutURL];
+        NSString *path = [mOutURL path];
+        if (path) {
+          [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path];
+        }
+        mIsRecording = YES;
+        [self setPlaybackMode:NO];
+        [NSApp setApplicationIconImage:[NSImage imageNamed: @"AppRecord"]];
+      }
+    } else {
+      NSError *err = [NSError errorWithDomain:kTDAppDomain code:kNoCameraErr userInfo:nil];
+      [self presentError:err];
     }
-    mIsRecording = YES;
-    [self setPlaybackMode:NO];
-    [NSApp setApplicationIconImage:[NSImage imageNamed: @"AppRecord"]];
   }
 }
 
@@ -480,12 +494,15 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
 
 - (NSURL *)nextOutURL {
   NSString *dateS = [[TDModelDate date] asSimpleString];
-  NSString *tdFolder = [NSString stringWithPathForFolder:kMovieDocumentsFolderType 
-                                           subfolderName:@"Vidnik" 
-                                                inDomain:kUserDomain
-                                                doCreate:YES];
-  NSString *path = [NSString stringWithFormat:@"%@/%@.mov", tdFolder, dateS];
-  return [NSURL fileURLWithPath:path];
+  NSString *tdFolder = [TDConfig() movieFolderPath];
+  NSError *err = nil;
+  if ( ! [TDConfig() validateMovieFolderPath:&tdFolder error:&err]) {
+    [self presentError:err];
+    return nil;
+  } else {
+    NSString *path = [NSString stringWithFormat:@"%@/%@.mov", tdFolder, dateS];
+    return [NSURL fileURLWithPath:path];
+  }
 }
 
 - (BOOL)isPlaybackMode {

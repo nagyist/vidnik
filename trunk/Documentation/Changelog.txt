@@ -234,6 +234,8 @@ CL 6858885 <=> Version 0.12.0
 * Restrict account name to rules set by Youtube on http://www.youtube.com/signup:
 "Your username can only contain letters A-Z or numbers 0-9"
 
+ ------- Version 0.13.0 (first public release)
+
 5/13/08 :
 * Add preferences dialog box, menu command.
 * Add a preference to check for updates on startup
@@ -245,10 +247,20 @@ CL 6858885 <=> Version 0.12.0
 * When there is no movie open, the menu item says "New Document'
 * Clicking record with nothing selected in the table gives the resulting movie a cell in the table.
 
-TODO:
-- no error messages for missing camera, camera in use. (session [inputs count] == 0) 
+5/14/08 :
+New TDConfiguration methods (i.e. preference file keys):
+- (long long)diskCushion;
+- (BOOL)isAnyUserNameAllowed;   // wired up
+- (NSString *)movieFolderPath;  // wired up
+- (long long)maxMovieSize;
+- (long)maxMovieDuration
+* missing camera:Record button re-enables after pressing record button.
+* error messages for missing camera, camera in use. (session [inputs count] == 0)
 
-- indicator that movie is too big.
+TODO:
+- indicator that movie is bigger than [TDConfig() maxMovieSize] or [TDConfig() maxMovieDuration].
+- indicator that movie has consumed into [TDConfig() diskCushion] space.
+
 - menu commands split, join.
 - an upload is not a save. better undo handling of trim across upload.
 - deleting a movie should move the actual movie file to the trash. undo should move it back.
@@ -266,8 +278,7 @@ TODO:
 - splitter view needs work: grow window, give left pane min size, shrink window. shrinks past min. can't programmatically resize.
 - video frame should be centered as window grows and shrinks
 
-- no control over capture format (I want 30fps)
-- no error messages for missing camera, camera in use. (session [inputs count] == 0) 
+- no control over capture format (I want 30fps, 29.99)
 - no switching of preview from window to window
 - no support for multiple cameras
 - dragging start marker so it drags end marker, then back, doesn't restore end marker
@@ -281,7 +292,7 @@ TODO:
 - on leopard, after a few runs, we get into a state where AVCAssistant runs, but produces no data,
   not event for PhotoBooth.
 - test with 1000 movies.
-- test playing with the U.I. during record.
+- test playing with the U.I. during record. 
 
 - creating thumbnails, movies: the work is done synchronously. too slow.
 - should poll, get state of movies currently processing.

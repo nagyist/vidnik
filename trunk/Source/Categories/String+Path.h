@@ -27,6 +27,10 @@
 /// True if the file is in the trash.
 - (BOOL)isInTrash;
 
+/// True if this path exists, is a folder, is writable, is not in Trash, is
+/// not a Package.
+- (BOOL)isWritableFolderPath;
+
 /// Create a path to a folder located with FindFolder
 //
 /// Args:

@@ -73,13 +73,17 @@ Class gTDCaptureSession;
 }
 
 
+- (BOOL)canRun {
+  return 0 < [[mI inputs] count];
+}
+
 - (BOOL)isRunning {
   return [mI isRunning];
 }
 
 - (void)startRunning {
   // will crash if there isn't any input.
-  if ([[mI inputs] count]) {
+  if ([self canRun]) {
     [mI startRunning];
   }
 }

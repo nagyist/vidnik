@@ -36,6 +36,14 @@
   return NSNotFound != r.location;
 }
 
+- (BOOL)isWritableFolderPath {
+  NSFileManager *fm = [NSFileManager defaultManager];
+  BOOL isDir = NO;
+  BOOL isWritableFolder = [fm fileExistsAtPath:self isDirectory:&isDir] && 
+                          isDir &&
+                          [fm isWritableFileAtPath:self];
+  return isWritableFolder;
+}
 
 + (NSString *)stringWithPathForFolder:(OSType)theFolderType 
                              inDomain:(short)theDomain

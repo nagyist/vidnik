@@ -5,10 +5,19 @@
 // Window Title
 "account not set" = "account not set";
 
+"MaxMovieSizeTooSmallErr" = "Maximum Movie Size must be at least 10K.";
+"MaxMovieSizeTooSmallSuggest" = "";
+
+"MaxMovieDurationTooSmallErr" = "Maximum Movie Duration must be at least 10 sec.";
+"MaxMovieDurationTooSmallSuggest" = "";
+
+"NumberExpectedErr" = "Number expected.";
+"NumberExpectedSuggest" = "";
+
 "TDCaptureErrDescNoPath" = "Required plug in not found.";
 "TDCaptureErrDescNoBundle" = "Required plug in is damaged.";
-"TDCaptureErrDescNoLoad" = "Required plug in is damaged: Couldn‚Äôt load it.";
-"TDCaptureErrDescNoClass" = "Required plug in is damaged: Couldn‚Äôt bind it.";
+"TDCaptureErrDescNoLoad" = "Required plug in is damaged: Couldn’t load it.";
+"TDCaptureErrDescNoClass" = "Required plug in is damaged: Couldn’t bind it.";
 
 "TDCaptureErrReasonNoPath" = "while reading “%@”";
 "TDCaptureErrReasonNoBundle" = "while reading “%@”";
@@ -19,6 +28,12 @@
 "TDCaptureErrSuggestNoBundle" =  "Try reinstalling from backups. Please file a bug.";
 "TDCaptureErrSuggestNoLoad" =  "Try reinstalling from backups. Please file a bug.";
 "TDCaptureErrSuggestNoClass" =  "Try reinstalling from backups. Please file a bug.";
+
+"CouldNotWriteToMovieFolderErr"  = "Can’t write movies to folder:";
+"CouldNotWriteToMovieFolderSuggest" = "“%@”";
+
+"NoCameraErr" = "Vidnik can’t find a video camera.";
+"NoCameraSuggest" = "Please check that your camera is attached, turned on, and not being used by a different application.\n\nYou should be seeing video, not a black rectangle, in Vidnik’s window.";
 
 "UploadErrNoMovies" = "This document has no  movies.";
 "UploadSuggestNoMovies" = "Please press the “Record” button to start recording. Press again to complete recording.\n\nOr, you can drag movies into the playlist from the Finder.";

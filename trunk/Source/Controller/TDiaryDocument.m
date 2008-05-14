@@ -280,22 +280,32 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
     }
   } else if ([[error domain] isEqual:kTDAppDomain]) {
     switch ([error code]) {
-    case kNoMoviesErr:
-      return AugmentError(error, @"UploadErrNoMovies", @"UploadSuggestNoMovies");
     case kAllAlreadyUploadedMoviesErr:
       return AugmentError(error, @"UploadErrAllAlreadyUploadedMovies", @"UploadSuggestAllAlreadyUploadedMovies");
+    case kCouldNotWriteToMovieFolder:
+      return AugmentError(error, @"CouldNotWriteToMovieFolderErr", @"CouldNotWriteToMovieFolderSuggest");
+    case kMaxMovieDurationTooSmallErr:
+      return AugmentError(error, @"MaxMovieDurationTooSmallErr", @"MaxMovieDurationTooSmallSuggest");
+    case kMaxMovieSizeTooSmallErr:
+      return AugmentError(error, @"MaxMovieSizeTooSmallErr", @"MaxMovieSizeTooSmallSuggest");
+    case kNoCameraErr:
+      return AugmentError(error, @"NoCameraErr", @"NoCameraSuggest");
+    case kNoMoviesErr:
+      return AugmentError(error, @"UploadErrNoMovies", @"UploadSuggestNoMovies");
     case kNoReadyToUploadMoviesErr:
       return AugmentError(error, @"UploadErrNoReadyToUploadMovies", @"UploadSuggestNoReadyToUploadMovies");
-    case kUploadErrFileNotFound:
-      return AugmentError(error, @"UploadErrFileNotFound", @"UploadSuggestFileNotFound");
-    case kUploadErrCouldntReadFile:
-      return AugmentError(error, @"UploadErrCouldntReadFile", @"UploadSuggestCouldntReadFile");
-    case kUploadErrNoCategory:
-      return AugmentError(error, @"UploadErrNoCategory", @"UploadSuggestNoCategory");
     case kNoServiceErr:
       return AugmentError(error, @"NoServiceErr", @"NoServiceSuggest");
     case kNoUsernamePasswordErr:
       return AugmentError(error, @"NoUsernamePasswordErr", @"NoUsernamePasswordSuggest");
+    case kNumberExpectedErr:
+      return AugmentError(error, @"NumberExpectedErr", @"NumberExpectedSuggest");
+    case kUploadErrCouldntReadFile:
+      return AugmentError(error, @"UploadErrCouldntReadFile", @"UploadSuggestCouldntReadFile");
+    case kUploadErrFileNotFound:
+      return AugmentError(error, @"UploadErrFileNotFound", @"UploadSuggestFileNotFound");
+    case kUploadErrNoCategory:
+      return AugmentError(error, @"UploadErrNoCategory", @"UploadSuggestNoCategory");
     
     default:
       break;
@@ -581,6 +591,11 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
   }
   NSString *suggestS = NSLocalizedString(suggestKey, @"");
   if (0 < [suggestS length]) {
+    NSDictionary *info = [err userInfo];
+    NSString *path = [info objectForKey:NSFilePathErrorKey];
+    if (path) {
+      suggestS = [NSString stringWithFormat:suggestS, path];
+    }
     [mutDict setObject:suggestS forKey:NSLocalizedRecoverySuggestionErrorKey];
   }
   NSError *result = [NSError errorWithDomain:[err domain] code:[err code] userInfo:mutDict];

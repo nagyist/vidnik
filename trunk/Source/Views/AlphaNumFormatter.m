@@ -18,6 +18,7 @@
 //
 
 #import "AlphaNumFormatter.h"
+#import "TDConfiguration.h"
 #import "TDConstants.h"
 
 
@@ -50,7 +51,7 @@
             newEditingString:(NSString **)newString
             errorDescription:(NSString **)error {
   BOOL isGood = YES;
-  if (0 < [partialString length]) {
+  if (0 < [partialString length] && ! [TDConfig() isAnyUserNameAllowed]) {
     NSScanner *scanner = [NSScanner scannerWithString:partialString];
     static NSMutableCharacterSet *legalset = nil;
     if (nil == legalset) {

@@ -19,14 +19,14 @@
 //
 
 #import "TDAppController.h"
-#import "TDConfiguration.h"
-#import "TDCapture.h"
-#import "TDiaryDocument.h"
 #import "GDataHTTPFetcher.h"
 #import "GDataEntryYouTubeVideo.h"
 #import "GDataHTTPFetcherLogging.h"
 #import "PreferencesWindowController.h"
 #import "Sparkle/SUUpdater.h"
+#import "TDConfiguration.h"
+#import "TDCapture.h"
+#import "TDiaryDocument.h"
 #import "TDQTKit.h"
 
 static int SortCategory(id a, id b, void *unused);

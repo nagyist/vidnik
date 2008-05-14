@@ -23,12 +23,14 @@
 @class TDCaptureDeviceInput;
 @class TDCaptureMovieFileOutput;
 
-// Wrap OS X 10.5 only QTKit class QTCaptureSession, 
-// so we can re-implement for Tiger
+// I originally wrote a QTKit wrapper because I thought it was 10.5 only.
+// I left this as separate code, becuase it makes very clear what the interface
+// to QTKit is.
 @interface TDCaptureSession : NSObject {
  @private
   id mI;  // implementation
 }
+
 - (BOOL)addInput:(TDCaptureDeviceInput *)inDev error:(NSError **)error;
 - (BOOL)addOutput:(TDCaptureMovieFileOutput *)outFile error:(NSError **)error;
 
@@ -36,6 +38,7 @@
 // behave the same as one I ask QTCaptureSession for.
 - (TDCaptureMovieFileOutput *)captureFileOutput;
 
+- (BOOL)canRun;
 - (BOOL)isRunning;
 - (void)startRunning;
 - (void)stopRunning;

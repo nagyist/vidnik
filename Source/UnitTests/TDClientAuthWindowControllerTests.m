@@ -97,10 +97,12 @@ static int kServerPortNumber = 54579;
   retryCounter_ = 0;
 }
 
+// turned off for nwo, until we have more significant tests here.
+#if 0
 - (void)testCaptcha {
   STAssertTrue(isServerRunning_, @"");
 }
-
+#endif
 
 
 @end

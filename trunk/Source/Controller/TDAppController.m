@@ -104,36 +104,33 @@ static int SortCategory(id a, id b, void *unused);
 - (id)openDocumentWithContentsOfURL:(NSURL *)url 
                             display:(BOOL)isShown 
                               error:(NSError **)error {
-  NSDocumentController *dc = [NSDocumentController sharedDocumentController];
-  TDiaryDocument *doc = [dc documentForURL:url];
-
-  if (doc) {
-    if (isShown) {
-      [doc showWindows];
+  TDiaryDocument *doc = nil;
+  static int depthCounter = 0;
+  if (depthCounter < 3) {
+    ++depthCounter; // prevent infinite loop if lastDocumentPath is corrupt
+    NSDocumentController *dc = [NSDocumentController sharedDocumentController];
+    if (nil != (doc = [dc documentForURL:url])) {    // if already open, bring to front.
+      if (isShown) {
+        [doc showWindows];
+      }
+    } else if (nil != (doc = [dc makeDocumentWithContentsOfURL:url ofType:@"TDoc" error:error])) {
+      [self finishOpeningDocument:doc isShown:isShown];
+    } else if (nil != (doc = [TDiaryDocument documentForMovieURL:url error:error])) {
+      if (isShown) {
+        [doc showWindows];
+      }
     }
-  } else {
-    doc = [dc makeDocumentWithContentsOfURL:url ofType:@"TDoc" error:error];
-    if (nil == doc) {
-      doc = [dc makeDocumentWithContentsOfURL:url ofType:@"Movie" error:error];
-    }
-    [self finishOpeningDocument:doc isShown:isShown];
+    --depthCounter;
   }
   return doc;
 }
 
 // returns YES if did re-open it.
-- (BOOL)reopenPreviousDocument {
-
-  static BOOL gIsFirstTime = YES;
-  if ( ! gIsFirstTime) {
-    return NO;
-  }
-  gIsFirstTime = NO;
-
+- (TDiaryDocument *)reopenPreviousDocument {
   NSString *lastPath = [TDConfig() lastDocumentPath];
   if (lastPath) {
     NSError *error = nil;
-    id val = [self openDocumentWithContentsOfURL:[NSURL fileURLWithPath:lastPath]  display:YES error:&error];
+    TDiaryDocument *val = [self openDocumentWithContentsOfURL:[NSURL fileURLWithPath:lastPath]  display:YES error:&error];
     if (nil == val && error) {
       // if it is essentially a file not found error, then don't bother to tell the user.
       [TDConfig() setLastDocumentPath:nil];
@@ -141,13 +138,18 @@ static int SortCategory(id a, id b, void *unused);
         [NSApp presentError:error];
       }
     }
-    return nil != val;
+    return val;
   }
-  return NO;
+  return nil;
 }
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
-  return ! [self reopenPreviousDocument];
+  static BOOL gIsFirstTime = YES;
+  if (gIsFirstTime) {
+    gIsFirstTime = NO;
+    return nil == [self reopenPreviousDocument];
+  }
+  return NO;
 }
 
 #if 0 // note: this is getting called too early in the terminate cycle: 
@@ -199,8 +201,7 @@ static int SortCategory(id a, id b, void *unused);
   return nil != [self openDocumentWithContentsOfURL:url display:YES error:&error];
 }
 
-
-- (void)newDocument:(id)sender {
+- (TDiaryDocument *)newDocument {
   NSError *error = nil;
   NSDocumentController *dc = [NSDocumentController sharedDocumentController];
   TDiaryDocument *doc = [dc makeUntitledDocumentOfType:@"TDoc" error:&error];
@@ -209,6 +210,11 @@ static int SortCategory(id a, id b, void *unused);
   } else if (error) {
     [NSApp presentError:error];
   }
+  return doc;
+}
+
+- (IBAction)newDocument:(id)sender {
+  [self newDocument];
 }
 
 // if this gets called, we must be the first responder, 

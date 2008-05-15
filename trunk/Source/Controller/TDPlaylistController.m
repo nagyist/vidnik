@@ -51,7 +51,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 @interface TDPlaylistController(PrivateMethods)
 - (TDModelMovie *)modelMovieFromMenuItem:(id)sender;
 - (NSArray *)moviesFromInternalPasteboard:(NSPasteboard *)pboard;
-- (NSArray *)moviesFromMoviePasteboard:(NSPasteboard *)pboard;
+- (NSArray *)moviesFromMoviePasteboard:(NSPasteboard *)pboard error:(NSError **)errp;
 - (NSArray *)pasteboardTypes; // of strings.
 - (int)pasteFrom:(NSPasteboard *)pboard onto:(TDModelMovie *)mm;
 - (int)pasteMovies:(NSArray *)movies onto:(TDModelMovie *)mm;
@@ -183,6 +183,21 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 }
 
 // ### Operations
+
+- (BOOL)appendMovieFromURL:(NSURL *)movieURL error:(NSError **)error {
+  BOOL isOK = NO;
+  TDModelMovie *movie = [[[TDModelMovie alloc] 
+        initWithURL:movieURL 
+           ownerURL:[[self delegate] fileURL] 
+              error:error] autorelease];
+  if (movie) {
+    [movie setCategory:[TDConfig() defaultCategoryTerm]];
+    NSArray *addList = [NSArray arrayWithObject:movie];
+    isOK = 0 < [self pasteMovies:addList onto:nil];
+  }
+  return isOK;
+}
+
 
 // TODO: maybe refactored as a statemachine.
 - (void)startValidatingFilePaths {
@@ -982,6 +997,11 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
        mutabilityOption:kCFPropertyListImmutable 
        format:nil 
        errorDescription:&errs];
+  if (errs) {
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:errs, NSLocalizedDescriptionKey, nil];
+    NSError *err = [NSError errorWithDomain:kTDAppDomain code:kCantConvertPaste userInfo:info];
+    [[self delegate] presentError:err];
+  }
   [errs autorelease];
   if ([movies respondsToSelector:@selector(objectAtIndex:)]) {
     int i, iCount = [movies count];
@@ -1005,12 +1025,19 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 
 // internal check failed. These must be from a clipping, so they are copies.
 // TODO: test what happens when they refer to a movie in use by another document
-- (NSArray *)moviesFromMoviePasteboard:(NSPasteboard *)pboard {
+- (NSArray *)moviesFromMoviePasteboard:(NSPasteboard *)pboard error:(NSError **)errp{
+  NSArray *result = nil;
   NSData *data = [pboard dataForType:kTDMoviePboardType];
   if (data) {
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    @try {
+      result = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    } @catch (NSException *except) {
+      if (errp) {
+        *errp = [NSError errorWithDomain:kTDAppDomain code:kCantConvertPaste userInfo:[except userInfo]];
+      }
+    }
   }
-  return nil;
+  return result;
 }
 
 
@@ -1023,7 +1050,11 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 
 - (int)pasteMoviesFrom:(NSPasteboard *)pb onto:(TDModelMovie *)mm {
   int val = 0;
-  NSArray *movies = [self moviesFromMoviePasteboard:pb];
+  NSError *err = nil;
+  NSArray *movies = [self moviesFromMoviePasteboard:pb error:&err];
+  if (err) {
+    [[self delegate] presentError:err];
+  }
   val = [self pasteMovies:movies onto:mm];
   return val;
 }
@@ -1037,6 +1068,11 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
        mutabilityOption:kCFPropertyListMutableContainers
        format:nil 
        errorDescription:&errs];
+  if (errs) {
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:errs, NSLocalizedDescriptionKey, nil];
+    NSError *err = [NSError errorWithDomain:kTDAppDomain code:kCantConvertPaste userInfo:info];
+    [[self delegate] presentError:err];
+  }
   [errs autorelease];
   if ([movies respondsToSelector:@selector(objectAtIndex:)]) {
     movies = [movies sortedArrayUsingSelector:@selector(comparePathAsFinder:)];
@@ -1062,6 +1098,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   return val;
 }
 
+// return count pasted.
 - (int)pasteMovies:(NSArray *)movies onto:(TDModelMovie *)mm {
   TDModelMovie *selectAtFinish = nil;
   NSMutableArray *toMove = [NSMutableArray array];

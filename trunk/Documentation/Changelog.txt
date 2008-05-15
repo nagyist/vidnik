@@ -252,7 +252,7 @@ CL 6858885 <=> Version 0.12.0
 * When there is no movie open, the menu item says "New Document'
 * Clicking record with nothing selected in the table gives the resulting movie a cell in the table.
 
-5/14/08 :
+5/14/08 : Rev58 0.13.1
 New TDConfiguration methods (i.e. preference file keys):
 - (long long)diskCushion;
 - (BOOL)isAnyUserNameAllowed;   // wired up
@@ -261,6 +261,15 @@ New TDConfiguration methods (i.e. preference file keys):
 - (long)maxMovieDuration
 * missing camera:Record button re-enables after pressing record button.
 * error messages for missing camera, camera in use. (session [inputs count] == 0)
+
+5/15/08 : Rev59 0.13.2
+* What happens if you drag a movie (or a group of them) from the Finder to:
+  * a Vidnik window
+  * the Vidnik icon in the Finder or the Dock.
+  Answer: this is essentually a drag&drop or paste: if on App icon, then if the movie is associated with any open window, open that window and select it.
+  * if not in any window, add it to end of front window and select it.
+  * if no open window, try to reopen previous document. 
+  * if that fails, bring up new untitled document.
 
 TODO:
 - indicator that movie is bigger than [TDConfig() maxMovieSize] or [TDConfig() maxMovieDuration].

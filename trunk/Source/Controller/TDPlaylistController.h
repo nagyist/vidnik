@@ -60,6 +60,9 @@
 
 // ### Operations
 
+// handle the case the user drops a movie on our icon.
+- (BOOL)appendMovieFromURL:(NSURL *)movieURL error:(NSError **)error;
+
 - (void)startValidatingFilePaths;
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem;
 

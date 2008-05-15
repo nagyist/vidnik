@@ -14,6 +14,7 @@
 extern NSString * const kTDAppDomain;
 
 enum {
+  kCantConvertPaste = -1015,
   kAllAlreadyUploadedMoviesErr = -1014,
   kBadFileErr = -1013,
   kBadUsernameErr = -1012,

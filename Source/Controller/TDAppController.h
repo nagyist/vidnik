@@ -21,6 +21,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class TDConfiguration;
+@class TDiaryDocument;
 @class SUUpdater;
 
 @interface TDAppController : NSObject {
@@ -32,6 +33,9 @@
 - (void)setConfig:(TDConfiguration *)config;
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender;
+
+- (TDiaryDocument *)reopenPreviousDocument;
+- (TDiaryDocument *)newDocument;
 
 - (IBAction)newMovie:(id)sender;
 - (IBAction)showPreferences:(id)sender;

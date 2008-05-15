@@ -29,17 +29,6 @@
 #import <OCMock/OCMockObject.h>
 #import <OCMock/OCMockRecorder.h>
 
-
-@interface TDiaryDocument(UploadTests)
-- (TDPlaylistController *)playlistController;
-@end
-
-@implementation TDiaryDocument(UploadTests)
-- (TDPlaylistController *)playlistController {
-  return mPlaylistController;
-}
-@end
-
 @class MockService;
 
 @interface MockTicket : NSObject {

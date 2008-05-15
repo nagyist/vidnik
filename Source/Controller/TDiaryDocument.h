@@ -47,10 +47,20 @@
   BOOL mIsSuppressingErrorDialog;
 }
 
+// from top window to last window, if window contains this existing movie,
+// select the movie, return the window. 
+// If no existing window contains the movie, 
+// try to reopenPreviousDocument and append to it. 
+// If that fails, and we have an open window, append to that window.
+// otherwise, create a new document, and append the movie to THAT and return it.
++ (TDiaryDocument *)documentForMovieURL:(NSURL *)movieURL error:(NSError **)error;
+
 // ### Attributes
 
 - (TDModelPlaylist *)playlist;
 - (void)setPlaylist:(TDModelPlaylist *)playlist;
+
+- (TDPlaylistController *)playlistController;
 
 - (TDModelMovie *)selectedModelMovie;
 - (void)setSelectedModelMovie:(TDModelMovie *)modelMovie;

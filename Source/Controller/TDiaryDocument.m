@@ -27,6 +27,7 @@
 #import "GDataServiceGoogleYouTube.h"
 #import "GDataYouTubeMediaElements.h"
 #import "GDataMediaKeywords.h"
+#import "TDAppController.h"
 #import "TDConfiguration.h"
 #import "TDConstants.h"
 #import "TDModelMovie.h"
@@ -49,6 +50,49 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
   [super dealloc];
 }
 
++ (TDiaryDocument *)documentForMovieURL:(NSURL *)movieURL error:(NSError **)error {
+  TDiaryDocument *result = nil;
+  NSString *moviePath = [movieURL path];
+  NSDocumentController *dc = [NSDocumentController sharedDocumentController];
+  NSArray *docs = [dc documents];
+  TDiaryDocument *currentDoc = [dc currentDocument];
+  int index = -1;
+  if (currentDoc) {
+    index = [[currentDoc playlist] indexOfModelMovieWithPath:moviePath];
+  }
+  if (0 <= index) {
+    [currentDoc setSelectedModelMovie:[[currentDoc playlist] modelMovieAtIndex:index]];
+    result = currentDoc;
+  } else {
+    int i, iCount = [docs count];
+    for (i = iCount-1; 0 <= i; --i) {
+      TDiaryDocument *doc = [docs objectAtIndex:i];
+      index = [[doc playlist] indexOfModelMovieWithPath:moviePath];
+      if (-1 != index) {
+        [doc setSelectedModelMovie:[[doc playlist] modelMovieAtIndex:index]];
+        result = doc;
+      }
+    }
+  }
+  if (nil == result) {
+    TDAppController *appController = (TDAppController *) [NSApp delegate];
+    // must not be in any existing window. Try first, to add it to the current one:
+    if (nil == currentDoc) {
+      currentDoc = [appController reopenPreviousDocument];
+    }
+    if (nil == currentDoc) {
+      // newdocument doesn't update currentDoc BUG
+      currentDoc = [appController newDocument];
+    }
+    if (nil != currentDoc) {
+      [[currentDoc playlistController] appendMovieFromURL:movieURL error:error];
+      result = currentDoc;
+    }
+  }
+
+  return result;
+}
+
 // ### Attributes
 
 - (TDModelPlaylist *)playlist {
@@ -57,6 +101,10 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
 
 - (void)setPlaylist:(TDModelPlaylist *)playlist {
   [mPlaylistController setPlaylist:playlist];
+}
+
+- (TDPlaylistController *)playlistController {
+  return mPlaylistController;
 }
 
 - (TDModelMovie *)selectedModelMovie {
@@ -347,22 +395,14 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)error {
   TDModelPlaylist *playlist = nil;
   if ([typeName isEqual:@"Movie"]) {
-
-    NSUndoManager *um = [self undoManager];
-    BOOL wasUndoRegistrationEnabled = [um isUndoRegistrationEnabled];
-    [um disableUndoRegistration];
-
-    TDModelMovie *modelMovie = [[[TDModelMovie alloc] initWithURL:url ownerURL:[self fileURL] error:error] autorelease];
-    playlist = [TDModelPlaylist playListWithMovie:modelMovie];
-    mTemp = [playlist retain];
-
-    if (wasUndoRegistrationEnabled) {
-      [um enableUndoRegistration];
-    }
+    // Should never happen
   } else {
     NSData *data = [NSData dataWithContentsOfURL:url options:NSUncachedRead error:error];
     if (data) {
-      playlist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+      @try {
+        playlist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+      } @catch (NSException *except) {
+      }
       mTemp = [playlist retain];
       if (error && nil == playlist) {
         NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:

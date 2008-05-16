@@ -19,6 +19,7 @@
 //
 
 #import "TDModelMovieAdditions.h"
+#import "TDiaryDocument.h"  // for objectSpecifier
 #import "QTMovie+Async.h"
 #import "String+Path.h"
 #import "TDModelFileRef.h"
@@ -191,11 +192,16 @@
 
 
 - (NSScriptObjectSpecifier *)objectSpecifier {
+  NSScriptClassDescription *containerClassDesc = (NSScriptClassDescription *)
+    [NSScriptClassDescription classDescriptionForClass:[TDiaryDocument class]];
   NSScriptObjectSpecifier *containerSpecifier = [[self delegate] objectSpecifier];
-  return [[[NSIndexSpecifier alloc] initWithContainerClassDescription:[containerSpecifier keyClassDescription]
-               containerSpecifier:containerSpecifier
-                              key:@"movies" 
-                            index:[self orderedIndex]] autorelease];
+
+  NSUniqueIDSpecifier *specifier = [[NSUniqueIDSpecifier alloc] 
+    initWithContainerClassDescription:containerClassDesc
+                   containerSpecifier:containerSpecifier
+                                  key:@"modelMovies" 
+                             uniqueID:[NSNumber numberWithInt:[self orderedID]]];
+  return [specifier autorelease];
 }
 
 - (int)orderedIndex {

@@ -30,8 +30,8 @@
 
 - (void)testWindowsDocuments {
   NSDictionary *errDict = nil;
-  NSString *s = 
 // ask the app for a list of windows, ask the app for a list of documents, then get their windows. Should match.
+  NSString *s = 
 @"tell application \"Vidnik\"\n"
 "   (windows = windows of documents)\n"
 "end tell\n";
@@ -46,6 +46,59 @@
   Boolean valDocument = [[[[[NSAppleScript alloc] initWithSource:s] autorelease] executeAndReturnError:&errDict] booleanValue];
   STAssertTrue(valDocument, @"(documents should = documents of windows)");
 
+}
+
+
+- (void)testMakeAndDelete {
+  NSDictionary *errDict = nil;
+// create 3 movies. verify that the count is 3 greater than before. delete them.
+// verify that the count is back to the original count.
+  NSString *s = 
+@"tell application \"Vidnik\"\n"
+"	set originalCount to count of movies of document 1\n"
+"	\n"
+"	set aa to (make new movie at end of document 1 with properties {name:\"testMakeAndDelete 1\"})\n"
+"	set bb to (make new movie at end of document 1 with properties {name:\"testMakeAndDelete 2\"})\n"
+"	set cc to (make new movie at end of document 1 with properties {name:\"testMakeAndDelete 3\"})\n"
+"	\n"
+"	set plusCount to count of movies of document 1\n"
+"	\n"
+"	delete last movie of document 1\n"
+"	delete aa\n"
+"	delete bb\n"
+"	\n"
+"	(plusCount - originalCount) = 3 and (count of movies of document 1) = originalCount\n"
+"end tell\n";
+  Boolean val = [[[[[NSAppleScript alloc] initWithSource:s] autorelease] executeAndReturnError:&errDict] booleanValue];
+
+  STAssertTrue(val, @"testMakeAndDelete");
+
+}
+
+- (void)testMove {
+  NSDictionary *errDict = nil;
+// create 3 movies. move last to before first.
+// verify new index is as expected.
+  NSString *s = 
+@"tell application \"Vidnik\"\n"
+"	set aa to (make new movie at end of document 1 with properties {name:\"testMove 1\"})\n"
+"	set bb to (make new movie at end of document 1 with properties {name:\"testMove 2\"})\n"
+"	set cc to (make new movie at end of document 1 with properties {name:\"testMove 3\"})\n"
+
+"	set aaIndex to index of aa\n"
+"	move cc to before aa\n"
+"	set ccIndex to index of cc\n"
+"	set aaNewIndex to index of aa\n"
+
+"	delete aa\n"
+"	delete bb\n"
+"	delete cc\n"
+"	\n"
+"	(aaIndex = ccIndex) and (aaIndex + 1 = aaNewIndex)\n"
+"end tell\n";
+  Boolean val = [[[[[NSAppleScript alloc] initWithSource:s] autorelease] executeAndReturnError:&errDict] booleanValue];
+
+  STAssertTrue(val, @"testMove");
 }
 
 @end

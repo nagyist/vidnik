@@ -263,6 +263,8 @@ New TDConfiguration methods (i.e. preference file keys):
 * error messages for missing camera, camera in use. (session [inputs count] == 0)
 
 5/15/08 : Rev59 0.13.2
+* Bulletproofing: NSKeyedUnarchiver throws on error, and NSPropertyListSerialization returns an error string.
+  * convert the exception or string to an error and connect it to our -presentError: machinery.
 * What happens if you drag a movie (or a group of them) from the Finder to:
   * a Vidnik window
   * the Vidnik icon in the Finder or the Dock.
@@ -271,7 +273,8 @@ New TDConfiguration methods (i.e. preference file keys):
   * if no open window, try to reopen previous document. 
   * if that fails, bring up new untitled document.
   * Fixed typo that broke recording (path to save recording files wasn't correct)
-  * Added a build phase to delete the nneccessary localizations in Sparkle.
+  * Added a build phase to delete the neccessary localizations in Sparkle. .zip shrinks: 1.1M -> 0.6M !
+- If you drag a movie to the zeroth position, it should actually move there
 
 TODO:
 - indicator that movie is bigger than [TDConfig() maxMovieSize] or [TDConfig() maxMovieDuration].
@@ -294,7 +297,7 @@ TODO:
 - splitter view needs work: grow window, give left pane min size, shrink window. shrinks past min. can't programmatically resize.
 - video frame should be centered as window grows and shrinks
 
-- no control over capture format (I want 30fps, 29.99)
+- no control over capture format (I want 30fps, not 29.99)
 - no switching of preview from window to window
 - no support for multiple cameras
 - dragging start marker so it drags end marker, then back, doesn't restore end marker

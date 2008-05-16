@@ -270,6 +270,8 @@ New TDConfiguration methods (i.e. preference file keys):
   * if not in any window, add it to end of front window and select it.
   * if no open window, try to reopen previous document. 
   * if that fails, bring up new untitled document.
+  * Fixed typo that broke recording (path to save recording files wasn't correct)
+  * Added a build phase to delete the nneccessary localizations in Sparkle.
 
 TODO:
 - indicator that movie is bigger than [TDConfig() maxMovieSize] or [TDConfig() maxMovieDuration].

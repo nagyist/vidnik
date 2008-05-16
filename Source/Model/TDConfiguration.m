@@ -288,7 +288,7 @@ NSString *NewUUID(void) {
 - (NSString *)movieFolderPath {
   NSUserDefaults *ud = [self userDefaults];
   NSString *movieFolderPath = [[ud stringForKey:kMovieFolderKey] stringByExpandingTildeInPath];
-  if (movieFolderPath && ! [self validateMovieFolderPath:&movieFolderPath error:nil]) {
+  if (nil == movieFolderPath || ! [self validateMovieFolderPath:&movieFolderPath error:nil]) {
     movieFolderPath = [NSString stringWithPathForFolder:kMovieDocumentsFolderType 
                                            subfolderName:@"Vidnik" 
                                                 inDomain:kUserDomain

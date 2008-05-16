@@ -195,6 +195,20 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = Sparkle;
 		};
+		134C7ABE0DDD143B006D28FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAAEFC960DA571DF0051E0D0;
+			remoteInfo = "relaunch tool";
+		};
+		134C7AC00DDD143B006D28FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 612279D90DB5470200AB99EA;
+			remoteInfo = "Sparkle Unit Tests";
+		};
 		636667430D6E072F00018EB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -257,7 +271,7 @@
 		1340F10F0D737551003314BF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TDiaryDocument.nib; sourceTree = "<group>"; };
 		1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		1341E9B00D9C038600DF95D7 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1341E9C30D9C064100DF95D7 /* vidnik-su-rss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "vidnik-su-rss.xml"; sourceTree = "<group>"; };
+		1341E9C30D9C064100DF95D7 /* vidnik-su-rss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "vidnik-su-rss.xml"; path = "../vidnik-su-rss.xml"; sourceTree = "<group>"; };
 		13424B370D7CCBD700E28CDF /* TDModelMovieAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDModelMovieAdditions.h; sourceTree = "<group>"; };
 		13424B380D7CCBD700E28CDF /* TDModelMovieAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDModelMovieAdditions.m; sourceTree = "<group>"; };
 		13424B680D7CCE9100E28CDF /* TDOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDOutlineView.h; sourceTree = "<group>"; };
@@ -430,6 +444,7 @@
 		13DAA01E0D986DF500CCAA88 /* MoviePerformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviePerformer.h; sourceTree = "<group>"; };
 		13E186160D763AB200E049D1 /* App.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = App.icns; sourceTree = "<group>"; };
 		13E1864C0D7643B800E049D1 /* Doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Doc.icns; sourceTree = "<group>"; };
+		13E294620DDD3AA10003E8DB /* delete_extra_localizations.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = delete_extra_localizations.sh; sourceTree = "<group>"; };
 		13E991DE0D899D280063A8F3 /* CancelButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelButtonPressed.png; sourceTree = "<group>"; };
 		13E991DF0D899D280063A8F3 /* CancelButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelButton.png; sourceTree = "<group>"; };
 		13E991EF0D899D9C0063A8F3 /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
@@ -597,6 +612,8 @@
 			children = (
 				1341E90A0D9BFE4000DF95D7 /* Sparkle.framework */,
 				1341E90C0D9BFE4000DF95D7 /* Sparkle Test App.app */,
+				134C7ABF0DDD143B006D28FE /* relaunch */,
+				134C7AC10DDD143B006D28FE /* Sparkle Unit Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -903,6 +920,15 @@
 			path = Source/UnitTests;
 			sourceTree = "<group>";
 		};
+		13E294580DDD39280003E8DB /* BuildTools */ = {
+			isa = PBXGroup;
+			children = (
+				13E294620DDD3AA10003E8DB /* delete_extra_localizations.sh */,
+				1341E9C30D9C064100DF95D7 /* vidnik-su-rss.xml */,
+			);
+			path = BuildTools;
+			sourceTree = "<group>";
+		};
 		13E991FA0D899DD60063A8F3 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,12 +955,12 @@
 		29B97314FDCFA39411CA2CEA /* upload1 */ = {
 			isa = PBXGroup;
 			children = (
+				13E294580DDD39280003E8DB /* BuildTools */,
 				131BDF960DC26BF900CDDAD5 /* XcodeConfig */,
 				134AD5560D622923003B1523 /* GData */,
 				D4A6C9B309479B5A00354625 /* Source */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				13CDC6A50D637C250027DD5A /* UnitTests */,
-				1341E9C30D9C064100DF95D7 /* vidnik-su-rss.xml */,
 				1341E8FD0D9BFE2300DF95D7 /* Subprojects */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				139339880D6F7FAC001D44A2 /* Documentation */,
@@ -1123,6 +1149,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				6366675E0D6E083B00018EB6 /* Copy Plugins */,
 				8D1107290486CEB800E47090 /* Resources */,
+				13E294550DDD38830003E8DB /* delete_extra_localizations */,
 			);
 			buildRules = (
 			);
@@ -1174,6 +1201,20 @@
 			fileType = wrapper.application;
 			path = "Sparkle Test App.app";
 			remoteRef = 1341E90B0D9BFE4000DF95D7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		134C7ABF0DDD143B006D28FE /* relaunch */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = relaunch;
+			remoteRef = 134C7ABE0DDD143B006D28FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		134C7AC10DDD143B006D28FE /* Sparkle Unit Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Sparkle Unit Tests.octest";
+			remoteRef = 134C7AC00DDD143B006D28FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1244,6 +1285,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		13E294550DDD38830003E8DB /* delete_extra_localizations */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = delete_extra_localizations;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BuildTools/delete_extra_localizations.sh \"$CONFIGURATION_BUILD_DIR/$PRODUCT_NAME.app\"\n";
+		};
 		6366673C0D6E072900018EB6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

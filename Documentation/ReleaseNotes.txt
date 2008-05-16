@@ -2,6 +2,39 @@
 
 Vidnik
 
+See http://code.google.com/p/vidnik/source/browse/trunk/Documentation/Changelog.txt for details.
+
+Version 0.13.2
+* fixed problems when movie files are dropped on the Dock icon.
+* fixed: 0.13.1 could not actually record because of a typo in the routine finding the folder to put the recording.
+
+Version 0.13.1
+* bug fix release for test. 
+
+Version 0.13.0
+* require a true YouTube account name. (Since YouTube was returning 403 Forbidden for uploads from @gmail.com accounts.)
+
+Version 0.12.0
+
+* tab or backtab out of the description field.
+* fixed: "record/stoprecording" menu commands were enabled even when current selection already has a movie.
+* in-place edit the title of a movie in the left table.
+* after a paste or drag, new item is selected.
+* moved Change Account command to Web menu. Removed "Paste & Match Style"
+* disable the text fields when there is no selection.
+* "Ready To Upload" movie state should be "Set Account", if document has no account set.
+* "Change Account" menu item should be "Set Account" is no account set.
+* Added "Learn More" button to signin sheet: "http://www.youtube.com/signup"
+* Tested with newly created YouTube account, not connected to my work.
+
+
+Version 0.10.0
+* Added a "Web" menu to the menu bar, with more commands.
+
+Version 0.9
+* Record/Stop button now properly responds to clicks.
+* Newly created record know they have a category assigned.
+
 Version 0.8
 * AppleScript support,
 * you can cancel the upload session.

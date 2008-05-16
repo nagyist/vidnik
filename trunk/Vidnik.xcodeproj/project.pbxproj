@@ -195,20 +195,6 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = Sparkle;
 		};
-		134C7ABE0DDD143B006D28FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAAEFC960DA571DF0051E0D0;
-			remoteInfo = "relaunch tool";
-		};
-		134C7AC00DDD143B006D28FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 612279D90DB5470200AB99EA;
-			remoteInfo = "Sparkle Unit Tests";
-		};
 		636667430D6E072F00018EB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -612,8 +598,6 @@
 			children = (
 				1341E90A0D9BFE4000DF95D7 /* Sparkle.framework */,
 				1341E90C0D9BFE4000DF95D7 /* Sparkle Test App.app */,
-				134C7ABF0DDD143B006D28FE /* relaunch */,
-				134C7AC10DDD143B006D28FE /* Sparkle Unit Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1201,20 +1185,6 @@
 			fileType = wrapper.application;
 			path = "Sparkle Test App.app";
 			remoteRef = 1341E90B0D9BFE4000DF95D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		134C7ABF0DDD143B006D28FE /* relaunch */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = relaunch;
-			remoteRef = 134C7ABE0DDD143B006D28FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		134C7AC10DDD143B006D28FE /* Sparkle Unit Tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Sparkle Unit Tests.octest";
-			remoteRef = 134C7AC00DDD143B006D28FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

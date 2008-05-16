@@ -274,7 +274,10 @@ New TDConfiguration methods (i.e. preference file keys):
   * if that fails, bring up new untitled document.
   * Fixed typo that broke recording (path to save recording files wasn't correct)
   * Added a build phase to delete the neccessary localizations in Sparkle. .zip shrinks: 1.1M -> 0.6M !
-- If you drag a movie to the zeroth position, it should actually move there
+  * fixed some bugs dragging items around in the table of segments.
+  * While adding regrssion tests to the unit test suite to try and test the above dragging code, I discovered, 
+  * fixed bugs in the objectSpecifier code for appleScript handling.
+  * wrote additional appleScript unit tests.
 
 TODO:
 - indicator that movie is bigger than [TDConfig() maxMovieSize] or [TDConfig() maxMovieDuration].

@@ -222,12 +222,15 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
 #pragma mark ### Applescript support
 
 - (NSScriptObjectSpecifier *)objectSpecifier {
-  return [[[NSUniqueIDSpecifier alloc] 
-    initWithContainerClassDescription:(NSScriptClassDescription *)
-        [NSScriptClassDescription classDescriptionForClass:[NSApp class]]
-    containerSpecifier:nil 
-    key:@"documents" 
-    uniqueID:[NSNumber numberWithInt:mInstanceNumber]] autorelease];
+  NSScriptClassDescription *containerClassDesc = (NSScriptClassDescription *)
+    [NSScriptClassDescription classDescriptionForClass:[NSApp class]];
+
+  NSUniqueIDSpecifier *specifier = [[NSUniqueIDSpecifier alloc] 
+    initWithContainerClassDescription:containerClassDesc
+                   containerSpecifier:[NSApp objectSpecifier] 
+                                  key:@"orderedDocuments" 
+                             uniqueID:[NSNumber numberWithInt:mInstanceNumber]];
+  return [specifier autorelease];
 }
 
 - (NSArray *)modelMovies {

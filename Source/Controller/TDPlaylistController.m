@@ -1101,57 +1101,60 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
 // return count pasted.
 - (int)pasteMovies:(NSArray *)movies onto:(TDModelMovie *)mm {
   TDModelMovie *selectAtFinish = nil;
+  NSMutableArray *toAdd = [NSMutableArray array];
   NSMutableArray *toMove = [NSMutableArray array];
   int val = 0;
-  int insertIndex = [mPlaylist indexOfModelMovie:mm];
-  if (insertIndex < 0) {
-    insertIndex = [mPlaylist modelMovieCount];
-  } else {
-    insertIndex++;
-  }
-
+  int insertIndex = [self indexForInsertion:mm];
   int i, iCount = [movies count];
+
+  // partition input into moves and adds.
   for (i = 0; i < iCount; ++i) {
     TDModelMovie *movie = [movies objectAtIndex:i];
     int index = [mPlaylist indexOfModelMovie:movie];
     if (0 <= index) {
       // can't add, already here.
       movie = [mPlaylist modelMovieAtIndex:index];
-      if (movie != mm) {
-        [toMove addObject:movie];
+      if (index < insertIndex) {
+        --insertIndex;
       }
-      continue;
+      [toMove addObject:movie];
+    } else {
+      [toAdd addObject:movie];
     }
+  }
+
+  // for adds, remove duplicates
+  for (i = [toAdd count] - 1; 0 <= i; --i) {
+    TDModelMovie *movie = [toAdd objectAtIndex:i];
     NSString *path = [movie path];
     if (path) {
       int idx = [mPlaylist indexOfModelMovieWithPath:path];
       if (0 <= idx) {
        // can't add, already here.
-        [toMove addObject:[mPlaylist modelMovieAtIndex:idx]];
-        continue;
+        [toAdd removeObjectAtIndex:i];
       }
     }
+  }
+
+  // insert the adds
+  for (i = [toAdd count] - 1; 0 <= i; --i) {
+    TDModelMovie *movie = [toAdd objectAtIndex:i];
     [mPlaylist insertModelMovie:movie atIndex:insertIndex];
-    if (nil == selectAtFinish) {
-      selectAtFinish = movie;
-    }
-    insertIndex++;
+    selectAtFinish = movie;
     val++;
   }
-// if there are some that need moving, move them.
+
+  // if there are some that need moving, move them.
   if ([self doesMoveMoviesActuallyMove:toMove forInsertion:mm]) {
     [mPlaylist removeModelMovies:toMove];
-    iCount = [toMove count];
-    int insertIndex = [self indexForInsertion:mm];
-    for (i = iCount-1; 0 <= i; --i) {
+    for (i = [toMove count] - 1; 0 <= i; --i) {
       TDModelMovie *movie = [toMove objectAtIndex:i];
       [mPlaylist insertModelMovie:movie atIndex:insertIndex];
-      if (nil == selectAtFinish) {
-        selectAtFinish = movie;
-      }
+      selectAtFinish = movie;
       val++;
     }
   }
+
   if (selectAtFinish) {
     [self setSelectedModelMovie:selectAtFinish];
   }
@@ -1180,8 +1183,6 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   int insertIndex = [mPlaylist indexOfModelMovie:mm];
   if (insertIndex < 0) {
     insertIndex = [mPlaylist modelMovieCount];
-  } else {
-    insertIndex++;
   }
   return insertIndex;
 }

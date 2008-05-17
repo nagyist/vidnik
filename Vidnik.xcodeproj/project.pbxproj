@@ -6,6 +6,21 @@
 	objectVersion = 42;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		132BFEF00DDE56F300C09CAB /* Build All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 132BFEF70DDE572300C09CAB /* Build configuration list for PBXAggregateTarget "Build All" */;
+			buildPhases = (
+				132BFEF90DDE572A00C09CAB /* BuildAll.sh */,
+			);
+			dependencies = (
+				132BFF490DDE5DD300C09CAB /* PBXTargetDependency */,
+			);
+			name = "Build All";
+			productName = "Build All";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		130BA1A10D7A843D00EE5A5A /* RecordPreviewMovie.png in Resources */ = {isa = PBXBuildFile; fileRef = 130BA1A00D7A843D00EE5A5A /* RecordPreviewMovie.png */; };
 		1324D7A80D94620100E40B0A /* TDModelUploadingAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1324D7A70D94620100E40B0A /* TDModelUploadingAction.m */; };
@@ -174,6 +189,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		132BFF480DDE5DD300C09CAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6366673D0D6E072900018EB6 /* UnitTests */;
+			remoteInfo = UnitTests;
+		};
 		1341E9090D9BFE4000DF95D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1341E8FE0D9BFE3F00DF95D7 /* Sparkle.xcodeproj */;
@@ -247,6 +269,8 @@
 		1324D7A60D94620100E40B0A /* TDModelUploadingAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDModelUploadingAction.h; sourceTree = "<group>"; };
 		1324D7A70D94620100E40B0A /* TDModelUploadingAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDModelUploadingAction.m; sourceTree = "<group>"; };
 		132B86B30D77699C00BC0B90 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		132BFEEC0DDE563A00C09CAB /* VidnikFolder.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = VidnikFolder.zip; sourceTree = "<group>"; };
+		132BFEFC0DDE57C400C09CAB /* BuildAll.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = BuildAll.sh; sourceTree = "<group>"; };
 		132F4C800D9AC6980016E2A7 /* AuthCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthCredential.h; sourceTree = "<group>"; };
 		132F4C810D9AC6980016E2A7 /* AuthCredential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthCredential.m; sourceTree = "<group>"; };
 		132F4CD70D9ACF980016E2A7 /* DeveloperKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeveloperKey.h; sourceTree = "<group>"; };
@@ -908,7 +932,9 @@
 			isa = PBXGroup;
 			children = (
 				13E294620DDD3AA10003E8DB /* delete_extra_localizations.sh */,
+				132BFEFC0DDE57C400C09CAB /* BuildAll.sh */,
 				1341E9C30D9C064100DF95D7 /* vidnik-su-rss.xml */,
+				132BFEEC0DDE563A00C09CAB /* VidnikFolder.zip */,
 			);
 			path = BuildTools;
 			sourceTree = "<group>";
@@ -1168,6 +1194,7 @@
 				8D1107260486CEB800E47090 /* Vidnik */,
 				6366672A0D6E06F700018EB6 /* NewQTKit */,
 				6366673D0D6E072900018EB6 /* UnitTests */,
+				132BFEF00DDE56F300C09CAB /* Build All */,
 			);
 		};
 /* End PBXProject section */
@@ -1255,6 +1282,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		132BFEF90DDE572A00C09CAB /* BuildAll.sh */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = BuildAll.sh;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BuildTools/BuildAll.sh \"$CONFIGURATION_BUILD_DIR\" \n";
+		};
 		13E294550DDD38830003E8DB /* delete_extra_localizations */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1415,6 +1456,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		132BFF490DDE5DD300C09CAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6366673D0D6E072900018EB6 /* UnitTests */;
+			targetProxy = 132BFF480DDE5DD300C09CAB /* PBXContainerItemProxy */;
+		};
 		1341E91A0D9BFE9800DF95D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Sparkle;
@@ -1509,6 +1555,27 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		132BFEF10DDE56F300C09CAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build All";
+			};
+			name = Debug;
+		};
+		132BFEF20DDE56F300C09CAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Build All";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		6366672E0D6E06F700018EB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 131BDF990DC26BF900CDDAD5 /* LoadableBundle.xcconfig */;
@@ -1655,6 +1722,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		132BFEF70DDE572300C09CAB /* Build configuration list for PBXAggregateTarget "Build All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				132BFEF10DDE56F300C09CAB /* Debug */,
+				132BFEF20DDE56F300C09CAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6366672D0D6E06F700018EB6 /* Build configuration list for PBXNativeTarget "NewQTKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

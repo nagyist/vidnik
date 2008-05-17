@@ -13,6 +13,7 @@
 
 extern NSString * const kTDAppDomain;
 
+// error codes are never saved to disk, so we can renumber as we see fit.
 enum {
   kCantConvertPaste = -1015,
   kAllAlreadyUploadedMoviesErr = -1014,
@@ -32,6 +33,8 @@ enum {
   kUploadErrNoCategory = -1000
 };
 
+// Since these are saved in the document, we can't change the meaning of
+// existing values here.
 typedef enum ModelMovieState{
   kNotReadyToUpload = 0,
   kHasMovieFile = (1 << 0),
@@ -46,5 +49,6 @@ typedef enum ModelMovieState{
   kUploaded,              // 257
   kUploadingCancelled,    // 258
   kUploadProcessing,      // 259
+  kUploadPreprocessing,   // 260 logically before the uploading state.
   kUploadingErrored = (1 << 10)   // 2048
 } ModelMovieState;

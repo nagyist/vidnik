@@ -89,6 +89,7 @@
 "NotReadyToUpload" = "not ready to upload";
 "NotUploaded" = "Ready to Upload";
 "Uploaded" = "Uploaded";
+"UploadPreprocessing" = "Preparing to Upload";
 "Uploading" = "Uploading";
 "UploadingCancelled" = "Upload Cancelled";
 "UploadProcessing" = "Upload Processing";

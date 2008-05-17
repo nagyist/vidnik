@@ -87,6 +87,7 @@
 
 - (void)updateReadyToUploadState {
   switch (mMovieState) {
+  case kUploadPreprocessing:
   case kUploading:
   case kUploaded:
     return;

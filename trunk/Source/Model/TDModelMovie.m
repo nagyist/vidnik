@@ -131,6 +131,7 @@ static NSString * const kMovieStateKey = @"movieState";
 
   // when reading a file, forgive past errors.
   switch (mMovieState) {
+  case kUploadPreprocessing:
   case kUploading:
   case kUploadingCancelled:
   case kUploadingErrored:
@@ -301,6 +302,7 @@ static NSString * const kMovieStateKey = @"movieState";
 - (void)setMovieState:(ModelMovieState)movieState {
   mMovieState = movieState;
   switch(mMovieState) {
+  case kUploadPreprocessing:
   case kUploading:
     if (nil == [self uploadingAction]) {
       [self setUploadingAction:[[[TDModelUploadingAction alloc] init] autorelease]];

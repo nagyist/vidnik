@@ -149,7 +149,10 @@
   for (i = 0; i < iCount; ++i) {
     TDModelMovie *movie = [self modelMovieAtIndex:i];
     ModelMovieState movieState = [movie movieState];
-    if (movieState == kUploaded || movieState == kUploading) {
+    if (movieState == kUploaded ||
+      movieState == kUploading ||
+      movieState == kUploadPreprocessing) {
+
       [val addObject:movie];
     }
   }

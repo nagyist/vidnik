@@ -28,10 +28,12 @@
 #import "TDCapture.h"
 #import "TDiaryDocument.h"
 #import "TDQTKit.h"
+#import <Foundation/NSDebug.h>
 
 static int SortCategory(id a, id b, void *unused);
 
 @interface TDAppController(PrivateMethods)
+- (void)addDebugMenu;
 - (void)finishOpeningDocument:(NSDocument *)doc isShown:(BOOL)isShown;
 - (void)fetchCategories;
 - (void)fixAccountMenuItem;
@@ -93,6 +95,19 @@ static int SortCategory(id a, id b, void *unused);
   }
   [self fixAccountMenuItem];
   [GDataHTTPFetcher setIsLoggingEnabled:[TDConfig() isGDataHTTPLogging]];
+#if DEBUG
+  const char * debugEnabled = getenv("NSDebugEnabled");
+  if (debugEnabled && 0 == strcmp(debugEnabled, "1")) {
+    NSDebugEnabled = YES;
+  }
+  const char * zombieEnabled = getenv("NSZombieEnabled");
+  if (zombieEnabled && 0 == strcmp(zombieEnabled, "1")) {
+    NSZombieEnabled = YES;
+  }
+#endif
+  if (NSDebugEnabled) {
+    [self addDebugMenu];
+  }
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notify {
@@ -245,6 +260,15 @@ static int SortCategory(id a, id b, void *unused);
 @end
 
 @implementation TDAppController(PrivateMethods)
+
+- (void)addDebugMenu {
+  NSMenu *mainMenu = [NSApp mainMenu];
+  NSMenuItem *debugMenuItem = [mainMenu addItemWithTitle:@"Debug" action:nil keyEquivalent:@""];
+  NSMenu *debugMenu = [[[NSMenu alloc] initWithTitle:@"Debug"] autorelease];
+  [debugMenuItem setSubmenu:debugMenu];
+  [debugMenu addItemWithTitle:@"Validate" action:@selector(debugValidate:) keyEquivalent:@""];
+}
+
 
 - (void)finishOpeningDocument:(NSDocument *)doc isShown:(BOOL)isShown {
   if (doc) {

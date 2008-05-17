@@ -123,6 +123,7 @@
       s = NSLocalizedString(@"NeedsAccount", @"");
     }
     break;
+  case kUploadPreprocessing: s = NSLocalizedString(@"UploadPreprocessing", @""); break;
   case kUploaded:          s = NSLocalizedString(@"Uploaded", @""); break;
   case kUploading:         s = NSLocalizedString(@"Uploading", @""); break;
   case kUploadingCancelled: s = NSLocalizedString(@"UploadingCancelled", @""); break;
@@ -139,6 +140,7 @@
   default:
     needBits = (kReadyToUpload & (int) movieState);
     break;
+  case kUploadPreprocessing:
   case kUploading:
   case kUploaded:
   case kUploadingCancelled:

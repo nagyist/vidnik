@@ -278,10 +278,16 @@ New TDConfiguration methods (i.e. preference file keys):
   * While adding regrssion tests to the unit test suite to try and test the above dragging code, I discovered, 
   * fixed bugs in the objectSpecifier code for appleScript handling.
   * wrote additional appleScript unit tests.
+  * laid the groundwork for a preprocessing movie step, to re-write with no edit list before uploading.
+  * improved online help
+  * Debug menu, controlled by NSDebug environment variable in the DEBUG version that will let me integrate in
+    the checks: need to rewrite, rewrite.
 
 TODO:
 - indicator that movie is bigger than [TDConfig() maxMovieSize] or [TDConfig() maxMovieDuration].
 - indicator that movie has consumed into [TDConfig() diskCushion] space.
+- that a movie has been uploaded.
+- better mnames for movies on disk.
 
 - menu commands split, join.
 - an upload is not a save. better undo handling of trim across upload.
@@ -320,7 +326,6 @@ TODO:
 - should poll, get state of movies currently processing.
 
 
-- help needs work
 
 - currently, we ask for a video device, and if that fails grab a mux device. That happens to work for the built-in iSight and FirewireDV cameras I tested. But, it isn't very robust. 
 
@@ -339,7 +344,7 @@ Version 2:
 - Possibly: Crop a scene using a start, end rect.
 - Possibly: make a visual entry on Google Calendar.
 
-
+- this should be automated as a Build All target.
 TO release an alpha:
 * make sure PRODUCT_VERSION symbol is appropriately defined in project.
 * Build Release vesion,

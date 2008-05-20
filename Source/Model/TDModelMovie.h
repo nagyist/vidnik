@@ -33,12 +33,12 @@
   NSString            *mCategory; // tag (the non-localized version of the category)
   NSString            *mDetails;
   TDModelDate         *mDisplayDate;
-  NSArray             *mKeywords; // of NSStrings no dups allowed.
-  QTMovie             *mMovie;      // not persistent
+  NSArray             *mKeywords;     // of NSStrings no dups allowed.
+  QTMovie             *mMovie;        // not persistent
   TDModelFileRef      *mMovieFile;
   NSString            *mTitle;
   NSImage             *mThumbnail;
-  NSString            *mURL;
+  NSString            *mURL;                // assigned by YouTube.
   TDModelUploadingAction *mUploadingAction; // not persistent, non-nil when uploading.
   ModelMovieState     mMovieState;
   id                  mDelegate;  // weak

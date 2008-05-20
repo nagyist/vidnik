@@ -29,7 +29,8 @@ enum {
   kTDCaptureErrNoPath = 100,
   kTDCaptureErrNoBundle = 101,
   kTDCaptureErrNoLoad = 102,
-  kTDCaptureErrNoClass = 103
+  kTDCaptureErrNoClass = 103,
+  kTDCaptureErrOldQuicktime = 104,
 };
 
 
@@ -39,6 +40,7 @@ static NSString *TDCaptureErrorDescription(int code) {
   case kTDCaptureErrNoBundle: return NSLocalizedString(@"TDCaptureErrDescNoBundle", @"");
   case kTDCaptureErrNoLoad:   return NSLocalizedString(@"TDCaptureErrDescNoLoad", @"");
   case kTDCaptureErrNoClass:  return NSLocalizedString(@"TDCaptureErrDescNoClass", @"");
+  case kTDCaptureErrOldQuicktime:  return NSLocalizedString(@"TDCaptureErrOldQuicktime", @"");
   }
   return nil;
 }
@@ -49,6 +51,7 @@ static NSString *TDCaptureErrorReason(int code) {
   case kTDCaptureErrNoBundle: return NSLocalizedString(@"TDCaptureErrReasonNoBundle", @"");
   case kTDCaptureErrNoLoad:   return NSLocalizedString(@"TDCaptureErrReasonNoLoad", @"");
   case kTDCaptureErrNoClass:  return NSLocalizedString(@"TDCaptureErrReasonNoClass", @"");
+  case kTDCaptureErrOldQuicktime:  return NSLocalizedString(@"TDCaptureErrReasonOldQuicktime", @"");
   }
   return nil;
 }
@@ -59,6 +62,7 @@ static NSString *TDCaptureErrorSuggestion(int code) {
   case kTDCaptureErrNoBundle: return NSLocalizedString(@"TDCaptureErrSuggestNoBundle", @"");
   case kTDCaptureErrNoLoad:   return NSLocalizedString(@"TDCaptureErrSuggestNoLoad", @"");
   case kTDCaptureErrNoClass:  return NSLocalizedString(@"TDCaptureErrSuggestNoClass", @"");
+  case kTDCaptureErrOldQuicktime:  return NSLocalizedString(@"TDCaptureErrSuggestOldQuicktime", @"");
   }
   return nil;
 }
@@ -93,24 +97,31 @@ static NSError *TDCaptureConstructErr(int code, id arg) {
 // 3/21/08 : I'm dropping OldQTKit from the build. 
 BOOL TDCaptureInit(NSError **errp) {
   NSError *err = nil;
-  NSString *kitName = @"NewQTKit";
-  NSString *path = [[NSBundle mainBundle] pathForResource:kitName ofType:@"bundle" inDirectory:@"../PlugIns"];
-  if (nil == err && nil == path) {
-    err = TDCaptureConstructErr(kTDCaptureErrNoPath, kitName);
-  }
-  NSBundle *qtBundle = [NSBundle bundleWithPath:path];
-  if (nil == err && nil == qtBundle) {
-    err = TDCaptureConstructErr(kTDCaptureErrNoBundle, path);
-  }
-  if (nil == err && ! [qtBundle load]) {
-    err = TDCaptureConstructErr(kTDCaptureErrNoLoad, path);
-  }
-  gTDCaptureMovieFileOutput = [qtBundle classNamed:@"TDCaptureMovieFileOutput"];
-  gTDCaptureDeviceInput = [qtBundle classNamed:@"TDCaptureDeviceInput"];
-  gTDCaptureSession = [qtBundle classNamed:@"TDCaptureSession"];
-  gTDVideoView = [qtBundle classNamed:@"TDVideoView"]; 
-  if(nil == err && ! (gTDCaptureMovieFileOutput && gTDCaptureDeviceInput && gTDCaptureSession && gTDVideoView)) {
-    err = TDCaptureConstructErr(kTDCaptureErrNoClass, path);
+  UInt32 qtVersion;
+  OSStatus status = Gestalt(gestaltQuickTimeVersion, (SInt32 *) &qtVersion);
+  if (noErr == status && qtVersion < 0x07200000) {
+     // Use API introduced in QTKit 7.2.0
+    err =  TDCaptureConstructErr(kTDCaptureErrOldQuicktime, nil);
+  } else {
+    NSString *kitName = @"NewQTKit";
+    NSString *path = [[NSBundle mainBundle] pathForResource:kitName ofType:@"bundle" inDirectory:@"../PlugIns"];
+    if (nil == err && nil == path) {
+      err = TDCaptureConstructErr(kTDCaptureErrNoPath, kitName);
+    }
+    NSBundle *qtBundle = [NSBundle bundleWithPath:path];
+    if (nil == err && nil == qtBundle) {
+      err = TDCaptureConstructErr(kTDCaptureErrNoBundle, path);
+    }
+    if (nil == err && ! [qtBundle load]) {
+      err = TDCaptureConstructErr(kTDCaptureErrNoLoad, path);
+    }
+    gTDCaptureMovieFileOutput = [qtBundle classNamed:@"TDCaptureMovieFileOutput"];
+    gTDCaptureDeviceInput = [qtBundle classNamed:@"TDCaptureDeviceInput"];
+    gTDCaptureSession = [qtBundle classNamed:@"TDCaptureSession"];
+    gTDVideoView = [qtBundle classNamed:@"TDVideoView"]; 
+    if(nil == err && ! (gTDCaptureMovieFileOutput && gTDCaptureDeviceInput && gTDCaptureSession && gTDVideoView)) {
+      err = TDCaptureConstructErr(kTDCaptureErrNoClass, path);
+    }
   }
   if (nil != err && nil != errp) {
     *errp = err;

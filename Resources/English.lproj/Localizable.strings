@@ -18,16 +18,19 @@
 "TDCaptureErrDescNoBundle" = "Required plug in is damaged.";
 "TDCaptureErrDescNoLoad" = "Required plug in is damaged: Couldn’t load it.";
 "TDCaptureErrDescNoClass" = "Required plug in is damaged: Couldn’t bind it.";
+"TDCaptureErrOldQuicktime" = "This program requires Quicktime version 7.2 or newer.";
 
 "TDCaptureErrReasonNoPath" = "while reading “%@”";
 "TDCaptureErrReasonNoBundle" = "while reading “%@”";
 "TDCaptureErrReasonNoLoad" = "while loading “%@”";
 "TDCaptureErrReasonNoClass" = "while binding “%@”";
+"TDCaptureErrReasonOldQuicktime" = "";
 
-"TDCaptureErrSuggestNoPath" = "Try reinstalling from backups. Please file a bug.";
-"TDCaptureErrSuggestNoBundle" =  "Try reinstalling from backups. Please file a bug.";
-"TDCaptureErrSuggestNoLoad" =  "Try reinstalling from backups. Please file a bug.";
-"TDCaptureErrSuggestNoClass" =  "Try reinstalling from backups. Please file a bug.";
+"TDCaptureErrSuggestNoPath" = "Try reinstalling from backups. Please file a bug.\n\n";
+"TDCaptureErrSuggestNoBundle" =  "Try reinstalling from backups. Please file a bug.\n\n";
+"TDCaptureErrSuggestNoLoad" =  "Try reinstalling from backups. Please file a bug.\n\n";
+"TDCaptureErrSuggestNoClass" =  "Try reinstalling from backups. Please file a bug.\n\n";
+"TDCaptureErrSuggestOldQuicktime" = "Please download and install a newer version from Apple’s web site.\n\n";
 
 "CouldNotWriteToMovieFolderErr"  = "Can’t write movies to folder:";
 "CouldNotWriteToMovieFolderSuggest" = "“%@”";

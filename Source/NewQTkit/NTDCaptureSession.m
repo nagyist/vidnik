@@ -184,8 +184,8 @@ Class gTDCaptureSession;
 
   BOOL didSome = NO;
   QTCompressionOptions *soundOptions = [QTCompressionOptions compressionOptionsWithIdentifier:@"QTCompressionOptionsVoiceQualityAACAudio"];
-  // 480 on next line generated giant filesizes.
-  QTCompressionOptions *videoOptions = [QTCompressionOptions compressionOptionsWithIdentifier:@"QTCompressionOptions240SizeMPEG4Video"];
+  // was QTCompressionOptions240SizeMPEG4Video
+  QTCompressionOptions *videoOptions = [QTCompressionOptions compressionOptionsWithIdentifier:@"QTCompressionOptionsSD480SizeMPEG4Video"];
   NSArray *outputs = [mI outputs];
   int i, iCount = [outputs count];
   for (i = 0; i < iCount; ++i) {

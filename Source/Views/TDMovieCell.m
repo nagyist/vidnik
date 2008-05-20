@@ -197,13 +197,39 @@ enum {
   }
 }
 
+- (void)drawUploadedMark:(NSRect)progressFrame inView:(NSView *)controlView {
+  unichar c = 0x2713;
+  NSString *checkMarkS = [NSString stringWithCharacters:&c length:1];
+  NSRect checkMarkRect = NSMakeRect(progressFrame.origin.x + 4, progressFrame.origin.y + progressFrame.size.height - 21, 20, 20); 
+  NSColor *checkColor;
+  if ([self isHighlighted]) {
+    if (NSBackgroundStyleDark == [self backgroundStyle]) {
+      checkColor = [NSColor whiteColor];
+    } else {
+      checkColor = [NSColor blackColor];
+    }
+  } else {
+    checkColor = [NSColor colorWithCalibratedRed:0x2C/255. green:0x8E/255. blue:0x35/255. alpha:1.0];
+  }
+  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+    checkColor, NSForegroundColorAttributeName,
+    [NSFont labelFontOfSize:16], NSFontAttributeName,
+    nil];
+  [checkMarkS drawAtPoint:checkMarkRect.origin withAttributes:dict];
+}
+
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   NSRect frames[kNumFrames];
   BOOL isFlipped = [controlView isFlipped];
   [self computeFrames:frames cellFrame:cellFrame isFlipped:isFlipped];
 
   [self drawThumbnailWithFrame:frames[kImageFrame] inView:controlView];
-  [self drawProgressWithFrame:frames[kProgressFrame] inView:controlView];
+  if (kUploaded == mMovieState) {
+    [self drawUploadedMark:frames[kProgressFrame] inView:controlView];
+  }else {
+    [self drawProgressWithFrame:frames[kProgressFrame] inView:controlView];
+  }
   [super drawWithFrame:frames[kTitleFrame] inView:controlView];
 }
 

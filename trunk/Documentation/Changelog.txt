@@ -272,6 +272,7 @@ New TDConfiguration methods (i.e. preference file keys):
   * if not in any window, add it to end of front window and select it.
   * if no open window, try to reopen previous document. 
   * if that fails, bring up new untitled document.
+5/16/08
   * Fixed typo that broke recording (path to save recording files wasn't correct)
   * Added a build phase to delete the neccessary localizations in Sparkle. .zip shrinks: 1.1M -> 0.6M !
   * fixed some bugs dragging items around in the table of segments.
@@ -282,12 +283,18 @@ New TDConfiguration methods (i.e. preference file keys):
   * improved online help
   * Debug menu, controlled by NSDebug environment variable in the DEBUG version that will let me integrate in
     the checks: need to rewrite, rewrite.
+5/19/08
+  * indicator that a movie has been uploaded.
+  * error message if can’t find new enough version of Quicktime.
+  * test showed: writing the movie flattened doesn't remove the edit list.
+  * wrote test code to onfigure the MPeg 4 exporter, save config to disk, read it back. 
+    Sample config as a data file in the project. (not yet read from app bundle.)
 
 TODO:
+- better names for movies on disk.
+- Change of account doesn't allow video upload to the new account
 - indicator that movie is bigger than [TDConfig() maxMovieSize] or [TDConfig() maxMovieDuration].
 - indicator that movie has consumed into [TDConfig() diskCushion] space.
-- that a movie has been uploaded.
-- better mnames for movies on disk.
 
 - menu commands split, join.
 - an upload is not a save. better undo handling of trim across upload.

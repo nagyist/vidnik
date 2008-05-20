@@ -34,6 +34,7 @@
 #import "TDModelUploadingAction.h"
 #import "QTMovie+Async.h"
 #import "String+Path.h"
+#import "Transcoding.h"
 #import "UndoManager+Additions.h"
 
 typedef struct InternalMoviePboard{
@@ -638,6 +639,65 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
     if (movieURLString) {
       NSWorkspace *ws = [NSWorkspace sharedWorkspace];
       [ws openURL:[NSURL URLWithString:movieURLString]];
+    }
+  }
+}
+
+- (IBAction)debugValidate:(id)sender {
+  int i, iCount = [mPlaylist modelMovieCount];
+  for (i = 0; i < iCount; ++i) {
+    TDModelMovie *mm = [mPlaylist modelMovieAtIndex:i];
+    QTMovie *movie = [mm movie];
+
+#if 0
+  OSStatus stat = noErr;
+  ComponentInstance ci = nil;
+  Component c = nil;
+  ComponentDescription desc = {
+    MovieExportType,
+    kQTFileTypeMP4,
+    0,
+    canMovieExportFiles | hasMovieExportUserInterface,
+    canMovieExportFiles | hasMovieExportUserInterface
+  };
+  if (noErr == stat) { c = FindNextComponent(nil, &desc); }
+  if (noErr == stat) { stat = OpenAComponent(c, &ci); };
+  if (noErr == stat) {
+    QTAtomContainer atomContainer = nil;
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:[@"~/settings" stringByExpandingTildeInPath]]];
+    if (data) {
+      atomContainer = NewHandle([data length]);
+      memcpy(*atomContainer, [data bytes], [data length]);
+      stat = MovieExportSetSettingsFromAtomContainer(ci, atomContainer);
+      DisposeHandle(atomContainer);
+    }
+    stat = noErr;
+  }
+  if (noErr == stat) {
+    Boolean cancelled = NO;
+    Movie qtMovie = [movie quickTimeMovie];
+    stat = MovieExportDoUserDialog(ci, qtMovie, nil, 0, GetMovieDuration(qtMovie), &cancelled);
+    if (noErr == stat && ! cancelled) {
+      QTAtomContainer atomContainer = nil;
+      stat = MovieExportGetSettingsAsAtomContainer(ci, &atomContainer);
+      if (noErr == stat && atomContainer) {
+        NSData *data = [NSData dataWithBytes:*atomContainer length:GetHandleSize(atomContainer)];
+        [data writeToURL:[NSURL fileURLWithPath:[@"~/settings" stringByExpandingTildeInPath]] atomically:YES];
+        DisposeHandle(atomContainer);
+      }
+    }
+    CloseComponent(ci);
+  }
+#endif
+
+    if (movie && NeedsTranscoding(movie)) {
+      NSError *err = nil;
+      if ([mm rewriteToStartWithIFrameReturningError:&err]) {
+        movie = [mm movie];
+        if(NeedsTranscoding(movie)){
+NSLog([mm title]);
+        }
+      }
     }
   }
 }

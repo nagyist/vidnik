@@ -97,6 +97,7 @@
 		136C1F4E0DA54FCF00AE1A4C /* TDConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 136C1F470DA54FCF00AE1A4C /* TDConfigurationTests.m */; };
 		136C1F510DA54FED00AE1A4C /* TDClientAuthWindowControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 136C1F500DA54FED00AE1A4C /* TDClientAuthWindowControllerTests.m */; };
 		1378FB160D748C75002582E5 /* Array+Unique.m in Sources */ = {isa = PBXBuildFile; fileRef = 1378FB150D748C75002582E5 /* Array+Unique.m */; };
+		1382503F0DE24E5500ADC4D3 /* settings.qtatom in Resources */ = {isa = PBXBuildFile; fileRef = 1382503E0DE24E5500ADC4D3 /* settings.qtatom */; };
 		13856FE80DC29250002C6F45 /* AlphaNumFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 13856FE70DC29250002C6F45 /* AlphaNumFormatter.m */; };
 		13889B960DA5476E00B1CF95 /* GDataTestHTTPServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 13889B920DA546CD00B1CF95 /* GDataTestHTTPServer.py */; };
 		13889B970DA5476E00B1CF95 /* FeedYouTubePlaylist1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 13889B930DA5471600B1CF95 /* FeedYouTubePlaylist1.xml */; };
@@ -109,6 +110,7 @@
 		13A5DC8B0D7F214600A3D0A1 /* UndoManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A5DC8A0D7F214600A3D0A1 /* UndoManager+Additions.m */; };
 		13ADFC970D92D33500FFF74F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		13ADFCA10D92D38300FFF74F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13ADFCA00D92D38300FFF74F /* SenTestingKit.framework */; };
+		13C0ED980DE1F2CF006DD996 /* Transcoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C0ED970DE1F2CF006DD996 /* Transcoding.m */; };
 		13C2E9390D77759100AAFDE8 /* youtubeSigninLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13C2E9380D77759100AAFDE8 /* youtubeSigninLogo.png */; };
 		13C2E9A30D778C1500AAFDE8 /* TDClientAuthWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C2E9A20D778C1500AAFDE8 /* TDClientAuthWindowController.m */; };
 		13C2EA830D77AC5A00AAFDE8 /* GDataFeedYouTubeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C2EA820D77AC5A00AAFDE8 /* GDataFeedYouTubeVideo.m */; };
@@ -193,7 +195,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6366673D0D6E072900018EB6 /* UnitTests */;
+			remoteGlobalIDString = 6366673D0D6E072900018EB6;
 			remoteInfo = UnitTests;
 		};
 		1341E9090D9BFE4000DF95D7 /* PBXContainerItemProxy */ = {
@@ -404,6 +406,7 @@
 		136C1F500DA54FED00AE1A4C /* TDClientAuthWindowControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDClientAuthWindowControllerTests.m; sourceTree = "<group>"; };
 		1378FB140D748C75002582E5 /* Array+Unique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Array+Unique.h"; sourceTree = "<group>"; };
 		1378FB150D748C75002582E5 /* Array+Unique.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Array+Unique.m"; sourceTree = "<group>"; };
+		1382503E0DE24E5500ADC4D3 /* settings.qtatom */ = {isa = PBXFileReference; lastKnownFileType = file; path = settings.qtatom; sourceTree = "<group>"; };
 		13856FE60DC29250002C6F45 /* AlphaNumFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaNumFormatter.h; sourceTree = "<group>"; };
 		13856FE70DC29250002C6F45 /* AlphaNumFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaNumFormatter.m; sourceTree = "<group>"; };
 		13889B920DA546CD00B1CF95 /* GDataTestHTTPServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = GDataTestHTTPServer.py; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 		13A5DC890D7F214600A3D0A1 /* UndoManager+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UndoManager+Additions.h"; sourceTree = "<group>"; };
 		13A5DC8A0D7F214600A3D0A1 /* UndoManager+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UndoManager+Additions.m"; sourceTree = "<group>"; };
 		13ADFCA00D92D38300FFF74F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
+		13C0ED960DE1F2CF006DD996 /* Transcoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transcoding.h; sourceTree = "<group>"; };
+		13C0ED970DE1F2CF006DD996 /* Transcoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transcoding.m; sourceTree = "<group>"; };
 		13C2E9380D77759100AAFDE8 /* youtubeSigninLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtubeSigninLogo.png; sourceTree = "<group>"; };
 		13C2E9A10D778C1500AAFDE8 /* TDClientAuthWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDClientAuthWindowController.h; sourceTree = "<group>"; };
 		13C2E9A20D778C1500AAFDE8 /* TDClientAuthWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDClientAuthWindowController.m; sourceTree = "<group>"; };
@@ -836,6 +841,15 @@
 			path = Documentation;
 			sourceTree = "<group>";
 		};
+		13C0ED950DE1F2B1006DD996 /* Transcoding */ = {
+			isa = PBXGroup;
+			children = (
+				13C0ED960DE1F2CF006DD996 /* Transcoding.h */,
+				13C0ED970DE1F2CF006DD996 /* Transcoding.m */,
+			);
+			path = Transcoding;
+			sourceTree = "<group>";
+		};
 		13CDC66D0D6372250027DD5A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1004,6 +1018,7 @@
 				130BA1A00D7A843D00EE5A5A /* RecordPreviewMovie.png */,
 				63A714D20D6DF8B20027BAB8 /* Rewind.png */,
 				63A714D30D6DF8B20027BAB8 /* RewindOn.png */,
+				1382503E0DE24E5500ADC4D3 /* settings.qtatom */,
 				63A714D60D6DF8B20027BAB8 /* StartMarker.png */,
 				1338D71E0D8B2C8C0004E581 /* tanBar.png */,
 				1338D71F0D8B2C8C0004E581 /* tanBarSel.png */,
@@ -1102,6 +1117,7 @@
 				636665850D6E015200018EB6 /* TDCapture */,
 				13CDC6700D63724D0027DD5A /* Controller */,
 				13CDC66D0D6372250027DD5A /* Model */,
+				13C0ED950DE1F2B1006DD996 /* Transcoding */,
 				13CDC66F0D6372420027DD5A /* Views */,
 				13E991FA0D899DD60063A8F3 /* Utility */,
 				32CA4F630368D1EE00C91783 /* vidnik.pch */,
@@ -1276,6 +1292,7 @@
 				1338D7200D8B2C8C0004E581 /* tanBar.png in Resources */,
 				1338D7210D8B2C8C0004E581 /* tanBarSel.png in Resources */,
 				13F964A30DDA48FD0032F3BD /* Preferences.nib in Resources */,
+				1382503F0DE24E5500ADC4D3 /* settings.qtatom in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1450,6 +1467,7 @@
 				132F4C820D9AC6980016E2A7 /* AuthCredential.m in Sources */,
 				13856FE80DC29250002C6F45 /* AlphaNumFormatter.m in Sources */,
 				13F9649B0DDA47AF0032F3BD /* PreferencesWindowController.m in Sources */,
+				13C0ED980DE1F2CF006DD996 /* Transcoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

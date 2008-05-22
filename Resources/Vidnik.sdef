@@ -387,6 +387,9 @@
       <type type="text" list="yes" />
       <cocoa key="keywords" />
     </property>
+    <property name="private" code="Priv" type="boolean" description="when uploaded, is this movie not publicly visible" >
+      <cocoa key="isPrivate" />
+    </property>
     <responds-to name="pause"><cocoa method="handlePauseScriptCommand:"/></responds-to>
     <responds-to name="play"><cocoa method="handlePlayScriptCommand:"/></responds-to>
     <responds-to name="record"><cocoa method="handleRecordScriptCommand:"/></responds-to>

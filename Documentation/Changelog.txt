@@ -289,6 +289,12 @@ New TDConfiguration methods (i.e. preference file keys):
   * test showed: writing the movie flattened doesn't remove the edit list.
   * wrote test code to onfigure the MPeg 4 exporter, save config to disk, read it back. 
     Sample config as a data file in the project. (not yet read from app bundle.)
+5/22/08
+  This is an example of adding something to the model:
+  * added isPrivate to the model, the i/o, the uploader, appleScript support, undo handling, undo edit menu localization
+  - still do to: add isPrivate to the U.I.
+  - Test! actually upload a few private movies.
+  - Automate: I tried a few tests in appleScript, (which reminded me to add the undo/diry document handling.)
 
 TODO:
 - better names for movies on disk.

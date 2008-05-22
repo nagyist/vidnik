@@ -488,6 +488,7 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
     GDataMediaKeywords *keywords = [GDataMediaKeywords keywordsWithStrings:movieKeywords];
     [mediaGroup setMediaKeywords:keywords];
   }
+  [mediaGroup setIsPrivate:[mm isPrivate]];
 
   NSString *mimeType = [GDataEntryBase MIMETypeForFileAtPath:moviePath
                                              defaultMIMEType:@"video/mp4"];

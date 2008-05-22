@@ -211,6 +211,9 @@
 "setThumbnail:" = "Thumbnail Change";
 
 // Undo
+"setIsPrivate:" = "Privacy Change";
+
+// Undo
 "setURLString:" = "URL Change";
 
 // needs item note trailing space

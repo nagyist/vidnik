@@ -41,6 +41,7 @@
   NSString            *mURL;                // assigned by YouTube.
   TDModelUploadingAction *mUploadingAction; // not persistent, non-nil when uploading.
   ModelMovieState     mMovieState;
+  BOOL                mIsPrivate;
   id                  mDelegate;  // weak
 }
 
@@ -59,6 +60,10 @@
 
 - (TDModelDate *)displayDate;
 - (void)setDisplayDate:(TDModelDate *)displayDate;
+
+// at upload time, mark the movie as initially private or public.
+- (BOOL)isPrivate;
+- (void)setIsPrivate:(BOOL)isPrivate;
 
 - (NSArray *)keywords;
 - (void)setKeywords:(NSArray *)keywords;

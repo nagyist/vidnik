@@ -39,6 +39,7 @@ static NSString * const kTitleKey = @"title";
 static NSString * const kThumbnailKey = @"thumbnail";
 static NSString * const kURLKey = @"url";
 static NSString * const kMovieStateKey = @"movieState";
+static NSString * const kIsPrivateKey = @"isPrivateKey";
 
 @interface TDModelMovie(PrivateMethods)
 - (void)tellDelegateDidChangeKey:(NSString *)key oldValue:(id)value;
@@ -97,6 +98,7 @@ static NSString * const kMovieStateKey = @"movieState";
     m->mURL = [mURL copyWithZone:zone];
     m->mUploadingAction = [mUploadingAction copyWithZone:zone];
     [m->mUploadingAction setDelegate:m];
+    m->mIsPrivate = mIsPrivate;
     m->mMovieState = mMovieState;
   }
   return m;
@@ -115,6 +117,7 @@ static NSString * const kMovieStateKey = @"movieState";
   if (mURL) { [coder encodeObject:mURL forKey:kURLKey]; }
   int i = mMovieState;
   [coder encodeInt:i forKey:kMovieStateKey];
+  if (mIsPrivate) { [coder encodeBool:mIsPrivate forKey:kIsPrivateKey]; }
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
@@ -127,6 +130,7 @@ static NSString * const kMovieStateKey = @"movieState";
   mKeywords = [[coder decodeObjectForKey:kKeywordsKey] retain];
   mMovieFile = [[coder decodeObjectForKey:kMovieFileKey] retain];
   mURL = [[coder decodeObjectForKey:kURLKey] retain];
+  mIsPrivate = [coder decodeBoolForKey:kIsPrivateKey];
   mMovieState = [coder decodeIntForKey:kMovieStateKey];
 
   // when reading a file, forgive past errors.
@@ -192,6 +196,16 @@ static NSString * const kMovieStateKey = @"movieState";
   }
 }
 
+- (BOOL)isPrivate {
+  return mIsPrivate;
+}
+
+- (void)setIsPrivate:(BOOL)isPrivate {
+  if (mIsPrivate != isPrivate) {
+    [self tellDelegateDidChangeKey:@"setIsPrivate:" oldValue:[NSNumber numberWithBool:mIsPrivate]];
+    mIsPrivate = isPrivate;
+  }
+}
 
 
 - (NSArray *)keywords {

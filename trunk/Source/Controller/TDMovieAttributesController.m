@@ -190,6 +190,14 @@
   return [[[mKeywords stringValue] componentsSeparatedByCharacterSet:seps] unique];
 }
 
+
+- (void)setKeywords:(NSArray *)keywords {
+  NSString *keywordsString = [keywords componentsJoinedByString:@" "];
+  keywordsString = (keywordsString ? keywordsString : @"");
+  [mKeywords setStringValue:keywordsString];
+}
+
+
 - (NSString *)details {
   return [mDescription string];
 }
@@ -243,10 +251,9 @@
     } else if([setter isEqual:@"setCategory:"]) {
       [self setCategory:[mMovie category]];
     } else if([setter isEqual:@"setKeywords:"]) {
-      NSString *keywords = [[mMovie keywords] componentsJoinedByString:@" "];
-      keywords = (keywords ? keywords : @"");
-      if ( ! [keywords isEqual:[mKeywords stringValue]]) {
-        [mKeywords setStringValue:keywords];
+      NSArray *keywords = [mMovie keywords];
+      if ( ! [keywords isEqual:[self keywords]]) {
+        [self setKeywords:keywords];
       }
     } else if([setter isEqual:@"setDetails:"]) {
       NSString *details = [mMovie details];
@@ -310,8 +317,9 @@
   }
 }
 
+
 - (void)textDidChange:(NSNotification *)notify {
-  NSText *text = [notify object];
+  NSTextView *text = [notify object];
   if (text == mDescription) {
     [mMovie setDetails:[self details]];
   }
@@ -327,6 +335,17 @@
     [mMovie setKeywords:[self keywords]];
   }
 }
+
+- (void)controlTextDidEndEditing:(NSNotification *)notify {
+  NSControl *cont = [notify object];
+
+  if (cont == mTitle) {
+    [self setTitle:[mMovie title]];
+  } else if (cont == mKeywords) {
+    [self setKeywords:[mMovie keywords]];
+  }
+}
+
 
 // set the U.I. called in response to model changes from setters, notifiers
 - (void)setCategory:(NSString *)category {

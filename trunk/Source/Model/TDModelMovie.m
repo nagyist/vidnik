@@ -25,6 +25,7 @@
 #import "Image+Resize.h"
 #import "QTMovie+Async.h"
 #import "String+Path.h"
+#import "String+Validate.h"
 #import "TDModelFileRef.h"
 #import "TDModelDate.h"
 #import "TDModelUploadingAction.h"
@@ -39,6 +40,7 @@ static NSString * const kTitleKey = @"title";
 static NSString * const kThumbnailKey = @"thumbnail";
 static NSString * const kURLKey = @"url";
 static NSString * const kMovieStateKey = @"movieState";
+static NSString * const kBadCharsString = @" ,<>\t\n\r";
 static NSString * const kIsPrivateKey = @"isPrivateKey";
 
 @interface TDModelMovie(PrivateMethods)
@@ -173,8 +175,10 @@ static NSString * const kIsPrivateKey = @"isPrivateKey";
   return mDetails;
 }
 
+// http://code.google.com/apis/youtube/2.0/reference.html says 5000 chars max.
 - (void)setDetails:(NSString *)details {
- if ( ! AreEqualOrBothNil(details, mDetails)) {
+  details = [details atMostCharacters:5000];
+  if ( ! AreEqualOrBothNil(details, mDetails)) {
     NSString *oldDetails = mDetails;
     [mDetails autorelease];
     mDetails = [details copy];
@@ -212,7 +216,73 @@ static NSString * const kIsPrivateKey = @"isPrivateKey";
   return mKeywords;
 }
 
+// mKeywords http://code.google.com/apis/youtube/2.0/reference.html says 120 chars max.
+// each keyword must be at least two characters long and may not be longer than 25 characters
+// individual keywords may not contain spaces.
+- (NSArray *)validatedKeywords:(NSArray *)keywords {
+  NSMutableArray *mutableKeywords = [[keywords mutableCopy] autorelease];
+  int i, iCount = [mutableKeywords count];
+  NSCharacterSet *badCharSet = [NSCharacterSet characterSetWithCharactersInString:kBadCharsString];
+  for (i = iCount - 1;0 <= i; --i) {
+    NSString *keyword = [mutableKeywords objectAtIndex:i];
+    keyword = [keyword stringByRemovingCharactersFromSet:badCharSet];
+    [mutableKeywords replaceObjectAtIndex:i withObject:keyword];
+    if ([keyword length] < 2) {
+      [mutableKeywords removeObjectAtIndex:i];
+      continue; // doesn't contribute to total length calculation.
+    } else if (25 < [keyword length]) {
+      keyword = [keyword substringToIndex:25];
+      [mutableKeywords replaceObjectAtIndex:i withObject:keyword];
+    }
+  }
+  // Truncation might have created duplicates. This checks them and fixes them.
+  mutableKeywords = [[[mutableKeywords unique]  mutableCopy] autorelease];
+
+  // Now check the total length, and trim the extra suffix.
+  iCount = [mutableKeywords count];
+  int totalLength = -1; // no separator before first element.
+  for (i = 0; i < iCount; ++i) {
+    NSString *keyword = [mutableKeywords objectAtIndex:i];
+    totalLength += [keyword length] + 1;
+    if (120 < totalLength) {
+      [mutableKeywords removeObjectsInRange:NSMakeRange(i, iCount - i)];
+      break;
+    }
+  }
+  return mutableKeywords;
+}
+
+// Assumes some else has done the uniqueness test. In the case the keywords ARE
+// valid, this saves constructing objects we'll just throw away.
+- (BOOL)isKeywordArrayValid:(NSArray *)keywords {
+  if (0 == [keywords count]) {
+    return YES;
+  }
+  NSCharacterSet *badCharSet = [NSCharacterSet characterSetWithCharactersInString:kBadCharsString];
+  int i, iCount = [keywords count];
+  int totalLength = iCount-1; // comma separated string, when sent to YouTube.
+  for (i = 0; i < iCount;++i) {
+    NSString *keyword = [keywords objectAtIndex:i];
+    int length = [keyword length];
+    totalLength += length;
+    if (120 < totalLength) {
+      return NO;
+    }
+    if (!(2 <= length && length <= 25)) {
+      return NO;
+    }
+    NSRange badCharRange = [keyword rangeOfCharacterFromSet:badCharSet];
+    if (NSNotFound != badCharRange.location) {
+      return NO;
+    }
+  }
+  return YES;
+}
+
 - (void)setKeywords:(NSArray *)keywords {
+  if ( ! [self isKeywordArrayValid:keywords]) {
+    keywords = [self validatedKeywords:keywords];
+  }
   keywords = [keywords unique];
   if ( ! AreEqualOrBothNil(keywords, mKeywords)) {
     NSArray *oldKeywords = mKeywords;
@@ -273,7 +343,9 @@ static NSString * const kIsPrivateKey = @"isPrivateKey";
   return mTitle;
 }
 
+//  http://code.google.com/apis/youtube/2.0/reference.html says 60 characters or 100 bytes max
 - (void)setTitle:(NSString *)title {
+  title = [[title atMostCharacters:60] atMostBytes:100];
   if ( ! AreEqualOrBothNil(title, mTitle)) {
     NSString *oldTitle = mTitle;
     [mTitle autorelease];

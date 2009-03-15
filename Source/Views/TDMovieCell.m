@@ -197,13 +197,24 @@ enum {
   }
 }
 
+
+- (BOOL)isDarkBackgroundStyle {
+  // backgroundStyle defined in OS X 10.5 only.
+  if ([self respondsToSelector:@selector(backgroundStyle)]) {
+    int backgroundStyle = (int)[self performSelector:@selector(backgroundStyle)];
+    return backgroundStyle == 1; // 1 is NSBackgroundStyleDark
+  }
+  // for OS X 10.4, punt.
+  return NO;
+}
+
 - (void)drawUploadedMark:(NSRect)progressFrame inView:(NSView *)controlView {
   unichar c = 0x2713;
   NSString *checkMarkS = [NSString stringWithCharacters:&c length:1];
   NSRect checkMarkRect = NSMakeRect(progressFrame.origin.x + 4, progressFrame.origin.y + progressFrame.size.height - 21, 20, 20); 
   NSColor *checkColor;
   if ([self isHighlighted]) {
-    if (NSBackgroundStyleDark == [self backgroundStyle]) {
+    if ([self isDarkBackgroundStyle]) {
       checkColor = [NSColor whiteColor];
     } else {
       checkColor = [NSColor blackColor];

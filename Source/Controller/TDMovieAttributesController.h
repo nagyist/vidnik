@@ -38,7 +38,7 @@
 }
 // ### Atrributes
 - (NSString *)title;
-- (NSArray *)keywords;
+- (NSArray *)keywords;  // of NSString
 - (NSString *)details;
 - (NSString *)category;
 - (id)delegate;

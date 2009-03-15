@@ -402,7 +402,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
   TDModelMovie *mm = [ticket userData];
   if (mm) {
     [mm setMovieState:kUploaded];
-    NSString *url = [[[entry links] alternateLink] href];
+    NSString *url = [[entry alternateLink] href];
     [mm setURLString:url];
     [mOutline reloadItem:mm];
   }

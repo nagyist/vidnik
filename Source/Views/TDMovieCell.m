@@ -201,7 +201,8 @@ enum {
 - (BOOL)isDarkBackgroundStyle {
   // backgroundStyle defined in OS X 10.5 only.
   if ([self respondsToSelector:@selector(backgroundStyle)]) {
-    int backgroundStyle = (int)[self performSelector:@selector(backgroundStyle)];
+    id backgroundStyleAsID = [self performSelector:@selector(backgroundStyle)];
+    int backgroundStyle = (int)backgroundStyleAsID;
     return backgroundStyle == 1; // 1 is NSBackgroundStyleDark
   }
   // for OS X 10.4, punt.

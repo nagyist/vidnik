@@ -25,6 +25,7 @@
 #import "GDataObject.h" // for AreEqualOrBothNil
 #import "GDataMediaCategory.h"
 #import "GDataServiceGoogleYouTube.h"
+#import "GDataYouTubeConstants.h"
 #import "GDataYouTubeMediaElements.h"
 #import "GDataMediaKeywords.h"
 #import "TDAppController.h"
@@ -420,27 +421,26 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
 
 - (GDataServiceTicket *)upload1:(TDModelMovie *)mm
                          target:(id)target
-     selectorFinishedWithObject:(SEL)selectorFinished
-                  selectorFinishedWithError:(SEL)selectorError {
+     selectorFinishedWithObject:(SEL)selectorFinished {
 
   NSString *moviePath = [mm path];
   if (nil == moviePath) {
     NSError *noPathError = [NSError errorWithDomain:kTDAppDomain code:kUploadErrFileNotFound userInfo:nil];
-    [target performSelector:selectorError withObject:nil withObject:noPathError];
+    objc_msgSend(target, selectorFinished, nil, nil, noPathError);
     return nil;
   }
 
   NSData *data = [NSData dataWithContentsOfFile:moviePath];
   if (nil == data) {
     NSError *couldntReadError = [NSError errorWithDomain:kTDAppDomain code:kUploadErrCouldntReadFile userInfo:nil];
-    [target performSelector:selectorError withObject:nil withObject:couldntReadError];
+    objc_msgSend(target, selectorFinished, nil, nil, couldntReadError);
     return nil;
   }
 
   NSString *movieCategory = [mm category];
   if (nil == movieCategory) {
     NSError *noCategoryError = [NSError errorWithDomain:kTDAppDomain code:kUploadErrNoCategory userInfo:nil];
-    [target performSelector:selectorError withObject:nil withObject:noCategoryError];
+    objc_msgSend(target, selectorFinished, nil, nil, noCategoryError);
     return nil;
   }
 
@@ -457,13 +457,13 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
   AuthCredential *cred = [self currentCredential];
   if (nil == cred) {
     NSError *noServiceError = [NSError errorWithDomain:kTDAppDomain code:kNoServiceErr userInfo:nil];
-    [target performSelector:selectorError withObject:nil withObject:noServiceError];
+    objc_msgSend(target, selectorFinished, nil, nil, noServiceError);
     return nil;
   }
 
   if (0 == [[cred username] length] || 0 == [[cred password] length]) {
     NSError *noUsernamePasswordError = [NSError errorWithDomain:kTDAppDomain code:kNoUsernamePasswordErr userInfo:nil];
-    [target performSelector:selectorError withObject:nil withObject:noUsernamePasswordError];
+    objc_msgSend(target, selectorFinished, nil, nil, noUsernamePasswordError);
     return nil;
   }
 
@@ -507,11 +507,10 @@ static NSError *AugmentError(NSError *err, NSString *errKey, NSString *suggestKe
 
   [service setServiceUserData:mm];
   GDataServiceTicket *ticket;
-  ticket = [service fetchYouTubeEntryByInsertingEntry:entry
-                                           forFeedURL:url
-                                             delegate:target
-                                    didFinishSelector:selectorFinished
-                                      didFailSelector:selectorError];
+  ticket = [service fetchEntryByInsertingEntry:entry
+                                    forFeedURL:url
+                                      delegate:target
+                             didFinishSelector:selectorFinished];
   [ticket setUserData:mm];
   [service setServiceUserData:nil];
   return ticket;

@@ -512,14 +512,8 @@ errorMessageSelector:(SEL)errorSelector
 }
 
 
-
-
-- (void)entryListFetchTicket:(GDataServiceTicket *)ticket
-            finishedWithFeed:(GDataFeedBase *)object {
-  [self setEntriesFeed:object];
-  [self setEntriesFetchError:nil];    
-  [self setEntriesFetchTicket:nil];
-  
+- (void)entryListFinishedWithFeed:(GDataFeedBase *)object
+                       credential:(NSURLCredential *)cred {
   isSigningIn_ = NO;
   
   // Save the name that the keychain item is currently stored under in
@@ -532,7 +526,6 @@ errorMessageSelector:(SEL)errorSelector
   NSString *account = [[mConfiguration service] username];
   
   AuthCredential *credential = nil;
-  NSURLCredential* cred = [[ticket authFetcher] credential];
   if (cred && nil == credential) {
     credential = [AuthCredential authCredentialWithNSURLCredential:cred];
   }
@@ -591,8 +584,7 @@ errorMessageSelector:(SEL)errorSelector
   [self updateUI];
 }
 
-- (void)entryListFetchTicket:(GDataServiceTicket *)ticket
-             failedWithError:(NSError *)error {
+- (void)entryListFailedWithError:(NSError *)error {
   [self setEntriesFeed:nil];
   [self setEntriesFetchError:error];    
   [self setEntriesFetchTicket:nil];
@@ -673,6 +665,23 @@ errorMessageSelector:(SEL)errorSelector
 
 }
 
+
+- (void)entryListFetchTicket:(GDataServiceTicket *)ticket
+            finishedWithFeed:(GDataFeedBase *)object
+                       error:(NSError *)error {
+  [self setEntriesFeed:object];
+  [self setEntriesFetchError:error];    
+  [self setEntriesFetchTicket:nil];
+
+  if (object) {
+    NSURLCredential* cred = [[ticket authFetcher] credential];
+    [self entryListFinishedWithFeed:object
+                         credential:cred];
+  } else if (error) {
+    [self entryListFailedWithError:error];
+  }
+}
+
 - (IBAction)signInClicked:(id)sender {
  // controlTextDidEndEditing isn't called if the user clicks the Sign In
   // button directly, so we need to normalize the field here, too
@@ -697,11 +706,10 @@ errorMessageSelector:(SEL)errorSelector
                                                        userFeedID:feedID];
   
   GDataServiceTicket *ticket;
-  ticket = [service fetchYouTubeFeedWithURL:feedURL
-                                   delegate:self
-                          didFinishSelector:@selector(entryListFetchTicket:finishedWithFeed:)
-                            didFailSelector:@selector(entryListFetchTicket:failedWithError:)];
-
+  ticket = [service fetchFeedWithURL:feedURL
+                            delegate:self
+                   didFinishSelector:@selector(entryListFetchTicket:finishedWithFeed:error:)];
+  
   [self setEntriesFetchTicket:ticket];
 
 }

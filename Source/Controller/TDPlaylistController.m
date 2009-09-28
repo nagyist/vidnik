@@ -695,7 +695,7 @@ static NSString * const kTDInternalMoviePboardType = @"com.google.code.TDInterna
       if ([mm rewriteToStartWithIFrameReturningError:&err]) {
         movie = [mm movie];
         if(NeedsTranscoding(movie)){
-NSLog([mm title]);
+          NSLog(@"NeedsTranscoding %@",[mm title]);
         }
       }
     }
@@ -1306,9 +1306,8 @@ NSLog([mm title]);
   if (mm) {
     [mm setMovieState:kUploading];
     [self setServiceTicket:[[self delegate] upload1:mm
-                                       target:self
-                   selectorFinishedWithObject:@selector(ticket:finishedWithObject:)
-                    selectorFinishedWithError:@selector(ticket:finishedWithError:)]];
+                                             target:self
+                         selectorFinishedWithObject:@selector(ticket:finishedWithObject:error:)]];
   } else {
     [mPublishButton setEnabled:YES];
   }

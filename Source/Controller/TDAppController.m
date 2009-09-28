@@ -22,6 +22,7 @@
 #import "GDataHTTPFetcher.h"
 #import "GDataEntryYouTubeVideo.h"
 #import "GDataHTTPFetcherLogging.h"
+#import "GDataYouTubeConstants.h"
 #import "PreferencesWindowController.h"
 #import "Sparkle/SUUpdater.h"
 #import "TDConfiguration.h"

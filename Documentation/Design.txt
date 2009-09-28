@@ -2,6 +2,8 @@
 
 Overview - The structure of the App
 
+You'll also need OCMock to run the Unit Tests. You can download it from http://www.mulle-kybernetik.com/software/OCMock/
+
 a Model-View-Controller app.
 
 Model - simple container of data, concerned with presenting a clean API to the rest of the program, file i/o, pasteboard i/o. When a model object is changed, it informs its delegate in sufficient detail that the delegate can implement undo.

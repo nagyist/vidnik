@@ -88,7 +88,8 @@
 		134AD6190D622942003B1523 /* GDataProgressMonitorInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 134AD6180D622942003B1523 /* GDataProgressMonitorInputStream.m */; };
 		134AD6220D622AB2003B1523 /* GDataEntryYouTubeUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 134AD6210D622AB2003B1523 /* GDataEntryYouTubeUpload.m */; };
 		1354FACA0D7DF00000BD3CD4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		136C1F480DA54FCF00AE1A4C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 136C1F410DA54FCF00AE1A4C /* Info.plist */; };
+		1366F06A1071549B009CC6F5 /* GDataAuthenticationFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F0691071549B009CC6F5 /* GDataAuthenticationFetcher.m */; };
+		1366F077107154D6009CC6F5 /* GDataYouTubeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F076107154D6009CC6F5 /* GDataYouTubeConstants.m */; };
 		136C1F490DA54FCF00AE1A4C /* StringFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 136C1F420DA54FCF00AE1A4C /* StringFormatTests.m */; };
 		136C1F4A0DA54FCF00AE1A4C /* UploadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 136C1F430DA54FCF00AE1A4C /* UploadTests.m */; };
 		136C1F4B0DA54FCF00AE1A4C /* ApplescriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 136C1F440DA54FCF00AE1A4C /* ApplescriptTests.m */; };
@@ -399,6 +400,10 @@
 		134AD6180D622942003B1523 /* GDataProgressMonitorInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataProgressMonitorInputStream.m; sourceTree = "<group>"; };
 		134AD6200D622AB2003B1523 /* GDataEntryYouTubeUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataEntryYouTubeUpload.h; sourceTree = "<group>"; };
 		134AD6210D622AB2003B1523 /* GDataEntryYouTubeUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataEntryYouTubeUpload.m; sourceTree = "<group>"; };
+		1366F06810715493009CC6F5 /* GDataAuthenticationFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataAuthenticationFetcher.h; sourceTree = "<group>"; };
+		1366F0691071549B009CC6F5 /* GDataAuthenticationFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataAuthenticationFetcher.m; sourceTree = "<group>"; };
+		1366F075107154D6009CC6F5 /* GDataYouTubeConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataYouTubeConstants.h; sourceTree = "<group>"; };
+		1366F076107154D6009CC6F5 /* GDataYouTubeConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataYouTubeConstants.m; sourceTree = "<group>"; };
 		136C1F410DA54FCF00AE1A4C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		136C1F420DA54FCF00AE1A4C /* StringFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringFormatTests.m; sourceTree = "<group>"; };
 		136C1F430DA54FCF00AE1A4C /* UploadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadTests.m; sourceTree = "<group>"; };
@@ -707,6 +712,8 @@
 				134AD5840D622929003B1523 /* GDataEntryYouTubeVideo.m */,
 				134AD5860D622929003B1523 /* GDataServiceGoogleYouTube.h */,
 				134AD5870D622929003B1523 /* GDataServiceGoogleYouTube.m */,
+				1366F075107154D6009CC6F5 /* GDataYouTubeConstants.h */,
+				1366F076107154D6009CC6F5 /* GDataYouTubeConstants.m */,
 				134AD5890D62292A003B1523 /* GDataYouTubeElements.h */,
 				134AD58A0D62292A003B1523 /* GDataYouTubeElements.m */,
 				134AD58C0D62292A003B1523 /* GDataYouTubeMediaElements.h */,
@@ -821,6 +828,8 @@
 		134AD60A0D62293F003B1523 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				1366F06810715493009CC6F5 /* GDataAuthenticationFetcher.h */,
+				1366F0691071549B009CC6F5 /* GDataAuthenticationFetcher.m */,
 				134AD60B0D622940003B1523 /* GDataGatherInputStream.h */,
 				134AD60C0D622940003B1523 /* GDataGatherInputStream.m */,
 				134AD60E0D622940003B1523 /* GDataHTTPFetcher.h */,
@@ -1266,7 +1275,6 @@
 			files = (
 				13889B960DA5476E00B1CF95 /* GDataTestHTTPServer.py in Resources */,
 				13889B970DA5476E00B1CF95 /* FeedYouTubePlaylist1.xml in Resources */,
-				136C1F480DA54FCF00AE1A4C /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1490,6 +1498,8 @@
 				13C0ED980DE1F2CF006DD996 /* Transcoding.m in Sources */,
 				13E16E8F0F6CCD1800B6F5D1 /* GDataBaseElements.m in Sources */,
 				13E16E9B0F6CCD6C00B6F5D1 /* GDataServerError.m in Sources */,
+				1366F06A1071549B009CC6F5 /* GDataAuthenticationFetcher.m in Sources */,
+				1366F077107154D6009CC6F5 /* GDataYouTubeConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1735,7 +1745,7 @@
 				GCC_PREFIX_HEADER = Source/Vidnik.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_OS_X_VERSION_MIN_REQUIRED=MAC_OS_X_VERSION_10_4",
-					"MAC_OS_X_VERSION_MAX_ALLOWED=2000",
+					"MAC_OS_X_VERSION_MAX_ALLOWED=1050",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_VERSION = 0.13.2;
@@ -1754,7 +1764,7 @@
 				GCC_PREFIX_HEADER = Source/Vidnik.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_OS_X_VERSION_MIN_REQUIRED=MAC_OS_X_VERSION_10_4",
-					"MAC_OS_X_VERSION_MAX_ALLOWED=2000",
+					"MAC_OS_X_VERSION_MAX_ALLOWED=1050",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_VERSION = 0.13.2;

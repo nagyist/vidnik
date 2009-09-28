@@ -51,7 +51,6 @@
   id mUserData;
   SEL mProgressSel;
   SEL mFinishedSel;
-  SEL mErrorSel;
   BOOL mWillSucceed;
   float mProgress;
 }
@@ -151,14 +150,12 @@
   mProgressSel = progressSelector;
 }
 
-- (GDataServiceTicket *)fetchYouTubeEntryByInsertingEntry:(GDataEntryBase *)entryToInsert
+- (GDataServiceTicket *)fetchEntryByInsertingEntry:(GDataEntryBase *)entryToInsert
                                                forFeedURL:(NSURL *)youTubeFeedURL
                                                  delegate:(id)delegate
-                                        didFinishSelector:(SEL)finishedSelector
-                                          didFailSelector:(SEL)failedSelector {
+                                        didFinishSelector:(SEL)finishedSelector {
 	mDelegate = delegate;
   mFinishedSel = finishedSelector;
-  mErrorSel = failedSelector;
   mTimer = [[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES] retain];
   [mTicket setUserData:[self serviceUserData]];
   return (GDataServiceTicket *) mTicket;
@@ -181,10 +178,10 @@
       id mockUpload = [OCMockObject mockForClass:[GDataEntryYouTubeUpload class]];
       [[[mockUpload stub] andReturn:mockLinks] links];
 
-      objc_msgSend(mDelegate, mFinishedSel, mTicket, mockUpload);
+      objc_msgSend(mDelegate, mFinishedSel, mTicket, mockUpload, nil);
     }else {
       NSError *err = [NSError errorWithDomain:@"MockUpload" code:404 userInfo:nil];
-      objc_msgSend(mDelegate, mErrorSel, mTicket, err);
+      objc_msgSend(mDelegate, mFinishedSel, mTicket, nil, err);
     }
     [mTicket setHasCalledCallback:YES];
     [mTicket autorelease];

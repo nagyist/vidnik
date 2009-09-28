@@ -110,8 +110,7 @@
 
 - (GDataServiceTicket *)upload1:(TDModelMovie *)mm
                          target:(id)target
-     selectorFinishedWithObject:(SEL)selectorFinished
-      selectorFinishedWithError:(SEL)selectorError;
+     selectorFinishedWithObject:(SEL)selectorFinished;
 
 - (int)instanceNumber;
 
